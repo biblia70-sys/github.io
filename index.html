@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：福岡県大刀洗町の老舗 決定版 v2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic & Playful -->
+    <!-- Plan Narrative & Structure: The infographic experience is redesigned for interactive discovery. It starts with the foundational context of Tachiarai, followed by a geographic overview with the map. The core is the "Stories of the Artisans" section, featuring interactive flip-cards. Each card front presents a single, powerful identity (icon + keyword), inviting the user to click and "flip" it to reveal a detailed story. This encourages engagement over passive reading. The infographic concludes with the donut chart for a statistical summary. -->
+    <!-- Visualization & Content Choices: 
+        - Data Point: Geographic context. Goal: Inform. Visualization: Text callouts. Method: HTML/CSS. NO SVG.
+        - Data Point: Business locations. Goal: Organize/Explore. Visualization: Interactive Map. Method: Leaflet.js. NO SVG.
+        - Data Point: Details of each business. Goal: Engage & Inform. Visualization: Interactive Flip-Cards. Justification: This approach makes each company's identity prominent. The front acts as a "hook," and the flip interaction is a satisfying way for users to actively uncover more information, enhancing engagement. Method: HTML/CSS/JS. NO SVG.
+        - Data Point: Breakdown of business types. Goal: Show Composition. Visualization: Donut Chart. Method: Chart.js/Canvas. NO SVG. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F0F4F8;
+        }
+        #map { height: 500px; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .donut-chart-container { position: relative; width: 100%; max-width: 450px; margin: auto; height: 450px; max-height: 50vh; }
+        .section-heading { font-size: 2.25rem; font-weight: 900; color: #073B4C; text-align: center; margin-bottom: 1rem; }
+        .section-subheading { max-width: 65ch; margin: 0 auto 2.5rem auto; text-align: center; color: #555; font-size: 1.125rem; }
+        .leaflet-popup-content-wrapper { border-radius: 8px; }
+        .leaflet-popup-content { font-weight: bold; color: #073B4C; }
+        .legend { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; }
+        .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.9; border-radius: 50%; }
+
+        .flip-card { background-color: transparent; width: 100%; height: 320px; perspective: 1000px; cursor: pointer; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
+        .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .flip-card-front { background-color: white; }
+        .flip-card-back { background-color: #073B4C; color: white; transform: rotateY(180deg); }
+        .flip-card-back a { display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background-color: #118AB2; color: white; border-radius: 0.5rem; text-decoration: none; font-weight: bold; transition: background-color 0.3s; }
+        .flip-card-back a:hover { background-color: #06D6A0; color: #073B4C; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <main class="container mx-auto p-4 sm:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#118AB2] to-[#073B4C]">味と技の遺産</h1>
+            <p class="mt-4 text-2xl font-bold text-[#118AB2]">福岡県大刀洗町、世紀を越える老舗たち</p>
+        </header>
+
+        <section class="my-16">
+            <h2 class="section-heading">筑後平野の恵み</h2>
+            <p class="section-subheading">
+                大刀洗町の産業は、豊かな自然の恩恵の上に成り立っています。九州一の大河・筑後川がもたらす清らかな水と広大な平野は、この地の酒造りから多様な食文化、そして人々の暮らしを支える職人の技まで、あらゆる営みの礎となっています。
+            </p>
+        </section>
+
+        <section class="my-20">
+            <h2 class="section-heading">老舗の所在地マップ</h2>
+            <p class="section-subheading">
+                大刀洗の歴史を彩る老舗は、町の中心部に集まっています。地図上の円マーカーをクリックして、それぞれの場所を確認してみましょう。
+            </p>
+            <div id="map"></div>
+        </section>
+
+        <section class="my-16">
+            <h2 class="section-heading">匠たちの物語：クリックして発見</h2>
+             <p class="section-subheading">
+                それぞれのカードが、一つの老舗の物語の入り口です。気になるカードをクリックして、その奥深い世界を覗いてみましょう。
+             </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 樋口食品工業 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#06D6A0]">
+                            <div class="text-6xl mb-4">醤油</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">樋口食品工業</h3>
+                            <p class="text-lg font-semibold text-[#06D6A0] mt-2">伝統のうまくち醤油</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">樋口食品工業(株)</h3>
+                            <p class="text-sm mt-2">創業1880年。九州ならではの甘みと旨味が特徴の「うまくち醤油」を守り続ける醸造元。全国醤油品評会で農林水産大臣賞を受賞するなど、その品質は高く評価されています。</p>
+                            <a href="https://www.higuchi-shouyu.co.jp/" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- みいの寿 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#073B4C]">
+                            <div class="text-6xl mb-4">🍶</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">みいの寿</h3>
+                            <p class="text-lg font-semibold text-[#073B4C] mt-2">スラムダンクの聖地</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">(株)みいの寿</h3>
+                            <p class="text-sm mt-2">創業1922年。伝統的な山廃仕込みからワイン酵母を使った斬新な酒まで、常に革新を追求。「科学と情熱とセンス」をキーワードに、多くのファンを魅了。人気漫画の登場人物の名の由来としても有名です。</p>
+                            <a href="https://miinokotobuki.com/" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 立石蒲鉾店 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#06D6A0]">
+                            <div class="text-6xl mb-4">🍥</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">立石蒲鉾店</h3>
+                            <p class="text-lg font-semibold text-[#06D6A0] mt-2">唯一無二の「極鯖」</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">立石蒲鉾店</h3>
+                            <p class="text-sm mt-2">新鮮な鯖のすり身を酢で締めた「極鯖（ごくさば）」など、ユニークな商品開発にも意欲的。スタンダードな蒲鉾や天ぷらも絶品で、地域に愛され続ける練り物専門店です。</p>
+                            <a href="https://www.tateishi-kamaboko.com/" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 三原精肉店 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#EF476F]">
+                            <div class="text-6xl mb-4">🐴</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">三原精肉店</h3>
+                            <p class="text-lg font-semibold text-[#EF476F] mt-2">鮮度抜群の馬刺し</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">三原精肉店</h3>
+                            <p class="text-sm mt-2">大刀洗グルメの代表格「馬刺し」を扱う名店。新鮮で質の高い赤身の馬肉を求め、多くの人が訪れます。地域に根ざした品揃えで、日々の食卓を豊かにしています。</p>
+                            <a href="https://www.town.tachiarai.fukuoka.jp/tachiyoridokoro/kiji003941/index.html" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 肉の大正屋 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#EF476F]">
+                            <div class="text-6xl mb-4">🥩</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">肉の大正屋</h3>
+                            <p class="text-lg font-semibold text-[#EF476F] mt-2">町の台所</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">肉の大正屋</h3>
+                            <p class="text-sm mt-2">馬肉をはじめ、質の良い肉を長年にわたり提供し続ける精肉店。店主との会話も楽しみの一つで、地域のコミュニティの拠点としても重要な役割を担っています。</p>
+                            <a href="https://chikugo-ikoi.com/oniku_taishoya/" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- お菓子のふなき -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#FFD166]">
+                            <div class="text-6xl mb-4">🍮</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">お菓子のふなき</h3>
+                            <p class="text-lg font-semibold text-[#FFD166] mt-2">名物「鍋焼きプリン」</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">お菓子のふなき</h3>
+                            <p class="text-sm mt-2">ケーキから饅頭まで揃う町のスイートステーション。地元産小松菜を使った「ふるさと銘菓たちあらい」や、有名人も絶賛した「鍋焼きプリン」が人気です。</p>
+                            <a href="https://www.okashi-funaki.co.jp/" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 平田万十店 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#FFD166]">
+                            <div class="text-6xl mb-4">🍡</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">平田万十店</h3>
+                            <p class="text-lg font-semibold text-[#FFD166] mt-2">昔ながらの手作り</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">平田万十店</h3>
+                            <p class="text-sm mt-2">一つ一つ手作りされる饅頭は、素朴で心温まる味わい。甘さ控えめの餡がたっぷりで、子どもからお年寄りまで、幅広い世代に親しまれています。</p>
+                            <a href="https://www.town.tachiarai.fukuoka.jp/tachiyoridokoro/kiji003887/index.html" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- あずみうどん -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#F78C6B]">
+                            <div class="text-6xl mb-4">🍜</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">あずみうどん</h3>
+                            <p class="text-lg font-semibold text-[#F78C6B] mt-2">地元のソウルフード</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">あずみうどん 大刀洗本店</h3>
+                            <p class="text-sm mt-2">しっかりとしたコシのある麺と、昆布や鰹からとった風味豊かな出汁が自慢。昼時には行列ができることも多い、地元民のソウルフードとも言えるうどんの名店です。</p>
+                            <a href="https://www.fukuoka-navi.jp/237438" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ロォーリング -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#8338EC]">
+                            <div class="text-6xl mb-4">🧵</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">ロォーリング</h3>
+                            <p class="text-lg font-semibold text-[#8338EC] mt-2">伝統を織りなす</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">合資会社ロォーリング</h3>
+                            <p class="text-sm mt-2">久留米絣など地域の伝統的な織物を扱う繊維卸売会社。長年にわたり、地域の繊維産業を支え、その魅力を国内外に伝えています。</p>
+                            <a href="https://www.fukuoka-navi.jp/239603" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 町の老舗大工 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#118AB2]">
+                            <div class="text-6xl mb-4">🔨</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">町の老舗大工</h3>
+                            <p class="text-lg font-semibold text-[#118AB2] mt-2">木の温もり</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">町の老舗大工</h3>
+                            <p class="text-sm mt-2">地域の木材を使い、手作りの温もりあふれる家具や建具を製作。既製品にはない優しさと、長年培われた確かな技術で、人々の暮らしに寄り添うものづくりを続けています。</p>
+                            <a href="https://www.satofull.jp/products/detail.php?product_id=1035403" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <h2 class="section-heading">老舗の多様な構成</h2>
+            <p class="section-subheading">
+                大刀洗の老舗は、伝統的な醸造業から日々の食卓を彩る精肉・菓子、そして暮らしを支える職人の技まで、非常に多岐にわたります。これは、町の産業が人々の生活と深く結びついてきた証です。
+            </p>
+            <div class="donut-chart-container">
+                <canvas id="category-chart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#073B4C] text-white mt-16">
+        <div class="container mx-auto py-6 px-4 text-center">
+            <p>&copy; 2024 Tachiarai Shinise Infographic</p>
+            <p class="text-sm opacity-80 mt-1">公開情報をもとに作成されました。</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            document.querySelectorAll('.flip-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('is-flipped');
+                });
+            });
+
+            const map = L.map('map').setView([33.365, 130.595], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            const locations = [
+                { name: '樋口食品工業', lat: 33.3664, lng: 130.5898, category: '食品・醸造' },
+                { name: 'みいの寿', lat: 33.3595, lng: 130.5878, category: '酒蔵' },
+                { name: '立石蒲鉾店', lat: 33.3642, lng: 130.5893, category: '食品・醸造' },
+                { name: '三原精肉店', lat: 33.3643, lng: 130.5893, category: '精肉' },
+                { name: '肉の大正屋', lat: 33.3634, lng: 130.5892, category: '精肉' },
+                { name: 'お菓子のふなき', lat: 33.3669, lng: 130.6053, category: '菓子' },
+                { name: '平田万十店', lat: 33.3634, lng: 130.5896, category: '菓子' },
+                { name: 'あずみうどん', lat: 33.3678, lng: 130.6027, category: '飲食' },
+                { name: 'ロォーリング', lat: 33.3679, lng: 130.5900, category: '繊維・卸売' },
+            ];
+
+            const categoryColors = {
+                '食品・醸造': '#06D6A0', '精肉': '#EF476F', '菓子': '#FFD166',
+                '建築・職人': '#118AB2', '酒蔵': '#073B4C', '飲食': '#F78C6B', '繊維・卸売': '#8338EC'
+            };
+
+            locations.forEach(loc => {
+                if (loc.category !== '建築・職人') { // 町の老舗大工 is not on map
+                    L.circleMarker([loc.lat, loc.lng], {
+                        color: categoryColors[loc.category], radius: 8, fillOpacity: 0.8
+                    }).addTo(map).bindPopup(loc.name);
+                }
+            });
+            
+            const legend = L.control({position: 'bottomright'});
+            legend.onAdd = function (map) {
+                const div = L.DomUtil.create('div', 'info legend');
+                const categories = Object.keys(categoryColors);
+                let labels = ['<strong>凡例</strong>'];
+                for (let i = 0; i < categories.length; i++) {
+                     if (categories[i] !== '建築・職人' || locations.some(l => l.category === '建築・職人')) {
+                        labels.push('<i style="background:' + categoryColors[categories[i]] + '"></i> ' + categories[i]);
+                     }
+                }
+                div.innerHTML = labels.join('<br>');
+                return div;
+            };
+            legend.addTo(map);
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                return Array.isArray(label) ? label.join(' ') : label;
+            };
+
+            const categoryCtx = document.getElementById('category-chart').getContext('2d');
+            new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['食品・醸造', '精肉', '菓子', '建築・職人', '酒蔵', '飲食', '繊維・卸売'],
+                    datasets: [{
+                        label: '店舗数',
+                        data: [2, 2, 2, 1, 1, 1, 1],
+                        backgroundColor: ['#06D6A0', '#EF476F', '#FFD166', '#118AB2', '#073B4C', '#F78C6B', '#8338EC'],
+                        borderColor: '#F0F4F8',
+                        borderWidth: 5,
+                        hoverOffset: 15
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { size: 14, weight: 'bold' }, color: '#073B4C', padding: 15, boxWidth: 20 }},
+                        tooltip: { callbacks: { title: tooltipTitleCallback }, backgroundColor: '#073B4C', titleFont: { size: 16 }, bodyFont: { size: 14 }, padding: 12, cornerRadius: 6 }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
