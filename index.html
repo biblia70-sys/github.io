@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>インフォグラフィック：福岡県大刀洗町の老舗 リンク修正版</title>
+    <title>インフォグラフィック：福岡県大刀洗町の老舗 全座標修正版 v2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -306,7 +306,7 @@
                 });
             });
 
-            const map = L.map('map').setView([33.365, 130.595], 14);
+            const map = L.map('map').setView([33.385, 130.61], 13);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
@@ -314,17 +314,17 @@
             }).addTo(map);
 
             const locations = [
-                { name: '樋口食品工業', lat: 33.3664, lng: 130.5898, category: '食品・醸造' },
-                { name: '飛龍酒造', lat: 33.3640, lng: 130.5905, category: '酒蔵' },
-                { name: 'みいの寿', lat: 33.3595, lng: 130.5878, category: '酒蔵' },
-                { name: '研醸', lat: 33.3558, lng: 130.6085, category: '酒蔵' },
-                { name: '立石蒲鉾店', lat: 33.3642, lng: 130.5893, category: '食品・醸造' },
-                { name: '三原精肉店', lat: 33.3643, lng: 130.5893, category: '精肉' },
-                { name: '肉の大正屋', lat: 33.3634, lng: 130.5892, category: '精肉' },
-                { name: 'お菓子のふなき', lat: 33.3669, lng: 130.6053, category: '菓子' },
-                { name: '平田万十店', lat: 33.3634, lng: 130.5896, category: '菓子' },
-                { name: 'あずみうどん', lat: 33.3678, lng: 130.6027, category: '飲食' },
-                { name: 'ロォーリング', lat: 33.3679, lng: 130.5900, category: '繊維・卸売' },
+                { name: '樋口食品工業', lat: 33.387412644174795, lng: 130.62238434232717, category: '食品・醸造' },
+                { name: '飛龍酒造', lat: 33.38695925144752, lng: 130.6248317415178, category: '酒蔵' },
+                { name: 'みいの寿', lat: 33.37444279532458, lng: 130.63213809325464, category: '酒蔵' },
+                { name: '研醸', lat: 33.3559, lng: 130.6081, category: '酒蔵' },
+                { name: '立石蒲鉾店', lat: 33.38804245733051, lng: 130.62560953995217, category: '食品・醸造' },
+                { name: '三原精肉店', lat: 33.40699775435143, lng: 130.60139487301845, category: '精肉' },
+                { name: '肉の大正屋', lat: 33.370077361959446, lng: 130.58933471163596, category: '精肉' },
+                { name: 'お菓子のふなき', lat: 33.40773898481723, lng: 130.60164076447396, category: '菓子' },
+                { name: '平田万十店', lat: 33.38693229443666, lng: 130.62530978902333, category: '菓子' },
+                { name: 'あずみうどん', lat: 33.40082324322377, lng: 130.59325402209313, category: '飲食' },
+                { name: 'ロォーリング', lat: 33.364755070840225, lng: 130.64679726206407, category: '繊維・卸売' }
             ];
 
             const categoryColors = {
@@ -366,7 +366,7 @@
                     labels: ['酒蔵', '食品・醸造', '精肉', '菓子', '建築・職人', '飲食', '繊維・卸売'],
                     datasets: [{
                         label: '店舗数',
-                        data: [3, 2, 2, 1, 1, 1, 1], // Corrected data
+                        data: [3, 2, 2, 1, 1, 1, 1],
                         backgroundColor: ['#073B4C', '#06D6A0', '#EF476F', '#FFD166', '#118AB2', '#F78C6B', '#8338EC'],
                         borderColor: '#F0F4F8',
                         borderWidth: 5,
