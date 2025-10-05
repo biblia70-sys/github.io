@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>インフォグラフィック：福岡県大刀洗町の老舗 決定版 v2</title>
+    <title>インフォグラフィック：福岡県大刀洗町の老舗 リンク修正版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Energetic & Playful -->
-    <!-- Plan Narrative & Structure: The infographic experience is redesigned for interactive discovery. It starts with the foundational context of Tachiarai, followed by a geographic overview with the map. The core is the "Stories of the Artisans" section, featuring interactive flip-cards. Each card front presents a single, powerful identity (icon + keyword), inviting the user to click and "flip" it to reveal a detailed story. This encourages engagement over passive reading. The infographic concludes with the donut chart for a statistical summary. -->
+    <!-- Plan Narrative & Structure: The infographic experience is designed for interactive discovery. It starts with the foundational context of Tachiarai, followed by a geographic overview with the map. The core is the "Stories of the Artisans" section, featuring interactive flip-cards. Each card front presents a single, powerful identity (icon + keyword), inviting the user to click and "flip" it to reveal a detailed story. This encourages engagement over passive reading. The infographic concludes with the donut chart for a statistical summary. -->
     <!-- Visualization & Content Choices: 
         - Data Point: Geographic context. Goal: Inform. Visualization: Text callouts. Method: HTML/CSS. NO SVG.
         - Data Point: Business locations. Goal: Organize/Explore. Visualization: Interactive Map. Method: Leaflet.js. NO SVG.
@@ -83,7 +83,7 @@
              <p class="section-subheading">
                 それぞれのカードが、一つの老舗の物語の入り口です。気になるカードをクリックして、その奥深い世界を覗いてみましょう。
              </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 <!-- 樋口食品工業 -->
                 <div class="flip-card">
                     <div class="flip-card-inner">
@@ -100,11 +100,27 @@
                         </div>
                     </div>
                 </div>
+                <!-- 飛龍酒造 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#073B4C]">
+                            <div class="text-6xl mb-4">🏞️</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">飛龍酒造</h3>
+                            <p class="text-lg font-semibold text-[#073B4C] mt-2">筑後川の銘酒</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">飛龍酒造(株)</h3>
+                            <p class="text-sm mt-2">創業1899年。「筑後川」の銘柄で知られ、その消費の9割が地元という地域密着の酒蔵。まさに「地元に愛される酒」を造り続けています。</p>
+                            <a href="https://www.town.tachiarai.fukuoka.jp/tachiyoridokoro/kiji003207/3_207_12_tachiarai_free_vol13.pdf" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
                 <!-- みいの寿 -->
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front border-4 border-[#073B4C]">
-                            <div class="text-6xl mb-4">🍶</div>
+                            <div class="text-6xl mb-4">🏀</div>
                             <h3 class="text-2xl font-bold text-[#073B4C]">みいの寿</h3>
                             <p class="text-lg font-semibold text-[#073B4C] mt-2">スラムダンクの聖地</p>
                             <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
@@ -113,6 +129,22 @@
                             <h3 class="text-xl font-bold">(株)みいの寿</h3>
                             <p class="text-sm mt-2">創業1922年。伝統的な山廃仕込みからワイン酵母を使った斬新な酒まで、常に革新を追求。「科学と情熱とセンス」をキーワードに、多くのファンを魅了。人気漫画の登場人物の名の由来としても有名です。</p>
                             <a href="https://miinokotobuki.com/" target="_blank" rel="noopener">ウェブサイトへ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 研醸 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front border-4 border-[#073B4C]">
+                            <div class="text-6xl mb-4">🥕</div>
+                            <h3 class="text-2xl font-bold text-[#073B4C]">研醸</h3>
+                            <p class="text-lg font-semibold text-[#073B4C] mt-2">独創の焼酎</p>
+                            <p class="text-gray-500 mt-4 font-bold">詳しく見る</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3 class="text-xl font-bold">研醸(株)</h3>
+                            <p class="text-sm mt-2">創業1983年。「研究を重ね、醸造する」を信条に、焙煎麦焼酎や人参焼酎など、他にはない独創的な焼酎を世に送り出しています。</p>
+                            <a href="http://www.e-kenjou.com/overview.html" target="_blank" rel="noopener">ウェブサイトへ</a>
                         </div>
                     </div>
                 </div>
@@ -274,7 +306,7 @@
                 });
             });
 
-            const map = L.map('map').setView([33.365, 130.595], 15);
+            const map = L.map('map').setView([33.365, 130.595], 14);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
@@ -283,7 +315,9 @@
 
             const locations = [
                 { name: '樋口食品工業', lat: 33.3664, lng: 130.5898, category: '食品・醸造' },
+                { name: '飛龍酒造', lat: 33.3640, lng: 130.5905, category: '酒蔵' },
                 { name: 'みいの寿', lat: 33.3595, lng: 130.5878, category: '酒蔵' },
+                { name: '研醸', lat: 33.3558, lng: 130.6085, category: '酒蔵' },
                 { name: '立石蒲鉾店', lat: 33.3642, lng: 130.5893, category: '食品・醸造' },
                 { name: '三原精肉店', lat: 33.3643, lng: 130.5893, category: '精肉' },
                 { name: '肉の大正屋', lat: 33.3634, lng: 130.5892, category: '精肉' },
@@ -299,11 +333,9 @@
             };
 
             locations.forEach(loc => {
-                if (loc.category !== '建築・職人') { // 町の老舗大工 is not on map
-                    L.circleMarker([loc.lat, loc.lng], {
-                        color: categoryColors[loc.category], radius: 8, fillOpacity: 0.8
-                    }).addTo(map).bindPopup(loc.name);
-                }
+                L.circleMarker([loc.lat, loc.lng], {
+                    color: categoryColors[loc.category], radius: 8, fillOpacity: 0.8
+                }).addTo(map).bindPopup(loc.name);
             });
             
             const legend = L.control({position: 'bottomright'});
@@ -312,7 +344,7 @@
                 const categories = Object.keys(categoryColors);
                 let labels = ['<strong>凡例</strong>'];
                 for (let i = 0; i < categories.length; i++) {
-                     if (categories[i] !== '建築・職人' || locations.some(l => l.category === '建築・職人')) {
+                     if (categories[i] !== '建築・職人') {
                         labels.push('<i style="background:' + categoryColors[categories[i]] + '"></i> ' + categories[i]);
                      }
                 }
@@ -331,11 +363,11 @@
             new Chart(categoryCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['食品・醸造', '精肉', '菓子', '建築・職人', '酒蔵', '飲食', '繊維・卸売'],
+                    labels: ['酒蔵', '食品・醸造', '精肉', '菓子', '建築・職人', '飲食', '繊維・卸売'],
                     datasets: [{
                         label: '店舗数',
-                        data: [2, 2, 2, 1, 1, 1, 1],
-                        backgroundColor: ['#06D6A0', '#EF476F', '#FFD166', '#118AB2', '#073B4C', '#F78C6B', '#8338EC'],
+                        data: [3, 2, 2, 1, 1, 1, 1], // Corrected data
+                        backgroundColor: ['#073B4C', '#06D6A0', '#EF476F', '#FFD166', '#118AB2', '#F78C6B', '#8338EC'],
                         borderColor: '#F0F4F8',
                         borderWidth: 5,
                         hoverOffset: 15
