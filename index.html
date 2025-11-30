@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>大堰校区 未来づくりアイデア検索（スマホ対応版）</title>
+    <title>大堰校区 未来づくりアイデア検索（スマホ完全修正版）</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,14 +19,12 @@
         .category-btn.active { background-color: #00897b; color: white; border-color: #00897b; box-shadow: 0 2px 4px rgba(0,137,123,0.3); }
         .hero-bg { background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); }
         
-        /* Custom Scrollbar for horizontal scroll */
         .horizontal-scroll::-webkit-scrollbar { height: 4px; }
         .horizontal-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fadeIn 0.5s ease forwards; }
         
-        /* Stock Animation */
         @keyframes heartBeat {
             0% { transform: scale(1); }
             50% { transform: scale(1.4); }
@@ -34,7 +32,6 @@
         }
         .heart-active { color: #ef4444; animation: heartBeat 0.3s ease-in-out; }
 
-        /* Gacha Animation */
         @keyframes popIn {
             0% { opacity: 0; transform: scale(0.8); }
             100% { opacity: 1; transform: scale(1); }
@@ -201,12 +198,8 @@
                         <!-- Items injected here -->
                     </div>
                     <div class="text-center flex flex-col gap-3">
-                        <button onclick="playGacha(5)" class="bg-teal-500 active:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow w-full">
-                            もう一度引く
-                        </button>
-                        <button onclick="resetGacha()" class="text-slate-400 active:text-slate-600 font-medium py-2 text-sm">
-                            もどる
-                        </button>
+                        <button onclick="playGacha(5)" class="bg-teal-500 active:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow w-full">もう一度引く</button>
+                        <button onclick="resetGacha()" class="text-slate-400 active:text-slate-600 font-medium py-2 text-sm">もどる</button>
                     </div>
                 </div>
             </div>
@@ -216,7 +209,7 @@
     <!-- Idea Detail Modal -->
     <div id="detailModal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center sm:p-4">
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" id="detailModalBackdrop" onclick="closeDetailModal()"></div>
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="detailModalBackdrop" onclick="closeDetailModal()"></div>
         
         <!-- Modal Content (Bottom sheet on mobile, Center modal on desktop) -->
         <div class="bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full max-w-lg transform transition-transform duration-300 translate-y-full sm:translate-y-0 scale-100 flex flex-col max-h-[90vh] relative z-10" id="detailModalPanel">
@@ -249,16 +242,19 @@
                     <p id="modalDetail" class="text-base text-slate-800 leading-relaxed"></p>
                 </div>
             </div>
-            <div class="p-4 border-t border-slate-100 bg-slate-50 safe-area-bottom rounded-b-none sm:rounded-b-2xl flex justify-center">
+            <div class="p-4 border-t border-slate-100 bg-slate-50 safe-area-bottom rounded-b-none sm:rounded-b-2xl flex flex-col sm:flex-row justify-center gap-3">
                 <button id="modalStockBtn" class="w-full sm:w-auto border-2 border-pink-400 text-pink-500 active:bg-pink-50 font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2" onclick="toggleStockFromModal()">
                     <i class="fa-regular fa-heart"></i> ストックする
+                </button>
+                <button onclick="closeDetailModal()" class="w-full sm:w-auto bg-slate-200 text-slate-600 font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 sm:hidden">
+                    閉じる
                 </button>
             </div>
         </div>
     </div>
 
     <script>
-        // 300件の全データ (圧縮形式)
+        // 300件の全データ
         const rawData = [
 [1,"防災・安全","水害リスクへの切実な不安","逆転","水害VR体験会","浸水時の景色をVRでリアルに体験し、危機感を「実感」に変える。"],
 [2,"防災・安全","水害リスクへの切実な不安","誇張","全戸ボート保有計画","各家庭にゴムボートや救命胴衣を「家具」として配布・常備する。"],
@@ -562,7 +558,6 @@
 [300,"その他","「よそ者」視点の不足","制度","関係人口・パスポート","町外のファンに「デジタル町民証」を発行し、意見を求める。"]
         ];
 
-        // データをオブジェクト配列に変換
         const ideas = rawData.map(item => ({
             id: item[0],
             category: item[1],
@@ -572,7 +567,6 @@
             detail: item[5]
         }));
         
-        // --- ストック機能のロジック ---
         let stockedIdeas = JSON.parse(localStorage.getItem('stockedIdeas') || '[]');
 
         function toggleStock(id) {
@@ -601,7 +595,6 @@
             }
             if (drawerCount) drawerCount.textContent = count;
             
-            // Update heart icons in grid
             document.querySelectorAll('.stock-btn i').forEach(icon => {
                 const card = icon.closest('.card');
                 if (card && card.dataset.id) {
@@ -613,8 +606,6 @@
                     }
                 }
             });
-
-            // Update drawer content
             renderStockDrawer();
         }
         
@@ -623,7 +614,7 @@
             if (!list) return;
             
             if (stockedIdeas.length === 0) {
-                list.innerHTML = '<p class="text-slate-400 text-center w-full py-8 col-span-full">まだストックされたアイデアはありません。<br>ハートマークを押してアイデアを集めましょう！</p>';
+                list.innerHTML = '<p class="text-slate-400 text-center w-full py-8 col-span-full text-sm">まだストックされたアイデアはありません。<br>ハートマークを押してアイデアを集めましょう！</p>';
                 return;
             }
             
@@ -635,11 +626,11 @@
                 const card = document.createElement('div');
                 card.className = 'bg-white p-3 rounded-lg border border-slate-100 shadow-sm flex justify-between items-center';
                 card.innerHTML = `
-                    <div class="overflow-hidden cursor-pointer" onclick="openModalId(${idea.id})">
-                        <div class="text-xs text-teal-600 font-bold mb-1 line-clamp-1">${idea.category}</div>
-                        <div class="font-bold text-slate-800 text-sm line-clamp-1">${idea.title}</div>
+                    <div class="overflow-hidden cursor-pointer flex-grow" onclick="openModalId(${idea.id})">
+                        <div class="text-[10px] text-teal-600 font-bold mb-0.5 line-clamp-1">${idea.category}</div>
+                        <div class="font-bold text-slate-800 text-xs line-clamp-1">${idea.title}</div>
                     </div>
-                    <button onclick="toggleStock(${idea.id})" class="text-pink-500 hover:text-pink-600 p-2">
+                    <button onclick="toggleStock(${idea.id})" class="text-pink-400 hover:text-pink-600 p-2 -mr-2">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 `;
@@ -652,7 +643,6 @@
             if (drawer) {
                 if (drawer.classList.contains('translate-y-full')) {
                     drawer.classList.remove('translate-y-full');
-                    // Close gacha modal if open
                     closeGachaModal();
                 } else {
                     drawer.classList.add('translate-y-full');
@@ -679,16 +669,15 @@
             if (btn) {
                 if (stockedIdeas.includes(id)) {
                     btn.innerHTML = '<i class="fa-solid fa-heart"></i> ストック済み';
-                    btn.className = "w-full sm:w-auto bg-pink-500 text-white font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 hover:bg-pink-600";
+                    btn.className = "w-full sm:w-auto bg-pink-500 text-white font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 hover:bg-pink-600 shadow-md transform active:scale-95";
                 } else {
                     btn.innerHTML = '<i class="fa-regular fa-heart"></i> ストックする';
-                    btn.className = "w-full sm:w-auto border-2 border-pink-400 text-pink-500 hover:bg-pink-50 font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2";
+                    btn.className = "w-full sm:w-auto border-2 border-pink-400 text-pink-500 hover:bg-pink-50 font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 transform active:scale-95";
                 }
             }
         }
         
         function openModalId(id) {
-            // Close drawer on mobile if open
             const drawer = document.getElementById('stockDrawer');
             if(drawer && !drawer.classList.contains('translate-y-full')) {
                 drawer.classList.add('translate-y-full');
@@ -698,15 +687,12 @@
             if (idea) openModal(idea);
         }
 
-
-        // --- ガチャ機能のロジック ---
         function showGachaModal() {
             const modal = document.getElementById('gachaModal');
             if(modal) {
                 modal.classList.remove('hidden');
                 document.getElementById('gachaStart').classList.remove('hidden');
                 document.getElementById('gachaResult').classList.add('hidden');
-                // Close drawer if open
                 const drawer = document.getElementById('stockDrawer');
                 if(drawer) drawer.classList.add('translate-y-full');
             }
@@ -737,8 +723,14 @@
             results.forEach((idea, index) => {
                 const colorClass = getCategoryColor(idea.category);
                 const div = document.createElement('div');
-                div.className = `bg-white p-4 rounded-xl shadow-md border-l-4 ${colorClass.replace('bg-', 'border-').split(' ')[0]} gacha-item relative`;
+                div.className = `bg-white p-4 rounded-xl shadow-md border-l-4 ${colorClass.replace('bg-', 'border-').split(' ')[0]} gacha-item relative cursor-pointer hover:bg-slate-50 transition`;
                 div.style.animationDelay = `${index * 0.1}s`;
+                div.onclick = (e) => {
+                   if (!e.target.closest('button')) {
+                       closeGachaModal();
+                       openModalId(idea.id);
+                   }
+                };
                 
                 div.innerHTML = `
                     <div class="flex justify-between items-start">
@@ -747,12 +739,12 @@
                             <h3 class="font-bold text-base text-slate-800">${idea.title}</h3>
                             <p class="text-xs text-slate-600 mt-1 line-clamp-2">${idea.detail}</p>
                         </div>
-                        <button onclick="toggleStock(${idea.id}); this.innerHTML = stockedIdeas.includes(${idea.id}) ? '<i class=\'fa-solid fa-heart text-pink-500\'></i>' : '<i class=\'fa-regular fa-heart text-slate-300\'></i>'" class="p-2 absolute top-2 right-2">
+                        <button onclick="toggleStock(${idea.id}); this.innerHTML = stockedIdeas.includes(${idea.id}) ? '<i class=\'fa-solid fa-heart text-pink-500\'></i>' : '<i class=\'fa-regular fa-heart text-slate-300\'></i>'" class="p-2 absolute top-2 right-2 z-10">
                              ${stockedIdeas.includes(idea.id) ? '<i class="fa-solid fa-heart text-pink-500"></i>' : '<i class="fa-regular fa-heart text-slate-300"></i>'}
                         </button>
                     </div>
                     <div class="mt-2 text-right">
-                         <button onclick="closeGachaModal(); openModalId(${idea.id})" class="text-xs text-teal-600 font-bold">詳細 <i class="fa-solid fa-chevron-right"></i></button>
+                         <span class="text-xs text-teal-600 font-bold">詳細 <i class="fa-solid fa-chevron-right"></i></span>
                     </div>
                 `;
                 container.appendChild(div);
@@ -762,10 +754,6 @@
             document.getElementById('gachaResult').classList.remove('hidden');
         }
 
-
-        // --- 基本機能のロジック ---
-
-        // アイコン設定
         function getCategoryIcon(category) {
             const icons = {
                 "防災・安全": "fa-shield-halved",
@@ -781,7 +769,6 @@
             return icons[category] || "fa-star";
         }
 
-        // 色設定（Tailwindクラス）
         function getCategoryColor(category) {
             const colors = {
                 "防災・安全": "bg-red-50 text-red-600 border-red-200",
@@ -797,7 +784,6 @@
             return colors[category] || "bg-gray-50 text-gray-600 border-gray-200";
         }
 
-        // カード描画
         function renderIdeas(data) {
             const grid = document.getElementById('ideasGrid');
             const resultCount = document.getElementById('resultCount');
@@ -817,11 +803,10 @@
                     const isStocked = stockedIdeas.includes(idea.id);
                     
                     const card = document.createElement('div');
-                    card.className = 'card bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col h-full cursor-pointer opacity-0 animate-fade-in relative group';
+                    card.className = 'card bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col h-full cursor-pointer opacity-0 animate-fade-in relative group select-none';
                     card.style.animation = `fadeIn 0.5s ease forwards ${delay}ms`;
                     card.dataset.id = idea.id;
                     
-                    // Click event for card body only
                     card.addEventListener('click', (e) => {
                         if (!e.target.closest('.stock-btn')) {
                             openModal(idea);
@@ -829,7 +814,7 @@
                     });
                     
                     card.innerHTML = `
-                        <button class="stock-btn absolute top-4 right-4 z-10 p-2 rounded-full hover:bg-slate-50 transition" onclick="toggleStock(${idea.id})">
+                        <button class="stock-btn absolute top-4 right-4 z-10 p-2 rounded-full hover:bg-slate-50 transition active:scale-90" onclick="toggleStock(${idea.id})">
                             <i class="${isStocked ? 'fa-solid fa-heart text-pink-500' : 'fa-regular fa-heart text-slate-300'} text-xl transition-colors"></i>
                         </button>
                         <div class="flex justify-between items-start mb-3 pr-8">
@@ -847,10 +832,9 @@
                     grid.appendChild(card);
                 });
             }
-            updateStockUI(); // Ensure UI sync
+            updateStockUI();
         }
 
-        // フィルタリングロジック
         let currentCategory = 'all';
         let currentSearch = '';
 
@@ -878,7 +862,6 @@
             filterIdeas();
         }
 
-        // イベントリスナー
         document.getElementById('categoryFilters').addEventListener('click', (e) => {
             const btn = e.target.closest('.category-btn');
             if (btn) {
@@ -894,12 +877,13 @@
             filterIdeas();
         });
 
-        // モーダルロジック (詳細モーダル)
         function openModal(idea) {
             const modal = document.getElementById('detailModal');
-            if(modal) {
-                // データセット
-                document.getElementById('modalCategoryBadge').className = `inline-flex items-center px-3 py-1 rounded-full text-xs font-bold mb-3 ${getCategoryColor(idea.category)}`;
+            const panel = document.getElementById('detailModalPanel');
+            const backdrop = document.getElementById('detailModalBackdrop');
+
+            if(modal && panel && backdrop) {
+                document.getElementById('modalCategoryBadge').className = `inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-bold mb-2 ${getCategoryColor(idea.category)}`;
                 document.getElementById('modalCategoryBadge').innerHTML = `<i class="fa-solid ${getCategoryIcon(idea.category)} mr-1"></i>${idea.category}`;
                 document.getElementById('modalTitle').textContent = idea.title;
                 document.getElementById('modalId').textContent = String(idea.id).padStart(3, '0');
@@ -907,28 +891,60 @@
                 document.getElementById('modalTask').textContent = idea.task;
                 document.getElementById('modalDetail').textContent = idea.detail;
 
-                // ストックボタンの状態更新
                 const stockBtn = document.getElementById('modalStockBtn');
                 if (stockBtn) {
                     if (stockedIdeas.includes(idea.id)) {
                         stockBtn.innerHTML = '<i class="fa-solid fa-heart"></i> ストック済み';
-                        stockBtn.className = "w-full sm:w-auto bg-pink-500 text-white font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 hover:bg-pink-600";
+                        stockBtn.className = "w-full sm:w-auto bg-pink-500 text-white font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 hover:bg-pink-600 shadow-md transform active:scale-95";
                     } else {
                         stockBtn.innerHTML = '<i class="fa-regular fa-heart"></i> ストックする';
-                        stockBtn.className = "w-full sm:w-auto border-2 border-pink-400 text-pink-500 hover:bg-pink-50 font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2";
+                        stockBtn.className = "w-full sm:w-auto border-2 border-pink-400 text-pink-500 hover:bg-pink-50 font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 transform active:scale-95";
                     }
                 }
 
                 modal.classList.remove('hidden');
+                
+                // Animation for bottom sheet
+                requestAnimationFrame(() => {
+                    backdrop.classList.remove('opacity-0');
+                    panel.classList.remove('translate-y-full', 'scale-100'); // Reset states
+                    
+                    // Mobile: Slide up
+                    if (window.innerWidth < 640) {
+                        panel.classList.remove('translate-y-full');
+                    } else {
+                        // Desktop: Fade/Scale in (already centered via flex)
+                        panel.classList.add('scale-100'); 
+                    }
+                });
+                document.body.style.overflow = 'hidden';
             }
         }
 
         function closeDetailModal() {
             const modal = document.getElementById('detailModal');
-            if(modal) modal.classList.add('hidden');
+            const panel = document.getElementById('detailModalPanel');
+            const backdrop = document.getElementById('detailModalBackdrop');
+
+            if(modal && panel && backdrop) {
+                backdrop.classList.add('opacity-0');
+                
+                // Mobile: Slide down
+                if (window.innerWidth < 640) {
+                    panel.classList.add('translate-y-full');
+                } else {
+                    // Desktop: Scale out
+                    // panel.classList.remove('scale-100');
+                }
+
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
         }
         
-        // closeDetailModal へのエイリアス
+        // For backward compatibility if needed
         function closeModal() {
             closeDetailModal();
         }
@@ -938,7 +954,6 @@
             openModal(ideas[randomIndex]);
         }
 
-        // 初期化
         updateStockUI();
         renderIdeas(ideas);
 
