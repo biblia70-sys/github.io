@@ -107,15 +107,15 @@ nav.top .logo .small {
 nav.top.scrolled .logo .small { color: var(--gold); }
 nav.top ul {
   display: flex;
-  gap: 22px;
+  gap: 18px;
   list-style: none;
   align-items: center;
 }
 nav.top ul a {
   color: var(--paper);
   text-decoration: none;
-  font-size: 0.68rem;
-  letter-spacing: 0.24em;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
   font-family: "Cormorant Garamond", serif;
   transition: all 0.4s;
   position: relative;
@@ -1391,6 +1391,194 @@ footer {
 /* ───────── 6次産業 ─ 追加6章のCSS ───────── */
 /* ═══════════════════════════════════════════════════════════ */
 
+/* ───────── Chapter 0.0 / 立ち続ける ─ The One Who Stays ───────── */
+.standing-one {
+  background: linear-gradient(180deg, var(--ink-abyss) 0%, var(--ink) 60%, var(--indigo-night) 100%);
+  color: var(--paper);
+  padding: 200px 56px 220px;
+  position: relative;
+  overflow: hidden;
+}
+.standing-one::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(184, 148, 90, 0.08), transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(45, 70, 116, 0.35), transparent 50%);
+  pointer-events: none;
+}
+.standing-one-content {
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.standing-marker {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.standing-marker .num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.85;
+  margin-bottom: 18px;
+}
+.standing-marker .label {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.46em;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  display: inline-block;
+  padding: 12px 36px;
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+}
+
+/* 石積み視覚要素 */
+.stone-wall {
+  height: 120px;
+  margin: 0 auto 60px;
+  max-width: 720px;
+  position: relative;
+  opacity: 0.6;
+}
+
+/* 隔離した引用ブロック */
+.standing-prelude {
+  text-align: center;
+  font-family: "Shippori Mincho", serif;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  letter-spacing: 0.18em;
+  line-height: 2.2;
+  color: var(--paper);
+  margin-bottom: 100px;
+}
+.standing-prelude .gold-line {
+  color: var(--gold-light);
+  font-style: italic;
+}
+
+/* インタビュー本文 */
+.standing-essay {
+  font-family: "Shippori Mincho", "Noto Serif JP", serif;
+  font-weight: 300;
+  line-height: 2.4;
+  color: var(--text-on-dark);
+}
+.standing-essay .verse {
+  margin-bottom: 56px;
+  position: relative;
+}
+.standing-essay .verse p {
+  font-size: 1.02rem;
+  line-height: 2.4;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+  color: var(--text-on-dark);
+}
+.standing-essay .verse p strong {
+  color: var(--gold-light);
+  font-weight: 400;
+}
+
+/* 章タイトル（小見出し） */
+.verse-title {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.32em;
+  font-size: 0.82rem;
+  color: var(--gold);
+  margin-bottom: 28px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.verse-title::before, .verse-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--hairline-gold);
+}
+
+/* 数字を強調 */
+.standing-stat {
+  display: inline-block;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold-light);
+  font-size: 1.5em;
+  letter-spacing: 0.06em;
+  margin: 0 6px;
+}
+
+/* 寅さん引用 */
+.standing-pull {
+  margin: 80px -20px;
+  padding: 60px 40px;
+  text-align: center;
+  border-top: 1px solid var(--hairline-gold);
+  border-bottom: 1px solid var(--hairline-gold);
+  background: rgba(184, 148, 90, 0.04);
+}
+.standing-pull .pull-text {
+  font-family: "Shippori Mincho", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  letter-spacing: 0.16em;
+  line-height: 2.1;
+  color: var(--gold-pale);
+  margin-bottom: 14px;
+}
+.standing-pull .pull-sub {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.24em;
+  font-size: 0.82rem;
+  color: var(--muted-dark);
+}
+
+/* 結びの一節 */
+.standing-closing {
+  margin-top: 100px;
+  text-align: center;
+  padding-top: 60px;
+  border-top: 1px solid var(--hairline-gold);
+}
+.standing-closing .closing-text {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 300;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  letter-spacing: 0.18em;
+  line-height: 2.2;
+  color: var(--paper);
+  margin-bottom: 32px;
+}
+.standing-closing .closing-text strong {
+  color: var(--gold-light);
+  font-weight: 400;
+}
+.standing-closing .closing-author {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.26em;
+  color: var(--gold);
+  font-size: 0.92rem;
+}
+
+/* ホタルを追加（章全体に2匹） */
+.standing-one .firefly { opacity: 0.7; }
+
 /* ───────── Chapter 0.5 / 育てる人（1次産業） ───────── */
 .cultivators {
   background: linear-gradient(180deg, var(--paper-soft) 0%, var(--paper) 100%);
@@ -2072,6 +2260,15 @@ footer {
   h2.section-title { font-size: 1.6rem; }
 
   /* 追加章のモバイル対応 */
+  .standing-one { padding: 120px 24px 140px; }
+  .standing-marker .num { font-size: 3rem; }
+  .standing-marker .label { padding: 10px 20px; font-size: 0.7rem; letter-spacing: 0.32em; }
+  .standing-prelude { font-size: 1.1rem; letter-spacing: 0.12em; line-height: 2; margin-bottom: 70px; }
+  .standing-essay .verse p { font-size: 0.94rem; line-height: 2.2; }
+  .standing-pull { margin: 60px -8px; padding: 40px 24px; }
+  .standing-pull .pull-text { font-size: 1.05rem; letter-spacing: 0.12em; }
+  .standing-closing .closing-text { font-size: 1.1rem; letter-spacing: 0.14em; }
+  .stone-wall { height: 80px; margin-bottom: 40px; }
   .cultivator-grid { grid-template-columns: 1fr; gap: 24px; }
   .cultivator-portrait { height: 200px; }
   .menu-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -2109,6 +2306,7 @@ footer {
     <span class="small">The Book of KANDO</span>
   </div>
   <ul>
+    <li><a href="#standing-one">立ち続ける</a></li>
     <li><a href="#prologue">Prologue</a></li>
     <li><a href="#cultivators">育てる人</a></li>
     <li><a href="#aikioku">Ai-no-Kioku</a></li>
@@ -2170,12 +2368,137 @@ footer {
     </h1>
     <div class="hero-divider"></div>
     <div class="hero-subtitle">To wear is to live. To return is to give life.</div>
+    <div style="margin-top: 36px; font-family: 'Shippori Mincho', serif; font-style: italic; font-weight: 300; font-size: 0.92rem; letter-spacing: 0.28em; color: var(--gold-pale); opacity: 0; animation: fadeIn 2s 2.8s forwards; line-height: 1.8;">─ 崩れそうな石積みの傍らで、一人の男が町を立て直そうとしている ─</div>
   </div>
 
   <div class="hero-meta">大刀洗 ─ TACHIARAI, FUKUOKA</div>
   <div class="hero-scroll">
     <div class="hero-scroll-text">Open the Book</div>
     <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─────────── CHAPTER 0.0 / 立ち続ける ─ The One Who Stays ─────────── -->
+<section class="standing-one" id="standing-one">
+  <!-- 静かに光るホタル -->
+  <div class="firefly" style="left: 12%; top: 8%; animation-delay: 0s;"></div>
+  <div class="firefly" style="left: 88%; top: 85%; animation-delay: 4s;"></div>
+
+  <div class="standing-one-content">
+
+    <!-- マーカー -->
+    <div class="standing-marker reveal">
+      <div class="num">0.0</div>
+      <div class="label">Chapter 0.0 ─ The One Who Stays ─ 立ち続ける</div>
+    </div>
+
+    <!-- 石積みの視覚要素 -->
+    <div class="stone-wall reveal">
+      <svg width="100%" height="100%" viewBox="0 0 720 120" preserveAspectRatio="none" fill="none">
+        <!-- 不揃いに積まれた石垣 -->
+        <g stroke="#b8945a" stroke-width="0.6" fill="rgba(184, 148, 90, 0.04)" opacity="0.6">
+          <path d="M0 110 L70 108 L72 92 L0 95 Z"/>
+          <path d="M72 92 L155 88 L150 70 L70 75 Z"/>
+          <path d="M155 88 L240 90 L245 72 L150 70 Z"/>
+          <path d="M240 90 L340 86 L335 64 L245 72 Z"/>
+          <path d="M340 86 L430 88 L432 70 L335 64 Z"/>
+          <path d="M430 88 L520 84 L515 62 L432 70 Z"/>
+          <path d="M520 84 L605 86 L610 68 L515 62 Z"/>
+          <path d="M605 86 L700 88 L720 100 L720 120 L0 120 L0 110 Z"/>
+          <path d="M70 75 L130 50 L195 52 L155 70 Z"/>
+          <path d="M195 52 L280 48 L290 30 L210 32 Z"/>
+          <path d="M280 48 L380 50 L385 28 L290 30 Z"/>
+          <path d="M380 50 L470 48 L460 22 L385 28 Z"/>
+          <path d="M470 48 L560 46 L555 24 L460 22 Z"/>
+          <path d="M560 46 L650 50 L660 30 L555 24 Z"/>
+          <path d="M210 32 L290 30 L295 12 L220 14 Z"/>
+          <path d="M295 12 L390 14 L385 0 L295 0 Z" opacity="0.4"/>
+        </g>
+        <!-- 崩れかけた箇所 -->
+        <circle cx="380" cy="58" r="3" fill="#b8945a" opacity="0.5"/>
+        <circle cx="495" cy="38" r="2" fill="#b8945a" opacity="0.4"/>
+        <circle cx="280" cy="78" r="2.5" fill="#b8945a" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- 前文（詩のような導入） -->
+    <div class="standing-prelude reveal">
+      横を見ると、石積みがある。<br>
+      今にも崩れそうなその姿に、<br>
+      <span class="gold-line">この町そのものを重ねてしまうことがある。</span>
+    </div>
+
+    <!-- ===== 本編：實藤氏の言葉を、原文を尊重してカット編集 ===== -->
+
+    <div class="standing-essay">
+
+      <!-- 第一節：土地の記憶 -->
+      <div class="verse reveal">
+        <div class="verse-title">─ Ⅰ. 土地の記憶 ─</div>
+        <p>私はこの大刀洗という土地の記憶の上に立って生きている。</p>
+        <p>ここはかつて、藍の産地でした。筑後川へと流れ込む水路の先には港があり、藍は船に積まれて各地へ運ばれていった。鳥飼城の跡地に立つと、往時の人と物の動きが今も静かに息づいているように感じます。</p>
+      </div>
+
+      <!-- 第二節：藍は正直 -->
+      <div class="verse reveal">
+        <div class="verse-title">─ Ⅱ. 藍は、正直 ─</div>
+        <p>藍という作物は、実に正直です。肥沃な土地でなければ育たない。徳島県の吉野川の近くで藍が育ったのも、この土地が持つ力の証でした。久留米藩の特産品として、この地の暮らしを支えてきた作物です。</p>
+        <p><strong>藍は、定期的に水をかぶるくらいがちょうどいい。</strong>水耕栽培は、言い方は悪いけれど、シャブ漬けみたいなものだと思っている。自然との距離感を失ってしまう。</p>
+      </div>
+
+      <!-- 第三節：観光と暮らし -->
+      <div class="verse reveal">
+        <div class="verse-title">─ Ⅲ. 観光と暮らしの間で ─</div>
+        <p>今では「ホタルの里」として知られ、毎年<span class="standing-stat">十万人</span>もの人が訪れます。ありがたい反面、あの渋滞を見るたびに、観光と暮らしのバランスについて考えさせられます。</p>
+        <p>SWOT分析をすると、大刀洗は住みやすさも将来性も決して悪くない。けれど、大堰地区はマイナスが重なっているのも事実だ。農業に偏りすぎている。<strong>このままでは地域が息切れしてしまう。</strong></p>
+      </div>
+
+      <!-- 寅さん引用（Pull Quote） -->
+      <div class="standing-pull reveal">
+        <div class="pull-text">「トラさんみたいに、人から指さされる存在でもいいじゃないか、と。<br>お金をかけず、心を掛けて。」</div>
+        <div class="pull-sub">─ Dignity Without Wealth ─</div>
+      </div>
+
+      <!-- 第四節：消えていったもの -->
+      <div class="verse reveal">
+        <div class="verse-title">─ Ⅳ. 消えていったもの ─</div>
+        <p>最近、子どもがようやく一人生まれた。しかし、気づけば青年団はなくなり、祭りも消え、老人会や婦人会が担っていた役割も薄れていった。<strong>人が集い、何かを「一緒にやる場」が、いつの間にかなくなっていたんです。</strong></p>
+        <p>だから、私はダディクラブをつくった。今では三分の一くらいが、外から来た人たちです。かつての青年団のような存在になれたらいい。</p>
+      </div>
+
+      <!-- 第五節：6次産業 -->
+      <div class="verse reveal">
+        <div class="verse-title">─ Ⅴ. 藍を、6次産業に ─</div>
+        <p>私は、藍を「6次産業」にしようと考えている。<strong>藍染なら、農業だけで終わらない。文化になる、仕事になる、そして誇りになる。</strong></p>
+        <p>私は商工会の仕事で6市町を回っています。ほとんどが、かつての久留米藩の範囲です。筑前とは、文化圏が違う。この違いを、私はとても大事にしている。</p>
+      </div>
+
+      <!-- 第六節：物語 -->
+      <div class="verse reveal">
+        <div class="verse-title">─ Ⅵ. 物語が、最後の資源 ─</div>
+        <p>今、大刀洗の家は<span class="standing-stat">40軒</span>ほど。<span class="standing-stat">7、8年前の半分</span>だ。けれど、地域資源として一番強いのは「物語」だと思っている。この町は、小さな村が合併してできた場所。歴史が折り重なっている。</p>
+        <p>大刀洗には、本当にたくさんの歴史がある。武将も、菊池武光だけじゃない。<strong>十三人もの武将が、この地に関わっている。</strong>歴史に強い人がいればいくらでも語れる。ここはロマンの塊みたいな場所なんだ。久留米絣も、その一つ。この土地が生んだ文化です。</p>
+      </div>
+
+      <!-- 第七節：息子たちへ -->
+      <div class="verse reveal">
+        <div class="verse-title">─ Ⅶ. 息子たちに、戻ってきてほしい ─</div>
+        <p>私が、息子たちに戻ってきてほしいと願う理由は、ただ一つ。<strong>それは、経済的に自立できる場所であってほしいからです。</strong></p>
+        <p>文化圏として、この町をもう一度つくり直したい。<strong>疲れた人たちを迎え入れ、文化事業を行い、やがてそれがヘルスケアにつながっていく。</strong>元・兵庫県豊岡市長 中貝宗治さんがやっているようなことを、この大刀洗で。</p>
+      </div>
+
+    </div>
+
+    <!-- 結びの一節 -->
+    <div class="standing-closing reveal">
+      <div class="closing-text">
+        歴史と文化と暮らしが、<br>
+        もう一度、ゆっくりと結び直される場所に。<br>
+        <strong>私は、そう信じて、この町に立ち続けていきます。</strong>
+      </div>
+      <div class="closing-author">─ 合資会社ロォーリング 代表 實藤 俊彦 ─</div>
+    </div>
+
   </div>
 </section>
 
@@ -3153,6 +3476,7 @@ footer {
     <div class="footer-col">
       <h4>Chapters</h4>
       <ul>
+        <li><a href="#standing-one">0.0 立ち続ける ─ The One Who Stays</a></li>
         <li><a href="#prologue">Prologue ─ 序章</a></li>
         <li><a href="#cultivators">0.5 育てる人 ─ Cultivators</a></li>
         <li><a href="#aikioku">AI-NO-KIOKU ─ 藍の記憶</a></li>
