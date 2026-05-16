@@ -1,962 +1,2124 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>大堰校区 未来づくりアイデア検索（スマホ完全修正版）</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Yマート&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f0f9ff; color: #334155; -webkit-tap-highlight-color: transparent; }
-        .card { transition: transform 0.2s, box-shadow 0.2s; touch-action: manipulation; }
-        .card:active { transform: scale(0.98); }
-        @media (min-width: 768px) {
-            .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        }
-        .category-btn.active { background-color: #00897b; color: white; border-color: #00897b; box-shadow: 0 2px 4px rgba(0,137,123,0.3); }
-        .hero-bg { background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); }
-        
-        .horizontal-scroll::-webkit-scrollbar { height: 4px; }
-        .horizontal-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in { animation: fadeIn 0.5s ease forwards; }
-        
-        @keyframes heartBeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.4); }
-            100% { transform: scale(1); }
-        }
-        .heart-active { color: #ef4444; animation: heartBeat 0.3s ease-in-out; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ROoRING ─ The Book of KANDO ─ 合資会社ロォーリング</title>
+<meta name="description" content="纏うことは、生きること。還すことは、生かすこと。福岡・大刀洗の藍と水から生まれ、土へと還る布。AI-NO-KIOKU / 藍の記憶 ─ 合資会社ロォーリング。" />
+<meta property="og:title" content="ROoRING ─ The Book of KANDO ─" />
+<meta property="og:description" content="纏うことは、生きること。還すことは、生かすこと。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Shippori+Mincho:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@200;300;400;500;600&family=EB+Garamond:ital,wght@0,400;1,400&family=Cormorant+Infant:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink-abyss: #04081a;
+  --ink-deep: #050a17;
+  --ink: #0a1429;
+  --indigo-night: #0e1a36;
+  --indigo: #1a2b4f;
+  --indigo-mid: #2d4674;
+  --indigo-light: #3d5a8a;
+  --paper: #f4ede0;
+  --paper-warm: #e8dec9;
+  --paper-soft: #faf6ee;
+  --paper-cream: #f7f0e2;
+  --gold: #b8945a;
+  --gold-bright: #c9a65a;
+  --gold-light: #d4b478;
+  --gold-pale: #e4ce9a;
+  --rust: #8c4a2f;
+  --rust-deep: #6b3520;
+  --text-on-dark: #e8dec9;
+  --muted-dark: #8a9bb8;
+  --muted-mid: #5a6b85;
+  --muted-light: #6b6052;
+  --hairline-dark: rgba(232, 222, 201, 0.18);
+  --hairline-gold: rgba(184, 148, 90, 0.4);
+  --hairline-light: rgba(10, 20, 41, 0.15);
+}
 
-        @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        .gacha-item { animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; }
-    </style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Shippori Mincho", "Noto Serif JP", serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.8;
+  overflow-x: hidden;
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: var(--gold); color: var(--paper); }
+
+/* ───────── タイポ共通 ───────── */
+.en {
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  letter-spacing: 0.08em;
+}
+.en-italic {
+  font-family: "Cormorant Infant", "Cormorant Garamond", serif;
+  font-style: italic;
+}
+.tracking-x { letter-spacing: 0.4em; }
+.tracking-l { letter-spacing: 0.28em; }
+.tracking-m { letter-spacing: 0.18em; }
+
+/* ───────── NAVIGATION ───────── */
+nav.top {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(4, 8, 26, 0.85) 0%, rgba(4, 8, 26, 0) 100%);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+nav.top.scrolled {
+  background: rgba(244, 237, 224, 0.97);
+  backdrop-filter: blur(24px);
+  padding: 16px 56px;
+  border-bottom: 1px solid var(--hairline-gold);
+}
+nav.top .logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  color: var(--paper);
+  transition: color 0.6s;
+}
+nav.top.scrolled .logo { color: var(--ink); }
+nav.top .logo .small {
+  display: block;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.6rem;
+  letter-spacing: 0.32em;
+  color: var(--gold-pale);
+  margin-top: -2px;
+}
+nav.top.scrolled .logo .small { color: var(--gold); }
+nav.top ul {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  align-items: center;
+}
+nav.top ul a {
+  color: var(--paper);
+  text-decoration: none;
+  font-size: 0.74rem;
+  letter-spacing: 0.32em;
+  font-family: "Cormorant Garamond", serif;
+  transition: all 0.4s;
+  position: relative;
+  padding-bottom: 4px;
+  text-transform: uppercase;
+}
+nav.top.scrolled ul a { color: var(--ink); }
+nav.top ul a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: all 0.4s;
+  transform: translateX(-50%);
+}
+nav.top ul a:hover::after { width: 100%; }
+nav.top .shop-btn {
+  border: 1px solid var(--gold);
+  padding: 8px 20px;
+  color: var(--paper) !important;
+  background: transparent;
+  transition: all 0.4s;
+}
+nav.top.scrolled .shop-btn { color: var(--ink) !important; }
+nav.top .shop-btn:hover { background: var(--gold); color: var(--ink) !important; }
+nav.top .shop-btn::after { display: none; }
+
+/* ───────── HERO ───────── */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--ink-abyss) 0%, var(--ink) 40%, var(--indigo-night) 75%, var(--indigo) 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.55;
+}
+
+/* ホタル */
+.firefly {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff8c4 0%, rgba(255, 248, 196, 0.4) 40%, transparent 70%);
+  box-shadow: 0 0 14px #fff8c4, 0 0 28px rgba(255, 248, 196, 0.55);
+  animation: float 9s ease-in-out infinite, glow 3.2s ease-in-out infinite;
+  z-index: 2;
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(40px, -50px); }
+  40% { transform: translate(-30px, -70px); }
+  60% { transform: translate(50px, -40px); }
+  80% { transform: translate(-20px, -60px); }
+}
+@keyframes glow {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  color: var(--paper);
+  padding: 0 24px;
+  max-width: 1100px;
+  animation: fadeUp 2.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-prelude {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.92rem;
+  letter-spacing: 0.5em;
+  color: var(--gold-pale);
+  margin-bottom: 50px;
+  opacity: 0;
+  animation: fadeIn 2s 0.4s forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+.hero h1 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  letter-spacing: 0.14em;
+  line-height: 1.75;
+  margin-bottom: 32px;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+.hero h1 .line1 { display: block; opacity: 0; animation: slideUp 1.8s 0.8s forwards; }
+.hero h1 .line2 { display: block; opacity: 0; animation: slideUp 1.8s 1.5s forwards; }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-divider {
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+  margin: 50px auto;
+  opacity: 0;
+  animation: fadeIn 2s 2s forwards;
+}
+
+.hero-subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  letter-spacing: 0.36em;
+  color: var(--gold-light);
+  opacity: 0;
+  animation: fadeIn 2s 2.3s forwards;
+}
+
+.hero-meta {
+  position: absolute;
+  bottom: 60px;
+  left: 56px;
+  z-index: 4;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  color: var(--gold-pale);
+  opacity: 0;
+  animation: fadeIn 2s 3s forwards;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 50px;
+  right: 56px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  animation: fadeIn 2s 3s forwards;
+}
+.hero-scroll-text {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.72rem;
+  letter-spacing: 0.36em;
+  color: var(--gold-pale);
+  writing-mode: vertical-rl;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--gold-light), transparent);
+  animation: scrollDown 2.2s ease-in-out infinite;
+}
+@keyframes scrollDown {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ───────── セクション基盤 ───────── */
+section {
+  position: relative;
+  padding: 160px 56px;
+}
+
+.chapter-marker {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 80px;
+}
+.chapter-marker .num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 5.5rem;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.85;
+}
+.chapter-marker .label {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.42em;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  color: var(--muted-light);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--gold);
+  padding-right: 80px;
+}
+
+h2.section-title {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 900px;
+}
+h2.section-title em {
+  font-style: normal;
+  color: var(--gold);
+  position: relative;
+}
+
+.lede {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 300;
+  font-size: 1.04rem;
+  line-height: 2.2;
+  color: var(--ink);
+  max-width: 720px;
+  margin-bottom: 80px;
+}
+
+/* ───────── PROLOGUE（縦書きセクション） ───────── */
+.prologue {
+  background: var(--paper-soft);
+  padding: 200px 56px;
+}
+.prologue-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 120px;
+  align-items: start;
+}
+.prologue-left { position: sticky; top: 140px; }
+.prologue-vertical {
+  writing-mode: vertical-rl;
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-size: 1.32rem;
+  letter-spacing: 0.42em;
+  line-height: 2.4;
+  color: var(--ink);
+  height: 420px;
+  padding-right: 14px;
+  border-right: 1px solid var(--gold);
+}
+.prologue-right p {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 2.4;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+.prologue-right p:first-of-type::first-letter {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 4rem;
+  font-weight: 400;
+  float: left;
+  line-height: 0.85;
+  padding: 8px 12px 0 0;
+  color: var(--gold);
+}
+.prologue-right .author {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--muted-light);
+  margin-top: 60px;
+  text-align: right;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+}
+
+/* ───────── AI-NO-KIOKU ハイライト ───────── */
+.aikioku {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 180px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.aikioku::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top right, rgba(184, 148, 90, 0.12), transparent 60%),
+              radial-gradient(ellipse at bottom left, rgba(45, 70, 116, 0.4), transparent 60%);
+  pointer-events: none;
+}
+.aikioku-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.aikioku-label {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.36em;
+  font-size: 0.85rem;
+  color: var(--gold-light);
+  margin-bottom: 24px;
+}
+.aikioku h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  color: var(--paper);
+  margin-bottom: 28px;
+}
+.aikioku h2 .em-gold { color: var(--gold-light); }
+.aikioku .jp-name {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.32em;
+  color: var(--gold-pale);
+  margin-bottom: 48px;
+}
+.aikioku .equation {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.18em;
+  color: var(--paper);
+  margin: 32px 0;
+  font-weight: 300;
+}
+.aikioku .equation .plus { color: var(--gold); margin: 0 12px; }
+.aikioku p {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 300;
+  font-size: 0.98rem;
+  line-height: 2.2;
+  color: var(--text-on-dark);
+  opacity: 0.92;
+  margin-bottom: 20px;
+}
+
+.aikioku-visual {
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 35% 35%,
+    #4a6fa5 0%,
+    #2d4674 15%,
+    #1a2b4f 35%,
+    #0a1429 65%,
+    var(--ink) 100%);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5),
+              inset 0 0 80px rgba(0, 0, 0, 0.4);
+}
+.aikioku-visual::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: conic-gradient(from 90deg,
+    transparent 0deg,
+    var(--gold-light) 90deg,
+    transparent 180deg,
+    var(--gold) 270deg,
+    transparent 360deg);
+  opacity: 0.4;
+  z-index: -1;
+}
+.aikioku-visual::after {
+  content: "";
+  position: absolute;
+  inset: 40%;
+  background: radial-gradient(circle, rgba(74, 111, 165, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(20px);
+}
+
+/* ───────── CHAPTER 1 / 纏う ───────── */
+.chapter-1 {
+  background: var(--paper-warm);
+}
+.chapter-1-content { max-width: 1280px; margin: 0 auto; }
+
+.touch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  margin-top: 80px;
+}
+.touch-card {
+  background: var(--paper-soft);
+  padding: 56px 36px;
+  border: 1px solid var(--hairline-light);
+  position: relative;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.touch-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s;
+}
+.touch-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -20px rgba(10, 20, 41, 0.2);
+  border-color: var(--gold);
+}
+.touch-card:hover::before { transform: scaleX(1); }
+.touch-card .card-num {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+}
+.touch-card .icon-wrap {
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+.touch-card h3 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500;
+  font-size: 1.35rem;
+  letter-spacing: 0.1em;
+  margin: 40px 0 8px;
+  line-height: 1.5;
+}
+.touch-card .card-en {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  margin-bottom: 24px;
+  display: block;
+}
+.touch-card p {
+  font-size: 0.92rem;
+  line-height: 2;
+  color: var(--muted-light);
+}
+.touch-card .card-price {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline-light);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  color: var(--rust);
+}
+
+/* ───────── CHAPTER 2 / 育てる ───────── */
+.chapter-2 {
+  background: var(--ink);
+  color: var(--text-on-dark);
+  overflow: hidden;
+}
+.chapter-2 .chapter-marker .label { color: var(--muted-dark); }
+.chapter-2 h2.section-title { color: var(--paper); }
+.chapter-2 .lede { color: var(--text-on-dark); opacity: 0.85; }
+
+/* エイジング・タイムライン */
+.aging-timeline {
+  margin-top: 100px;
+  position: relative;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.timeline-line {
+  position: absolute;
+  top: 60px;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  position: relative;
+}
+.timeline-item {
+  text-align: center;
+  position: relative;
+  padding-top: 80px;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 54px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px var(--ink), 0 0 0 7px var(--gold);
+  z-index: 2;
+}
+.timeline-item .swatch {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 24px auto 20px;
+  border: 1px solid var(--hairline-dark);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4);
+}
+.timeline-item.year-0 .swatch { background: radial-gradient(circle at 30% 30%, #1a2b4f 0%, #0a1429 100%); }
+.timeline-item.year-3 .swatch { background: radial-gradient(circle at 30% 30%, #2d4674 0%, #1a2b4f 100%); }
+.timeline-item.year-7 .swatch { background: radial-gradient(circle at 30% 30%, #5878a8 0%, #3d5a8a 100%); }
+.timeline-item.year-10 .swatch { background: radial-gradient(circle at 30% 30%, #4a6fa5 0%, #2d4674 100%); }
+.timeline-item.year-return .swatch { background: radial-gradient(circle at 30% 30%, #1f3454 0%, #0a1429 100%); }
+
+.timeline-year {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+}
+.timeline-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--paper);
+  margin-bottom: 4px;
+}
+.timeline-stage {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 14px;
+  color: var(--gold-pale);
+}
+.timeline-desc {
+  font-size: 0.8rem;
+  line-height: 1.9;
+  color: var(--muted-dark);
+  padding: 0 8px;
+}
+
+/* リフォーム表 */
+.reform-section {
+  margin-top: 140px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.reform-section h3 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 12px;
+  letter-spacing: 0.14em;
+  color: var(--paper);
+}
+.reform-section .reform-sub {
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--gold-light);
+  margin-bottom: 56px;
+  letter-spacing: 0.22em;
+}
+.reform-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--hairline-dark);
+  align-items: center;
+}
+.reform-row.head {
+  border-bottom: 1px solid var(--gold);
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.3em;
+  font-size: 0.76rem;
+  color: var(--gold);
+  padding: 16px 0;
+}
+.reform-stage { font-family: "Shippori Mincho", serif; font-weight: 500; color: var(--paper); letter-spacing: 0.08em; }
+.reform-from-to { font-family: "Shippori Mincho", serif; color: var(--text-on-dark); }
+.reform-from-to .arrow { color: var(--gold); margin: 0 12px; font-family: "Cormorant Garamond", serif; }
+.reform-meaning { font-size: 0.88rem; color: var(--muted-dark); line-height: 1.9; }
+
+/* ───────── CHAPTER 3 / 還す ───────── */
+.chapter-3 {
+  background: var(--paper-soft);
+  position: relative;
+}
+.chapter-3-content { max-width: 1280px; margin: 0 auto; }
+
+/* KANDOフロー */
+.kando-flow {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.flow-step {
+  padding: 40px 24px;
+  text-align: center;
+  position: relative;
+}
+.flow-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 95px;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  z-index: 2;
+}
+.flow-num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  margin-bottom: 16px;
+}
+.flow-icon {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  position: relative;
+  background: rgba(184, 148, 90, 0.04);
+}
+.flow-step h3 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500;
+  font-size: 1.15rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 14px;
+}
+.flow-step p {
+  font-size: 0.84rem;
+  line-height: 1.9;
+  color: var(--muted-light);
+}
+
+/* アミュレット */
+.amulet-section {
+  margin-top: 160px;
+  background: var(--ink);
+  color: var(--paper);
+  margin-left: calc(-1 * 56px);
+  margin-right: calc(-1 * 56px);
+  padding: 140px 56px;
+  position: relative;
+}
+.amulet-inner { max-width: 1280px; margin: 0 auto; }
+.amulet-header { text-align: center; margin-bottom: 80px; }
+.amulet-title {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.16em;
+  margin-bottom: 16px;
+  color: var(--paper);
+}
+.amulet-en {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--gold-light);
+  letter-spacing: 0.28em;
+  margin-bottom: 32px;
+}
+.amulet-lede {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 300;
+  font-size: 0.98rem;
+  line-height: 2.2;
+  color: var(--text-on-dark);
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+.amulet-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.amulet-card {
+  background: rgba(244, 237, 224, 0.04);
+  border: 1px solid var(--hairline-dark);
+  padding: 36px 26px;
+  transition: all 0.5s;
+  text-align: center;
+}
+.amulet-card:hover {
+  background: rgba(184, 148, 90, 0.08);
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+.amulet-svg {
+  height: 70px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.amulet-card h4 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  color: var(--paper);
+}
+.amulet-card .amulet-en-name {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.76rem;
+  color: var(--gold-light);
+  letter-spacing: 0.22em;
+  margin-bottom: 18px;
+  display: block;
+}
+.amulet-card p {
+  font-size: 0.84rem;
+  line-height: 1.9;
+  color: var(--muted-dark);
+  text-align: left;
+}
+
+/* ───────── CHAPTER 4 / 十三人の武将 ───────── */
+.chapter-thirteen {
+  background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+}
+.thirteen-content { max-width: 1280px; margin: 0 auto; }
+
+.thirteen-intro {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+  margin-bottom: 80px;
+}
+.thirteen-intro .vertical-quote {
+  writing-mode: vertical-rl;
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.38em;
+  line-height: 2.5;
+  color: var(--ink);
+  height: 380px;
+  padding-right: 14px;
+  border-right: 1px solid var(--gold);
+}
+.thirteen-intro p {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 300;
+  font-size: 0.98rem;
+  line-height: 2.4;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+
+/* 武将のグリッド */
+.samurai-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.samurai-card {
+  background: var(--paper-soft);
+  padding: 28px 22px;
+  border: 1px solid var(--hairline-light);
+  transition: all 0.4s;
+  position: relative;
+}
+.samurai-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -15px rgba(10, 20, 41, 0.15);
+}
+.samurai-card .num {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+}
+.samurai-card .name-en {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  color: var(--ink);
+  margin-top: 8px;
+}
+.samurai-card .name-jp {
+  font-family: "Shippori Mincho", serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.samurai-card .role {
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--muted-light);
+}
+
+.thirteen-cta {
+  text-align: center;
+  margin-top: 80px;
+}
+.thirteen-cta .more-link {
+  display: inline-block;
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.28em;
+  font-size: 0.85rem;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 16px 36px;
+  border: 1px solid var(--gold);
+  transition: all 0.4s;
+}
+.thirteen-cta .more-link:hover {
+  background: var(--gold);
+  color: var(--paper);
+}
+
+/* ───────── CHAPTER 5 / 大刀洗の三層 ───────── */
+.terroir {
+  background: var(--paper-cream);
+  position: relative;
+}
+.terroir-content { max-width: 1280px; margin: 0 auto; }
+
+.terroir-layers {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.terroir-card {
+  padding: 56px 36px;
+  background: var(--paper-soft);
+  border-top: 3px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+.terroir-card .year {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.terroir-card .label {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.3em;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--muted-light);
+  margin-bottom: 32px;
+}
+.terroir-card h4 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.terroir-card p {
+  font-size: 0.92rem;
+  line-height: 2.1;
+  color: var(--muted-light);
+}
+
+/* ───────── CHAPTER 6 / 哲学のマトリクス ───────── */
+.matrix {
+  background: var(--ink-deep);
+  color: var(--paper);
+  padding: 180px 56px;
+}
+.matrix-inner { max-width: 1100px; margin: 0 auto; }
+.matrix-header { text-align: center; margin-bottom: 80px; }
+.matrix-en {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.32em;
+  font-size: 0.85rem;
+  color: var(--gold-light);
+  margin-bottom: 24px;
+}
+.matrix-title {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  color: var(--paper);
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--hairline-gold);
+}
+.matrix-row {
+  display: contents;
+}
+.matrix-cell {
+  padding: 28px 36px;
+  border-bottom: 1px solid var(--hairline-dark);
+  font-family: "Shippori Mincho", serif;
+  font-size: 0.98rem;
+  line-height: 1.9;
+  letter-spacing: 0.08em;
+}
+.matrix-cell.head {
+  background: rgba(184, 148, 90, 0.08);
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.3em;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  padding: 24px 36px;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+.matrix-cell.head.gold { color: var(--paper); background: rgba(184, 148, 90, 0.15); }
+.matrix-cell.left {
+  color: var(--muted-dark);
+  border-right: 1px solid var(--hairline-dark);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--muted-mid);
+}
+.matrix-cell.right {
+  color: var(--paper);
+  font-weight: 400;
+  background: rgba(184, 148, 90, 0.04);
+}
+
+/* ───────── CHAPTER 7 / JOIN（共犯者になる） ───────── */
+.join {
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--ink) 100%);
+  color: var(--paper);
+  padding: 200px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.join::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(184, 148, 90, 0.15), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(45, 70, 116, 0.6), transparent 50%);
+}
+.join-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.join-label {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.4em;
+  color: var(--gold-light);
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+}
+.join h2 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 300;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: 0.12em;
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+.join h2 em { color: var(--gold-light); font-style: normal; }
+.join .cta-lede {
+  font-size: 1rem;
+  line-height: 2.2;
+  margin-bottom: 80px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-on-dark);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+.cta-btn {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.28em;
+  font-size: 0.82rem;
+  padding: 22px 48px;
+  border: 1px solid var(--gold);
+  color: var(--paper);
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+.cta-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+.cta-btn:hover { color: var(--ink); }
+.cta-btn:hover::before { transform: translateY(0); }
+.cta-btn.primary {
+  background: var(--gold);
+  color: var(--ink);
+}
+.cta-btn.primary::before { background: var(--paper); }
+
+.community-block {
+  border-top: 1px solid var(--hairline-gold);
+  padding-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: left;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.community-item h5 {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.3em;
+  font-size: 0.78rem;
+  color: var(--gold-light);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.community-item h6 {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: var(--paper);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.community-item p {
+  font-size: 0.86rem;
+  line-height: 2;
+  color: var(--text-on-dark);
+  opacity: 0.85;
+}
+
+/* ───────── COMPANY ───────── */
+.company {
+  background: var(--paper);
+  padding: 140px 56px;
+}
+.company-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 100px;
+  align-items: start;
+}
+.company-left h2 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.company-left .en-label {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.26em;
+  margin-bottom: 48px;
+}
+.company-left p {
+  font-family: "Noto Serif JP", serif;
+  line-height: 2.3;
+  font-size: 0.94rem;
+  margin-bottom: 24px;
+}
+.company-info dt {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.28em;
+  font-size: 0.74rem;
+  color: var(--gold);
+  margin-top: 24px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.company-info dt:first-child { margin-top: 0; }
+.company-info dd { color: var(--ink); font-family: "Shippori Mincho", serif; font-size: 0.96rem; }
+
+.philosophy-quote {
+  margin-top: 60px;
+  padding: 36px 0;
+  border-top: 1px solid var(--hairline-gold);
+  border-bottom: 1px solid var(--hairline-gold);
+  text-align: center;
+  font-family: "Shippori Mincho", serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.16em;
+  color: var(--rust);
+  line-height: 2;
+}
+
+/* ───────── FOOTER ───────── */
+footer {
+  background: var(--ink-abyss);
+  color: var(--muted-dark);
+  padding: 120px 56px 40px;
+  position: relative;
+}
+.footer-top {
+  max-width: 1280px;
+  margin: 0 auto 80px;
+  text-align: center;
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--hairline-dark);
+}
+.footer-top .tagline {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+  line-height: 2;
+  margin-bottom: 16px;
+}
+.footer-top .tagline-en {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.3em;
+  color: var(--gold-light);
+  font-size: 0.92rem;
+}
+.footer-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--hairline-dark);
+}
+.footer-brand h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 0.22em;
+  color: var(--paper);
+  margin-bottom: 8px;
+}
+.footer-brand h3 em {
+  font-weight: 300;
+  color: var(--gold-light);
+}
+.footer-brand .est {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 0.78rem;
+  letter-spacing: 0.24em;
+  margin-bottom: 24px;
+}
+.footer-brand p {
+  font-size: 0.84rem;
+  line-height: 2;
+  color: var(--muted-dark);
+  margin-bottom: 20px;
+}
+.footer-brand .address {
+  font-family: "Shippori Mincho", serif;
+  font-size: 0.84rem;
+  line-height: 2;
+  color: var(--muted-dark);
+}
+.footer-col h4 {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.32em;
+  font-size: 0.76rem;
+  color: var(--gold-light);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul a {
+  color: var(--muted-dark);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-family: "Shippori Mincho", serif;
+  letter-spacing: 0.08em;
+  transition: color 0.3s;
+}
+.footer-col ul a:hover { color: var(--gold-light); }
+.footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.24em;
+  font-size: 0.74rem;
+  color: var(--muted-dark);
+}
+
+/* ───────── RESPONSIVE ───────── */
+@media (max-width: 900px) {
+  nav.top { padding: 16px 20px; }
+  nav.top ul { display: none; }
+  section { padding: 100px 24px; }
+  .hero-meta { left: 16px; bottom: 30px; }
+  .hero-scroll { right: 16px; bottom: 30px; }
+  .prologue { padding: 120px 24px; }
+  .prologue-grid { grid-template-columns: 1fr; gap: 60px; }
+  .prologue-left { position: relative; top: 0; }
+  .prologue-vertical { writing-mode: horizontal-tb; height: auto; border-right: none; border-left: 1px solid var(--gold); padding: 0 0 0 20px; font-size: 1.05rem; }
+  .aikioku { padding: 120px 24px; }
+  .aikioku-inner { grid-template-columns: 1fr; gap: 60px; }
+  .aikioku-visual { max-width: 280px; margin: 0 auto; }
+  .touch-grid { grid-template-columns: 1fr; gap: 20px; }
+  .timeline-grid { grid-template-columns: repeat(2, 1fr); gap: 60px 16px; }
+  .timeline-line { display: none; }
+  .reform-row { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; }
+  .reform-row.head { display: none; }
+  .kando-flow { grid-template-columns: 1fr 1fr; gap: 40px 0; }
+  .flow-step::after { display: none; }
+  .amulet-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .amulet-section { margin-left: -24px; margin-right: -24px; padding: 100px 24px; }
+  .thirteen-intro { grid-template-columns: 1fr; gap: 40px; }
+  .thirteen-intro .vertical-quote { writing-mode: horizontal-tb; height: auto; border-right: none; border-left: 1px solid var(--gold); padding: 0 0 0 20px; }
+  .samurai-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .terroir-layers { grid-template-columns: 1fr; gap: 24px; }
+  .matrix { padding: 100px 24px; }
+  .matrix-cell { padding: 18px 22px; font-size: 0.86rem; }
+  .matrix-cell.head { padding: 16px 22px; }
+  .join { padding: 120px 24px; }
+  .community-block { grid-template-columns: 1fr; gap: 32px; padding-top: 40px; }
+  .company-inner { grid-template-columns: 1fr; gap: 48px; }
+  .company { padding: 100px 24px; }
+  footer { padding: 80px 24px 30px; }
+  .footer-top { margin-bottom: 60px; padding-bottom: 60px; }
+  .footer-top .tagline { font-size: 1.2rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .chapter-marker .num { font-size: 3.5rem; }
+  .chapter-marker .label { padding-right: 0; font-size: 0.7rem; letter-spacing: 0.32em; }
+  h2.section-title { font-size: 1.6rem; }
+}
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
 </head>
-<body class="min-h-screen flex flex-col pb-24">
+<body>
 
-    <!-- Header -->
-    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-slate-100 safe-area-top">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="resetSearch()">
-                <div class="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center text-white shadow-sm flex-shrink-0">
-                    <i class="fa-solid fa-leaf"></i>
-                </div>
-                <h1 class="text-lg font-bold text-slate-800 leading-tight truncate">
-                    大堰校区<span class="hidden xs:inline">アイデア</span><br><span class="text-[10px] text-slate-500 font-normal block -mt-1">未来づくり300選</span>
-                </h1>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="showGachaModal()" class="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-1.5 px-3 rounded-full shadow-md transition active:scale-95 text-xs flex flex-col items-center justify-center leading-none min-w-[50px]">
-                    <i class="fa-solid fa-gift text-base mb-0.5"></i>
-                    <span>ガチャ</span>
-                </button>
-                <button onclick="toggleStockDrawer()" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-1.5 px-3 rounded-full shadow-md transition active:scale-95 text-xs flex flex-col items-center justify-center leading-none relative min-w-[50px]">
-                    <i class="fa-solid fa-heart text-base mb-0.5"></i>
-                    <span>保存</span>
-                    <span id="stockCountBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full hidden shadow-sm border border-white">0</span>
-                </button>
-            </div>
-        </div>
-    </header>
+<!-- ─────────── NAV ─────────── -->
+<nav class="top">
+  <div class="logo">
+    ROoRING
+    <span class="small">The Book of KANDO</span>
+  </div>
+  <ul>
+    <li><a href="#prologue">Prologue</a></li>
+    <li><a href="#aikioku">Ai-no-Kioku</a></li>
+    <li><a href="#chapter-1">I. 纏う</a></li>
+    <li><a href="#chapter-2">II. 育てる</a></li>
+    <li><a href="#chapter-3">III. 還す</a></li>
+    <li><a href="#thirteen">The Thirteen</a></li>
+    <li><a href="#join">Join</a></li>
+    <li><a href="https://rooring.stores.jp/" target="_blank" rel="noopener" class="shop-btn">Shop</a></li>
+  </ul>
+</nav>
 
-    <!-- Hero Section -->
-    <div class="hero-bg py-6 px-4 text-center relative">
-        <div class="relative z-10 max-w-2xl mx-auto">
-            <h2 class="text-xl md:text-3xl font-bold text-slate-800 mb-2">
-                300の「あったらいいな」
-            </h2>
-            <p class="text-slate-600 mb-5 text-xs md:text-sm">
-                大堰校区の課題を解決するアイデア集。<br>
-                キーワードやカテゴリで検索してみましょう。
-            </p>
-            <div class="relative group">
-                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
-                </div>
-                <input type="text" id="searchInput" placeholder="キーワード検索（例：ホタル、子供...）" 
-                       class="w-full pl-11 pr-4 py-3 rounded-full border-2 border-slate-200 focus:border-teal-500 outline-none shadow-sm text-base transition duration-200 bg-white/90 focus:bg-white appearance-none">
-            </div>
-        </div>
+<!-- ─────────── HERO ─────────── -->
+<section class="hero">
+  <svg class="hero-bg" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="glow1" cx="50%" cy="50%">
+        <stop offset="0%" stop-color="#2d4674" stop-opacity="0.8"/>
+        <stop offset="100%" stop-color="#0a1429" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="glow2" cx="50%" cy="50%">
+        <stop offset="0%" stop-color="#1a2b4f" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#0a1429" stop-opacity="0"/>
+      </radialGradient>
+      <pattern id="weave" x="0" y="0" width="70" height="70" patternUnits="userSpaceOnUse">
+        <path d="M0 35 L70 35 M35 0 L35 70" stroke="#b8945a" stroke-width="0.3" opacity="0.18"/>
+      </pattern>
+    </defs>
+    <circle cx="400" cy="300" r="500" fill="url(#glow1)"/>
+    <circle cx="1500" cy="700" r="600" fill="url(#glow2)"/>
+    <g stroke="#b8945a" fill="none" opacity="0.18">
+      <circle cx="960" cy="540" r="180"/>
+      <circle cx="960" cy="540" r="280"/>
+      <circle cx="960" cy="540" r="400"/>
+      <circle cx="960" cy="540" r="540"/>
+      <circle cx="960" cy="540" r="700"/>
+    </g>
+    <rect width="1920" height="1080" fill="url(#weave)"/>
+  </svg>
+
+  <!-- 静的ホタル -->
+  <div class="firefly" style="left: 15%; top: 30%; animation-delay: 0s;"></div>
+  <div class="firefly" style="left: 75%; top: 50%; animation-delay: 1.5s;"></div>
+  <div class="firefly" style="left: 25%; top: 70%; animation-delay: 3s;"></div>
+  <div class="firefly" style="left: 85%; top: 25%; animation-delay: 4.5s;"></div>
+  <div class="firefly" style="left: 50%; top: 80%; animation-delay: 2s;"></div>
+  <div class="firefly" style="left: 10%; top: 55%; animation-delay: 6s;"></div>
+
+  <div class="hero-content">
+    <div class="hero-prelude">ROoRING ─ THE BOOK OF KANDO ─</div>
+    <h1>
+      <span class="line1">纏うことは、生きること。</span>
+      <span class="line2">還すことは、生かすこと。</span>
+    </h1>
+    <div class="hero-divider"></div>
+    <div class="hero-subtitle">To wear is to live. To return is to give life.</div>
+  </div>
+
+  <div class="hero-meta">大刀洗 ─ TACHIARAI, FUKUOKA</div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-text">Open the Book</div>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─────────── PROLOGUE ─────────── -->
+<section class="prologue" id="prologue">
+  <div class="prologue-grid">
+    <div class="prologue-left">
+      <div class="chapter-marker">
+        <div class="num">0</div>
+        <div class="label">Prologue ─ 序章</div>
+      </div>
+      <div class="prologue-vertical">大刀洗の土と水から、一枚の布が生まれる。</div>
     </div>
 
-    <!-- Main Content -->
-    <main class="flex-grow container mx-auto px-4 py-4 relative z-0">
-        
-        <!-- Category Filters (Horizontal Scroll on Mobile) -->
-        <div class="mb-6">
-            <div class="flex items-center justify-between mb-2 px-1">
-                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center">
-                    <i class="fa-solid fa-filter mr-1"></i>カテゴリ
-                </h3>
-                <span class="text-[10px] text-slate-400 md:hidden">横にスワイプ <i class="fa-solid fa-arrow-right-long"></i></span>
-            </div>
-            <div class="overflow-x-auto horizontal-scroll pb-2 -mx-4 px-4 md:mx-0 md:px-0">
-                <div class="flex flex-nowrap md:flex-wrap gap-2 min-w-max md:min-w-0" id="categoryFilters">
-                    <button class="category-btn active border border-slate-200 bg-white text-slate-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="all">すべて</button>
-                    <button class="category-btn border border-slate-200 bg-white text-slate-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="防災・安全"><i class="fa-solid fa-shield-halved mr-1 text-red-400"></i>防災・安全</button>
-                    <button class="category-btn border border-slate-200 bg-white text-slate-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="生活・交通"><i class="fa-solid fa-bus mr-1 text-blue-400"></i>生活・交通</button>
-                    <button class="category-btn border border-slate-200 bg-white text-slate-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="コミュニティ"><i class="fa-solid fa-people-group mr-1 text-orange-400"></i>コミュニティ</button>
-                    <button class="category-btn border border-slate-200 bg-white text-slate-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="産業・農業"><i class="fa-solid fa-wheat-awn mr-1 text-green-400"></i>産業・農業</button>
-                    <button class="category-btn border border-slate-200 bg-white text-slate-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="子育て・若者"><i class="fa-solid fa-children mr-1 text-pink-400"></i>子育て</button>
-                    <button class="category-btn border border-slate-200 bg-white text-slate-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="自然・環境"><i class="fa-solid fa-tree mr-1 text-emerald-400"></i>自然・環境</button>
-                    <button class="category-btn border border-slate-200 bg-white text-slate-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="歴史・文化"><i class="fa-solid fa-landmark mr-1 text-purple-400"></i>歴史・文化</button>
-                    <button class="category-btn border border-slate-200 bg-white text-slate-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="健康"><i class="fa-solid fa-heart-pulse mr-1 text-cyan-400"></i>健康</button>
-                    <button class="category-btn border border-slate-200 bg-white text-slate-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="その他"><i class="fa-solid fa-plus mr-1 text-gray-400"></i>その他</button>
-                </div>
-            </div>
-        </div>
+    <div class="prologue-right reveal">
+      <p>合資会社ロォーリングは、福岡県・大刀洗町、源氏蛍が今も自然生息する三川地区に拠点を置く、創業30年あまりの織物会社です。久留米絣と久留米織の伝統技術を融合させ、独自開発した先染め綿100%のテキスタイル「からくり織®」、15年かけて自社栽培した原種の藍「三川藍®」を核に、図案デザインから染色、織り、縫製、そして役目を終えた服の還土までを、一貫して大刀洗の土地の中で行います。</p>
 
-        <!-- Results Info -->
-        <div class="flex justify-between items-end mb-4 border-b border-slate-200 pb-2">
-            <p class="text-slate-500 text-xs md:text-sm">
-                <span id="resultCount" class="font-bold text-slate-800 text-lg md:text-2xl mr-1">300</span> 件
-            </p>
-        </div>
+      <p>私たちが織っているのは、ただの布ではありません。<br>太陽と水と土が育てた綿と藍が、職人の手を経て一枚の布になり、誰かの肌に十年寄り添い、最後はまた土へ還り、次の藍を、次の野菜を育てる。── そんな「永遠の循環」そのものを、織っています。</p>
 
-        <!-- Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="ideasGrid">
-            <!-- Cards will be injected here by JS -->
-        </div>
+      <p>「纏うことは、生きること。還すことは、生かすこと。」<br>この十二文字は、ロォーリングが歩んできた30年の道のりであり、これからの千年に向けた誓約でもあります。どうぞ、ゆっくり頁を繰ってください。</p>
 
-        <!-- No Results Message -->
-        <div id="noResults" class="hidden flex flex-col items-center justify-center py-12 text-center">
-            <div class="bg-slate-100 p-5 rounded-full mb-3">
-                <i class="fa-solid fa-magnifying-glass text-3xl text-slate-300"></i>
-            </div>
-            <h3 class="text-base font-bold text-slate-700 mb-1">見つかりませんでした</h3>
-            <button onclick="resetSearch()" class="text-teal-600 font-medium text-sm underline p-2">
-                すべてのアイデアを表示
-            </button>
-        </div>
-    </main>
+      <p class="author">─ 合資会社ロォーリング 代表 實藤 俊彦</p>
+    </div>
+  </div>
+</section>
 
-    <!-- Stock Drawer (Bottom Sheet) -->
-    <div id="stockDrawer" class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-5px_20px_rgba(0,0,0,0.15)] transform translate-y-full transition-transform duration-300 z-40 rounded-t-2xl border-t border-slate-100 flex flex-col safe-area-bottom" style="height: 60vh;">
-        <!-- Drag Handle for mobile visual cue -->
-        <div class="w-full flex justify-center pt-3 pb-1" onclick="toggleStockDrawer()">
-            <div class="w-12 h-1.5 bg-slate-200 rounded-full"></div>
-        </div>
-        
-        <div class="px-4 pb-2 border-b border-slate-100 flex justify-between items-center bg-white">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-heart text-pink-500 text-lg"></i>
-                <h3 class="font-bold text-slate-800 text-sm">ストック (<span id="drawerCount">0</span>)</h3>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="clearStock()" class="text-xs text-slate-400 hover:text-red-500 px-2 py-1">全消去</button>
-                <button onclick="toggleStockDrawer()" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 active:bg-slate-200">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-        </div>
-        <div id="stockList" class="p-4 overflow-y-auto flex-grow grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-50 content-start">
-            <!-- Stocked items go here -->
-        </div>
+<!-- ─────────── AI-NO-KIOKU ─────────── -->
+<section class="aikioku" id="aikioku">
+  <div class="aikioku-inner">
+    <div class="reveal">
+      <div class="aikioku-label">The Signature Color</div>
+      <h2>AI<span class="em-gold">-</span>NO<span class="em-gold">-</span>KIOKU</h2>
+      <div class="jp-name">藍の記憶 ─ Memory of Ai</div>
+
+      <p>ロォーリングのシグネチャーカラーは、世界でただ一つ。15年かけて自社で育てた完全無農薬の原種「三川藍」が放つ、深く、静かで、しかし鋭い青。──「Ai」は日本語で「藍（Indigo）」であり、同時に「愛（Love）」でもあります。</p>
+
+      <div class="equation"><span>Ai</span><span class="plus">=</span><span>Love</span><span class="plus">+</span><span>Indigo</span></div>
+
+      <p>蛍が宿る境界線でしか、この青は生まれない。自然と人の営みが絶妙に交わる、この大刀洗の土地でしか織れない、世界に唯一の藍。── 私たちはそれを、未来へ受け継ぐべき「藍の記憶」と呼びます。</p>
     </div>
 
-    <!-- Gacha Modal -->
-    <div id="gachaModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" onclick="closeGachaModal()"></div>
-        
-        <!-- Modal Content -->
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[85vh] overflow-hidden flex flex-col relative z-10">
-            <!-- Gacha Header -->
-            <div class="bg-gradient-to-r from-yellow-400 to-orange-400 p-5 text-center text-white relative">
-                <i class="fa-solid fa-star absolute top-2 left-4 text-yellow-300 opacity-50 text-3xl animate-pulse"></i>
-                <h2 class="text-2xl font-bold mb-1 relative z-10 drop-shadow-md">アイデアガチャ</h2>
-                <button onclick="closeGachaModal()" class="absolute top-3 right-3 text-white/80 hover:text-white w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/20 transition z-20">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
+    <div class="aikioku-visual reveal"></div>
+  </div>
+</section>
 
-            <!-- Gacha Content -->
-            <div class="p-5 flex-grow overflow-y-auto bg-slate-50">
-                <!-- Start Screen -->
-                <div id="gachaStart" class="text-center py-6">
-                    <div class="text-7xl mb-6 animate-bounce">🎁</div>
-                    <div class="flex flex-col gap-3">
-                        <button onclick="playGacha(1)" class="bg-white border-2 border-slate-200 active:bg-slate-50 text-slate-600 font-bold py-3 px-6 rounded-xl shadow-sm flex items-center justify-center gap-2 w-full">
-                            <span class="text-base">1回引く</span>
-                        </button>
-                        <button onclick="playGacha(5)" class="bg-gradient-to-r from-teal-500 to-teal-600 active:from-teal-600 active:to-teal-700 text-white font-bold py-4 px-6 rounded-xl shadow-md flex flex-col items-center justify-center w-full">
-                            <span class="text-lg flex items-center gap-1"><i class="fa-solid fa-bolt text-yellow-300"></i> 5連ガチャ</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Result Screen -->
-                <div id="gachaResult" class="hidden">
-                    <div id="gachaItems" class="grid grid-cols-1 gap-3 mb-6">
-                        <!-- Items injected here -->
-                    </div>
-                    <div class="text-center flex flex-col gap-3">
-                        <button onclick="playGacha(5)" class="bg-teal-500 active:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow w-full">もう一度引く</button>
-                        <button onclick="resetGacha()" class="text-slate-400 active:text-slate-600 font-medium py-2 text-sm">もどる</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ─────────── CHAPTER 1 / 纏う ─────────── -->
+<section class="chapter-1" id="chapter-1">
+  <div class="chapter-1-content">
+    <div class="chapter-marker reveal">
+      <div class="num">I</div>
+      <div class="label">Chapter I ─ 纏う ─ Wear</div>
     </div>
 
-    <!-- Idea Detail Modal -->
-    <div id="detailModal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center sm:p-4">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="detailModalBackdrop" onclick="closeDetailModal()"></div>
-        
-        <!-- Modal Content (Bottom sheet on mobile, Center modal on desktop) -->
-        <div class="bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full max-w-lg transform transition-transform duration-300 translate-y-full sm:translate-y-0 scale-100 flex flex-col max-h-[90vh] relative z-10" id="detailModalPanel">
-            
-            <!-- Mobile Drag Handle -->
-            <div class="sm:hidden w-full flex justify-center pt-3 pb-1 bg-slate-50 rounded-t-2xl" onclick="closeDetailModal()">
-                <div class="w-12 h-1.5 bg-slate-200 rounded-full"></div>
-            </div>
+    <h2 class="section-title reveal">第二の皮膚として、<br>あなたの一日を<em>静かに守る</em>。</h2>
 
-            <div class="relative bg-slate-50 px-5 pb-4 sm:pt-5 sm:rounded-t-2xl border-b border-slate-100">
-                <button onclick="closeDetailModal()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-white text-slate-400 active:bg-slate-200 shadow-sm hidden sm:flex">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div class="flex flex-col items-center text-center pt-1">
-                    <span id="modalCategoryBadge" class="inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-bold mb-2 bg-teal-100 text-teal-700">カテゴリ</span>
-                    <h2 id="modalTitle" class="text-xl font-bold text-slate-800 leading-tight mb-1">タイトル</h2>
-                    <div class="flex items-center gap-2 text-xs text-slate-500">
-                        <span class="px-2 py-0.5 bg-slate-100 rounded border border-slate-200 font-mono">No.<span id="modalId">00</span></span>
-                        <span>型：<span id="modalType" class="font-medium text-slate-700"></span></span>
-                    </div>
-                </div>
-            </div>
-            <div class="p-5 overflow-y-auto">
-                <div class="mb-5">
-                    <div class="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1"><i class="fa-solid fa-circle-exclamation"></i> 解決する課題</div>
-                    <p id="modalTask" class="text-slate-700 font-medium bg-red-50 p-3 rounded-lg border-l-4 border-red-300 text-sm"></p>
-                </div>
-                <div class="mb-5">
-                    <div class="text-teal-600 text-[10px] font-bold uppercase tracking-wider mb-1"><i class="fa-regular fa-lightbulb text-base"></i> アイデア詳細</div>
-                    <p id="modalDetail" class="text-base text-slate-800 leading-relaxed"></p>
-                </div>
-            </div>
-            <div class="p-4 border-t border-slate-100 bg-slate-50 safe-area-bottom rounded-b-none sm:rounded-b-2xl flex flex-col sm:flex-row justify-center gap-3">
-                <button id="modalStockBtn" class="w-full sm:w-auto border-2 border-pink-400 text-pink-500 active:bg-pink-50 font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2" onclick="toggleStockFromModal()">
-                    <i class="fa-regular fa-heart"></i> ストックする
-                </button>
-                <button onclick="closeDetailModal()" class="w-full sm:w-auto bg-slate-200 text-slate-600 font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 sm:hidden">
-                    閉じる
-                </button>
-            </div>
+    <p class="lede reveal">からくり織は、空気を含み、肌を呼吸させ、心を癒やす「優しさのテクノロジー」です。化学繊維にはないその手触りは、デジタル社会で疲弊した身体への、私たちからの処方箋。あなたの日常に、最初の小さな一片から、忍び込ませてください。</p>
+
+    <div class="touch-grid">
+      <!-- Card 1 -->
+      <div class="touch-card reveal">
+        <div class="card-num">No. 01</div>
+        <div class="icon-wrap">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+            <circle cx="30" cy="30" r="25" stroke="#b8945a" stroke-width="0.8"/>
+            <circle cx="30" cy="30" r="18" stroke="#b8945a" stroke-width="0.6" opacity="0.7"/>
+            <circle cx="30" cy="30" r="11" stroke="#b8945a" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="30" cy="30" r="4" fill="#b8945a"/>
+          </svg>
         </div>
+        <h3>水守 ─ みずもり</h3>
+        <span class="card-en">Karakuri Coaster</span>
+        <p>凹凸のあるからくり織の高い吸水性を活かした、日常の小さな儀式のためのコースター。グラスの水滴を、保水する土壌に見立てる一枚。</p>
+        <div class="card-price">From ¥1,800</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="touch-card reveal">
+        <div class="card-num">No. 02</div>
+        <div class="icon-wrap">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+            <rect x="8" y="14" width="44" height="32" stroke="#b8945a" stroke-width="0.8" fill="none"/>
+            <line x1="8" y1="22" x2="52" y2="22" stroke="#b8945a" stroke-width="0.4"/>
+            <line x1="8" y1="38" x2="52" y2="38" stroke="#b8945a" stroke-width="0.4"/>
+            <circle cx="22" cy="30" r="2" fill="#b8945a" opacity="0.6"/>
+            <circle cx="38" cy="30" r="2" fill="#b8945a" opacity="0.4"/>
+          </svg>
+        </div>
+        <h3>熟成ランチョンマット</h3>
+        <span class="card-en">Aging Place Mat</span>
+        <p>醤油やワインのシミさえも、染め直すことで「味」になるテーブルウェア。汚れることを肯定し、家族と過ごした年月が刻まれる一枚。</p>
+        <div class="card-price">From ¥8,800</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="touch-card reveal">
+        <div class="card-num">No. 03</div>
+        <div class="icon-wrap">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+            <path d="M30 12 C18 12 12 22 12 32 C12 42 20 50 30 50 C40 50 48 42 48 32 C48 22 42 12 30 12 Z" stroke="#b8945a" stroke-width="0.8" fill="none"/>
+            <path d="M30 18 L30 44 M22 32 L38 32" stroke="#b8945a" stroke-width="0.5" opacity="0.6"/>
+          </svg>
+        </div>
+        <h3>TAKEMITSU ジャケット</h3>
+        <span class="card-en">The Wearable Shelter</span>
+        <p>都市の喧騒から身を守る「ウェアラブルな避難所」。空気の層が、あなたの自律神経を整えます。10年後の風合いを完成形と定める、未完成の一着。</p>
+        <div class="card-price">From ¥168,000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── CHAPTER 2 / 育てる ─────────── -->
+<section class="chapter-2" id="chapter-2">
+  <div class="chapter-2-content">
+    <div class="chapter-marker reveal">
+      <div class="num">II</div>
+      <div class="label">Chapter II ─ 育てる ─ Grow</div>
     </div>
 
-    <script>
-        // 300件の全データ
-        const rawData = [
-[1,"防災・安全","水害リスクへの切実な不安","逆転","水害VR体験会","浸水時の景色をVRでリアルに体験し、危機感を「実感」に変える。"],
-[2,"防災・安全","水害リスクへの切実な不安","誇張","全戸ボート保有計画","各家庭にゴムボートや救命胴衣を「家具」として配布・常備する。"],
-[3,"防災・安全","水害リスクへの切実な不安","結合","水位ライブ・ユーチューバー","川の水位を24時間実況するAIまたは住民ユーチューバーを運用。"],
-[4,"防災・安全","水害リスクへの切実な不安","転用","田んぼダム化プロジェクト","休耕田を一時的な貯水池として活用し、協力金（治水給付金）を出す。"],
-[5,"防災・安全","水害リスクへの切実な不安","交換","2階リビング推奨条例","浸水エリアのリフォーム時に、リビングを2階にする設計を助成。"],
-[6,"防災・安全","水害リスクへの切実な不安","模倣","オランダ式・水に浮く家","将来的なモデルハウスとして、増水時に浮上する家を誘致・展示。"],
-[7,"防災・安全","水害リスクへの切実な不安","遊び","ハザードマップ・ウォークラリー","浸水想定ラインを実際に歩いてマーキングするイベント。"],
-[8,"防災・安全","水害リスクへの切実な不安","除去","ブロック塀撤去フェス","避難の妨げになりそうなブロック塀を、みんなで壊して生垣にする。"],
-[9,"防災・安全","水害リスクへの切実な不安","擬人化","川の神様・怒りゲージ","水位情報を「川の神様の機嫌」としてキャラクター化し、子供に伝える。"],
-[10,"防災・安全","水害リスクへの切実な不安","変量","土のう・筋トレ大会","土のう作りをスポーツ競技化し、備蓄と体力を同時に作る。"],
-[11,"防災・安全","避難行動要支援者の支援","結合","避難バディ制度","「逃げる時はこの人と」というペア（バディ）をあらかじめ決め、登録証を作る。"],
-[12,"防災・安全","避難行動要支援者の支援","転用","黄色いハンカチ作戦","「無事です」「助けて」を色の布で軒先に掲げるアナログ安否確認。"],
-[13,"防災・安全","避難行動要支援者の支援","IT","スマートウォッチ見守り","高齢者に安否確認機能付きスマートウォッチを配布し、異変を検知。"],
-[14,"防災・安全","避難行動要支援者の支援","逆転","要支援者こそリーダーに","避難訓練で、あえて要支援者に「指揮官」になってもらい、周囲がどう動くかシミュレーションする。"],
-[15,"防災・安全","避難行動要支援者の支援","代用","リヤカー・タクシー","車が使えない時のために、災害用リヤカーを各組に配備し、搬送訓練をする。"],
-[16,"防災・安全","避難行動要支援者の支援","模倣","Uber Rescue","近隣の若者が助けに行くとポイントがもらえるアプリ的な仕組み。"],
-[17,"防災・安全","避難行動要支援者の支援","遊び","おんぶ・担架レース","運動会で、人を背負って逃げる競技を行い、身体感覚を養う。"],
-[18,"防災・安全","避難行動要支援者の支援","変量","1日1回・安否LINE","毎朝スタンプ1つを送るだけの、ゆるい見守りグループを作る。"],
-[19,"防災・安全","避難行動要支援者の支援","場所","福祉避難所・民泊化","頑丈な個人宅を「プチ福祉避難所」として認定し、補助金を出す。"],
-[20,"防災・安全","避難行動要支援者の支援","物語","「逃げ遅れゼロ」ドキュメンタリー","過去の教訓や想定ドラマを映像化し、地域で上映会を行う。"],
-[21,"防災・安全","インフラ（土手・水路）の脆弱性","結合","土手・フラワーロード化","土手の強化工事と同時に花畑を作り、観光地化して維持管理費を稼ぐ。"],
-[22,"防災・安全","インフラ（土手・水路）の脆弱性","可視化","あふれる予報AR","スマホをかざすと「ここまで水が来る」がARで見える看板を設置。"],
-[23,"防災・安全","インフラ（土手・水路）の脆弱性","転用","水路・発電所","流れの速い水路に小水力発電を設置し、街灯の電源にする。"],
-[24,"防災・安全","インフラ（土手・水路）の脆弱性","逆転","水路を「隠さない」","蓋をするのではなく、柵をおしゃれにして「見せる水路」にし、ゴミ捨てを抑制。"],
-[25,"防災・安全","インフラ（土手・水路）の脆弱性","模倣","クラウドファンディング改修","行政予算を待たず、緊急箇所はCFで資金を募り、「寄付者名入り土手」にする。"],
-[26,"防災・安全","インフラ（土手・水路）の脆弱性","遊び","土手・滑り台計画","頑丈なスーパー堤防を作り、平常時は巨大な滑り台や公園として使う。"],
-[27,"防災・安全","インフラ（土手・水路）の脆弱性","変量","「パトロール・ラン」","ランニング愛好家に、走行中に水路のひび割れを報告してもらう。"],
-[28,"防災・安全","インフラ（土手・水路）の脆弱性","除去","不要水路の埋め立て","使われていない水路を徹底調査し、埋め立てて遊歩道や農道にする。"],
-[29,"防災・安全","インフラ（土手・水路）の脆弱性","素材","蓄光・水路","夜に光る石を水路の縁に埋め込み、転落防止とアート化を両立。"],
-[30,"防災・安全","インフラ（土手・水路）の脆弱性","結合","生き物・水路調査隊","子供たちがザリガニ釣りついでに、水路の詰まりをチェックする。"],
-[31,"生活・交通","近隣での買い物の不便さ","移動","走るコンビニ・デコトラ版","移動販売車を派手にデコレーションし、来るのが楽しみなイベントにする。"],
-[32,"生活・交通","近隣での買い物の不便さ","結合","公民館・無人コンビニ","交流センターの一角に、自販機や無人決済店舗を導入する。"],
-[33,"生活・交通","近隣での買い物の不便さ","代用","「ついで買い」アプリ","「今からトライアル行くけど何かある？」をご近所で共有できる掲示板。"],
-[34,"生活・交通","近隣での買い物の不便さ","逆転","自給自足・シェア","買うのではなく「作る」「貰う」。野菜や惣菜のお裾分け専用ステーション設置。"],
-[35,"生活・交通","近隣での買い物の不便さ","模倣","生協×見守り","宅配業者と提携し、配達時に必ず声かけを行う「お節介配送」。"],
-[36,"生活・交通","近隣での買い物の不便さ","時間","朝市・夜市","店舗がないなら、駅前で朝と夕方だけ開く「ゲリラ市場」を展開。"],
-[37,"生活・交通","近隣での買い物の不便さ","結合","病院・マルシェ","通院ついでに買い物ができるよう、病院の駐車場でマルシェを開く。"],
-[38,"生活・交通","近隣での買い物の不便さ","変量","まとめ買いバスツアー","週に1回、大型バスをチャーターしてコストコやモールへ行くツアー。"],
-[39,"生活・交通","近隣での買い物の不便さ","IT","ドローン配送実験区","広大な農地を活かし、ドローン配送の特区として名乗りを上げる。"],
-[40,"生活・交通","近隣での買い物の不便さ","場所","ガレージ・ショップ","個人宅のガレージで、日用品や駄菓子を売る「駄菓子屋」を復活させる。"],
-[41,"生活・交通","公共交通の利便性","結合","駅・カフェ化","西鉄大堰駅の待合室を、美味しいコーヒーが飲めるカフェに改装する。"],
-[42,"生活・交通","公共交通の利便性","遊び","駅・ピアノ","駅にストリートピアノを置き、音楽で人を集める。"],
-[43,"生活・交通","公共交通の利便性","転用","スクールバス・住民開放","スクールバスの空き時間を活用し、高齢者の足として利用。"],
-[44,"生活・交通","公共交通の利便性","模倣","ライドシェア・大堰版","地域住民の自家用車を活用した、日本版ライドシェアのモデル地区に。"],
-[45,"生活・交通","公共交通の利便性","変量","トゥクトゥク導入","小回りのきく電動トゥクトゥクを導入し、駅からの二次交通にする（観光にも）。"],
-[46,"生活・交通","公共交通の利便性","逆転","「歩く」を楽しむ道","駅までの道をアートや花で飾り、「歩きたくなる道」に改造する。"],
-[47,"生活・交通","公共交通の利便性","結合","自転車×広告","シェアサイクルに地元企業の広告を載せ、利用料を無料にする。"],
-[48,"生活・交通","公共交通の利便性","IT","オンデマンド「ひばり号」AI化","AI配車を導入し、予約から到着までの時間を短縮・最適化。"],
-[49,"生活・交通","公共交通の利便性","場所","駅前・パーク＆ライド拡大","駅周辺の遊休地を格安駐車場にし、遠方からの利用者も呼び込む。"],
-[50,"生活・交通","公共交通の利便性","特典","ノーマイカー・ポイント","公共交通を使った人に、町内で使えるポイントを付与。"],
-[51,"コミュニティ","新旧住民の意識ギャップ","結合","新旧・対抗運動会","「新住民チーム」対「旧住民チーム」で綱引きなどを行い、最後はノーサイドで宴会。"],
-[52,"コミュニティ","新旧住民の意識ギャップ","逆転","転入者が「先生」","転入者が自分のスキル（ヨガ、英会話など）を地元民に教える教室を開く。"],
-[53,"コミュニティ","新旧住民の意識ギャップ","物語","「大堰のトリセツ」制作","地元の暗黙のルールや面白い習慣を、ユーモラスにまとめた冊子を配る。"],
-[54,"コミュニティ","新旧住民の意識ギャップ","場所","ウェルカム・パーティ","転入届を出したその月に、自治会長とピザを食べる会を開催。"],
-[55,"コミュニティ","新旧住民の意識ギャップ","代用","「組」のサブスク化","自治会費を「会費」と呼び変え、払うと野菜が届くなどの特典をつける。"],
-[56,"コミュニティ","新旧住民の意識ギャップ","模倣","ホームステイ体験","転入者が、農家に1日ホームステイ（農業体験・食事）する企画。"],
-[57,"コミュニティ","新旧住民の意識ギャップ","時間","夜の井戸端会議","働く世代のために、夜20時からオンラインで集まる「大堰ナイト」。"],
-[58,"コミュニティ","新旧住民の意識ギャップ","結合","空き家×DIY交流","転入者の住む空き家を、地元の大工さんや住民が手伝ってリノベする。"],
-[59,"コミュニティ","新旧住民の意識ギャップ","変量","挨拶・ポイント制","挨拶運動をゲーム化し、挨拶した回数を競うアプリやカードを作る。"],
-[60,"コミュニティ","新旧住民の意識ギャップ","交換","スキル・バーター","「草刈りします」⇔「パソコン教えます」など、得意技を交換する掲示板。"],
-[61,"コミュニティ","役員・担い手の固定化","時間","役員任期・1日制","「1日だけの役員」「1イベントだけの担当」を募集し、ハードルを下げる。"],
-[62,"コミュニティ","役員・担い手の固定化","結合","役員×くじ引きフェス","役員決めを、豪華景品が当たる大抽選会とセットで行う。"],
-[63,"コミュニティ","役員・担い手の固定化","逆転","役員・報酬アップ","役員報酬を思い切って増額（または地域通貨払い）し、やりたい仕事にする。"],
-[64,"コミュニティ","役員・担い手の固定化","模倣","部活動化","「防災部」「お祭り部」「広報部」など、好きなテーマで集まる部活制にする。"],
-[65,"コミュニティ","役員・担い手の固定化","IT","役員業務・DX化","会議をZoomにし、回覧板をLINEにして、負担を劇的に減らす。"],
-[66,"コミュニティ","役員・担い手の固定化","代用","シルバー人材・外注","草刈りや事務作業を、地域のシルバー人材センターに有償で外注する。"],
-[67,"コミュニティ","役員・担い手の固定化","結合","学生インターン","近隣の大学生を「自治会インターン」として受け入れ、単位認定や謝礼を出す。"],
-[68,"コミュニティ","役員・担い手の固定化","変量","3人制導入","区長を1人ではなく「3人トロイカ体制」にし、責任と負担を分散する。"],
-[69,"コミュニティ","役員・担い手の固定化","削除","行事の断捨離","「本当に必要？」を見直す会議を開き、前例踏襲の行事を半分にする。"],
-[70,"コミュニティ","役員・担い手の固定化","特典","役員パスポート","役員期間中は、町内の温泉や施設が無料になるパスポートを発行。"],
-[71,"コミュニティ","情報伝達の不均一","結合","回覧板×おやつ","回覧板にお菓子を一個つけて回し、「回すのが楽しみ」にする。"],
-[72,"コミュニティ","情報伝達の不均一","媒体","大堰・壁新聞","スーパーや駅、バス停に、手書きの壁新聞（ゴシップ含む）を貼り出す。"],
-[73,"コミュニティ","情報伝達の不均一","人","情報屋・おばちゃん","地域のお喋り好きな人を「公認・情報伝達員」に任命する。"],
-[74,"コミュニティ","情報伝達の不均一","IT","全戸タブレット配布","高齢者宅に、孫とテレビ電話もできる専用タブレットを配布（操作簡単）。"],
-[75,"コミュニティ","情報伝達の不均一","音声","防災無線・ラジオ化","防災無線で、地域のニュースやおめでとうメッセージを放送する。"],
-[76,"コミュニティ","情報伝達の不均一","場所","移動掲示板（軽トラ）","軽トラの荷台をデジタルサイネージにし、町中を走り回る。"],
-[77,"コミュニティ","情報伝達の不均一","逆転","子供から親へ","子供に学校で地域のニュースを伝え、親に伝言してもらう「逆伝言ゲーム」。"],
-[78,"コミュニティ","情報伝達の不均一","変量","LINE・鬼配信","重要な情報は、LINEでしつこいくらい面白おかしく配信する。"],
-[79,"コミュニティ","情報伝達の不均一","模倣","YouTuber起用","地元の中高生YouTuberに、行事の告知動画を作ってもらう。"],
-[80,"コミュニティ","情報伝達の不均一","視覚","マンガ広報","文字だらけの回覧板をやめ、全て4コマ漫画にする。"],
-[81,"産業・農業","農業と住環境の共存","体験","早朝・爆音フェス","農機の音を「目覚ましライブ」と捉え直し、早朝作業の見学会を行う。"],
-[82,"産業・農業","農業と住環境の共存","交換","お詫び野菜","農作業で迷惑をかける時期に、「ごめんね野菜セット」を近隣に配る習慣を作る。"],
-[83,"産業・農業","農業と住環境の共存","結合","農道・サイクリング","農道をサイクリングコースとして整備し、農作業風景を観光資源にする。"],
-[84,"産業・農業","農業と住環境の共存","IT","作業スケジュール共有アプリ","「明日の朝は消毒します」等をLINEで通知し、洗濯物対策を促す。"],
-[85,"産業・農業","農業と住環境の共存","逆転","農家・カフェ","ビニールハウスの横でお茶ができるスペースを作り、農家と住民が話す場にする。"],
-[86,"産業・農業","農業と住環境の共存","遮断","アート防音壁","住宅地との境界に、子供たちが絵を描いた防音壁や生垣を設置する。"],
-[87,"産業・農業","農業と住環境の共存","模倣","農業・静音化補助","静音タイプの農機具購入に、町が特別な補助金を出す。"],
-[88,"産業・農業","農業と住環境の共存","物語","「この音は、美味しい音」","農作業音が何の作業か（種まき、収穫など）を解説する看板を立てる。"],
-[89,"産業・農業","農業と住環境の共存","参加","収穫・手伝い隊","住民が収穫を手伝う代わりに、農機の音を許容してもらう関係を作る。"],
-[90,"産業・農業","農業と住環境の共存","香り","ハーブ植栽","畑の周囲にハーブを植え、肥料の臭いを緩和しつつ景観を良くする。"],
-[91,"産業・農業","農業後継者の不足","結合","婚活・農活","農業体験と婚活をセットにした「農コン」を大規模に開催。"],
-[92,"産業・農業","農業後継者の不足","模倣","半農・半X","週3日農業、週2日リモートワークといった、新しい働き方を提案・斡旋。"],
-[93,"産業・農業","農業後継者の不足","IT","スマート農業・実証","ドローンや自動運転トラクターを導入し、「カッコいい農業」を見せる。"],
-[94,"産業・農業","農業後継者の不足","逆転","週末農家・オーナー制度","サラリーマンに週末だけ農地を貸し出し、指導付きで農家気分を味わってもらう。"],
-[95,"産業・農業","農業後継者の不足","教育","農業高校・分校化","地域の農家を「キャンパス」とし、農業高校生の実習を誘致する。"],
-[96,"産業・農業","農業後継者の不足","結合","企業・農業参入","企業の福利厚生として農地を貸し出し、社員研修の場にする。"],
-[97,"産業・農業","農業後継者の不足","変量","高収益作物・転換","レタスだけでなく、超高級フルーツなど「儲かる農業」への転換を支援。"],
-[98,"産業・農業","農業後継者の不足","物語","後継者・ドキュメンタリー","若手農家のかっこいい姿をプロが映像化し、YouTubeで発信。"],
-[99,"産業・農業","農業後継者の不足","制度","農地・バンク","引退したい農家と、やりたい若者をマッチングする専任コンシェルジュを置く。"],
-[100,"産業・農業","農業後継者の不足","遊び","アグリ・スポーツ","農業作業（耕作、運搬）を筋トレと捉え、ジム代わりに通ってもらう。"],
-[101,"産業・農業","地域資源の「点」在","結合","周遊・スタンプラリー","お店や史跡を回るデジタルスタンプラリーを常設し、コンプリート特典を用意。"],
-[102,"産業・農業","地域資源の「点」在","移動","大堰・巡回バス","週末限定で、個店や酒蔵、駅を結ぶ無料のシャトルバスを走らせる。"],
-[103,"産業・農業","地域資源の「点」在","物語","統一ブランド「OZEKI」","バラバラのお店が、共通のロゴやのぼり旗を掲げ、一体感を出す。"],
-[104,"産業・農業","地域資源の「点」在","模倣","バル・ウォーク","チケット制で、複数のお店を少しずつ飲み歩き・食べ歩きできるイベント。"],
-[105,"産業・農業","地域資源の「点」在","IT","大堰・仮想商店街","地域の店の商品をまとめて買えるECサイトやポータルサイトを作る。"],
-[106,"産業・農業","地域資源の「点」在","結合","コラボ商品開発","「酒蔵の酒粕×パン屋のパン」など、店同士のコラボ商品を開発する。"],
-[107,"産業・農業","地域資源の「点」在","場所","道の駅・サテライト","駅前や公園に、地域のお店のアンテナショップ（集合店舗）を作る。"],
-[108,"産業・農業","地域資源の「点」在","逆転","店主・トレード","1日限定で、寿司屋の大将がカフェに立つなど、店主を入れ替えて話題を作る。"],
-[109,"産業・農業","地域資源の「点」在","地図","手書き・推しマップ","子供たちが取材して作った、手書きの「大堰探検マップ」を配布。"],
-[110,"産業・農業","地域資源の「点」在","結合","レシート・抽選会","異なる3店舗のレシートを集めると、豪華賞品が当たる抽選会。"],
-[111,"産業・農業","特産品の町内消費・認知","場所","役場・マルシェ","役場のロビーやお昼休みに、とれたて野菜を販売する。"],
-[112,"産業・農業","特産品の町内消費・認知","結合","学校給食・大堰の日","月に1回、全て大堰産の食材で作る給食の日を設ける。"],
-[113,"産業・農業","特産品の町内消費・認知","逆転","規格外・無料配布","形の悪い野菜を、「料理コンテスト」の材料として無料で配る。"],
-[114,"産業・農業","特産品の町内消費・認知","模倣","野菜の自販機","駅や公民館、住宅街に、コインロッカー式の野菜自販機を増設する。"],
-[115,"産業・農業","特産品の町内消費・認知","体験","収穫・即・BBQ","畑で収穫したレタスや枝豆を、その場で茹でて食べるBBQイベント。"],
-[116,"産業・農業","特産品の町内消費・認知","教育","食育・マイスター","農家が学校に行き、野菜の美味しい食べ方を教える授業。"],
-[117,"産業・農業","特産品の町内消費・認知","結合","パン屋×地元野菜","地元のパン屋と協力し、「大堰レタスサンド」等の名物を作る。"],
-[118,"産業・農業","特産品の町内消費・認知","制度","地産地消・ポイント","地元の野菜を買うと、公共施設利用料が安くなるポイント付与。"],
-[119,"産業・農業","特産品の町内消費・認知","贈答","大堰・ギフトセット","お中元・お歳暮用に、野菜・加工品・お酒の詰め合わせを商品化。"],
-[120,"産業・農業","特産品の町内消費・認知","物語","生産者・顔シール","野菜に生産者の「キメ顔」と一言メッセージのシールを貼る。"],
-[121,"子育て・若者","少子化の進行","制度","大堰・出産祝い金","町の祝い金に加え、地域独自で米一俵や紙おむつ1年分を贈呈。"],
-[122,"子育て・若者","少子化の進行","逆転","独身・移住ツアー","独身者を対象に、大堰の暮らしと出会いを提供するツアー。"],
-[123,"子育て・若者","少子化の進行","結合","空き家×新婚家賃補助","空き家をリノベして住む新婚世帯に、家賃を大幅補助。"],
-[124,"子育て・若者","少子化の進行","模倣","子育て・シェアハウス","シングルマザーや多世代が共に暮らす、支え合いシェアハウスを作る。"],
-[125,"子育て・若者","少子化の進行","物語","「大堰で育つ」PR動画","大堰の自然の中でのびのび育つ子供のドキュメンタリーを発信。"],
-[126,"子育て・若者","少子化の進行","結合","企業×婚活","近隣の企業と連携し、企業対抗の運動会＆婚活イベントを開催。"],
-[127,"子育て・若者","少子化の進行","制度","第3子・無料化","第3子以降の給食費、医療費、学童費などを完全無料化。"],
-[128,"子育て・若者","少子化の進行","場所","お試し・同棲ハウス","結婚前のカップルが、大堰での暮らしを体験できるお試し住宅。"],
-[129,"子育て・若者","少子化の進行","人","お見合い・おばちゃん復活","地域のお世話好きが、さりげなく独身者を引き合わせる仕組み。"],
-[130,"子育て・若者","少子化の進行","逆転","「子供の声」条例","「子供の声は騒音ではない」と宣言する、地域独自の条例や宣言を出す。"],
-[131,"子育て・若者","遊び場・居場所の不足","転用","道路・プレイパーク","週末だけ特定の道路を通行止めにし、落書きやボール遊び解禁区にする。"],
-[132,"子育て・若者","遊び場・居場所の不足","結合","神社×秘密基地","神社の杜を、子供たちが木登りや基地づくりをして良い場所として開放。"],
-[133,"子育て・若者","遊び場・居場所の不足","場所","コンテナ・ハウス","公園に中古コンテナを置き、中高生専用の「溜まり場（Wi-Fi完備）」にする。"],
-[134,"子育て・若者","遊び場・居場所の不足","模倣","プレーパーク","禁止事項（火気厳禁など）を極力なくし、自己責任で自由に遊べる冒険遊び場。"],
-[135,"子育て・若者","遊び場・居場所の不足","結合","農地・泥んこ広場","休耕田に水を張り、泥んこサッカーやバレーができる場所にする。"],
-[136,"子育て・若者","遊び場・居場所の不足","時間","夜の学校開放","夜の学校の図書室や体育館を、地域の居場所として開放する。"],
-[137,"子育て・若者","遊び場・居場所の不足","移動","移動・児童館","おもちゃやゲームを積んだバスが、各地区を巡回する。"],
-[138,"子育て・若者","遊び場・居場所の不足","逆転","大人の・秘密基地","大人が本気で遊ぶ場所を作り、子供もそこに混ざれるようにする。"],
-[139,"子育て・若者","遊び場・居場所の不足","IT","Minecraft・大堰","バーチャル空間（マイクラ）上に大堰町を再現し、そこで遊べるようにする。"],
-[140,"子育て・若者","遊び場・居場所の不足","結合","駄菓子屋×学習支援","駄菓子屋のおばちゃん・おじちゃんが、宿題も見てくれる場所。"],
-[141,"自然・環境","ホタル環境の維持","結合","ホタル×婚活","暗闇でホタルを見るロマンチックな婚活イベント。"],
-[142,"自然・環境","ホタル環境の維持","教育","ホタル・レンジャー","子供たちを「ホタル守り隊」に任命し、川の調査や清掃を担ってもらう。"],
-[143,"自然・環境","ホタル環境の維持","資金","ホタル・ファンディング","ホタル保全のための寄付を募り、返礼品に「ホタル鑑賞優先席」を用意。"],
-[144,"自然・環境","ホタル環境の維持","逆転","養殖・放流祭","自然繁殖だけでなく、地域で幼虫を育て、みんなで放流するイベント化。"],
-[145,"自然・環境","ホタル環境の維持","IT","ホタル・マップアプリ","ホタルの出現場所や数をリアルタイムで投稿・共有できるアプリ。"],
-[146,"自然・環境","ホタル環境の維持","制限","ライトダウン・CP","ホタルの時期は、地域の街灯や家の明かりを消して、キャンドルで過ごす。"],
-[147,"自然・環境","ホタル環境の維持","結合","企業・スポンサー","川の区画ごとに企業のスポンサーをつけ、「○○社・ホタルエリア」と命名。"],
-[148,"自然・環境","ホタル環境の維持","観光","静寂・ツアー","「大声禁止、スマホ禁止」の、静けさと光を楽しむプレミアムツアー。"],
-[149,"自然・環境","ホタル環境の維持","科学","水質・見える化","川のきれいさを数値化し、役場や学校に掲示し続ける。"],
-[150,"自然・環境","ホタル環境の維持","物語","ホタル・伝説","ホタルにまつわる新しい民話やストーリーを創作し、子供に語り継ぐ。"],
-[151,"自然・環境","環境美化の負担増","遊び","草刈り・選手権","草刈りの速さや美しさを競う大会にし、賞金を出す。"],
-[152,"自然・環境","環境美化の負担増","結合","ヤギ・レンタル","草を食べるヤギを飼い（またはレンタルし）、除草隊長として活躍させる。"],
-[153,"自然・環境","環境美化の負担増","逆転","雑草・活用","刈った草を堆肥化したり、バイオマス燃料にしたりして「資源」にする。"],
-[154,"自然・環境","環境美化の負担増","模倣","スポGOMI大会","チーム対抗でゴミ拾いをスポーツとして行い、楽しみながら美化。"],
-[155,"自然・環境","環境美化の負担増","IT","草刈り・ロボット","自動草刈り機（ルンバの屋外版）を導入し、地域の共有機材にする。"],
-[156,"自然・環境","環境美化の負担増","結合","企業・CSR","近隣企業の社員研修として、草刈りや清掃活動を受け入れる。"],
-[157,"自然・環境","環境美化の負担増","制度","美化・ポイント","清掃活動に参加すると、地域通貨や商品券がもらえる仕組み。"],
-[158,"自然・環境","環境美化の負担増","食事","作業後・BBQ","「草刈りの後は焼肉」をセットにし、食を楽しみに参加を促す。"],
-[159,"自然・環境","環境美化の負担増","教育","学校・奉仕活動","中学校の部活動の一環として、トレーニング兼清掃活動を行う。"],
-[160,"自然・環境","環境美化の負担増","代用","防草・アートシート","草が生えないシートに子供たちの絵を描き、土手に敷き詰める。"],
-[161,"歴史・文化","歴史資源の継承難","遊び","リアルRPG・大堰","史跡を巡りながら謎を解く、リアルロールプレイングゲームを開催。"],
-[162,"歴史・文化","歴史資源の継承難","結合","歴史×コスプレ","菊池武光や五庄屋の時代の衣装を着て、史跡で撮影会を行う。"],
-[163,"歴史・文化","歴史資源の継承難","IT","AR・歴史再現","スマホをかざすと、昔の風景や人物がARで現れる仕組み。"],
-[164,"歴史・文化","歴史資源の継承難","物語","マンガ・大堰の歴史","地域の歴史をプロの漫画家に依頼してマンガ化し、全戸配布。"],
-[165,"歴史・文化","歴史資源の継承難","逆転","子供・語り部","お年寄りではなく、子供が大人に歴史を教える「子供ガイド」を育成。"],
-[166,"歴史・文化","歴史資源の継承難","結合","歴史×怪談","夏の夜に、史跡を巡りながら地域の怖い話や伝承を聞くツアー。"],
-[167,"歴史・文化","歴史資源の継承難","食","再現・五庄屋メシ","当時の人たちが食べていた食事を現代風にアレンジしてイベントで提供。"],
-[168,"歴史・文化","歴史資源の継承難","模倣","御朱印・史跡版","神社だけでなく、堰や碑を巡る「御史跡印（ごしせきいん）」を作る。"],
-[169,"歴史・文化","歴史資源の継承難","場所","ライトアップ","夜の神社や堰を美しくライトアップし、ナイトスポットにする。"],
-[170,"歴史・文化","歴史資源の継承難","教育","歴史・検定","「大堰歴史検定」を作り、合格者には「大堰博士」の称号を与える。"],
-[171,"健康","健康づくりの場の不足","結合","お寺・ジム","お寺や神社の境内を、朝の太極拳やヨガのスタジオとして活用。"],
-[172,"健康","健康づくりの場の不足","移動","ウォーキング・バス","決まった時間に決まったルートを歩く集団を作り、途中参加・離脱自由に。"],
-[173,"健康","健康づくりの場の不足","逆転","農作業・フィットネス","「Rizap農法」のように、筋肉を使う農作業メニューを開発。"],
-[174,"健康","健康づくりの場の不足","場所","青空・ジム","公園に大人用の健康器具（ぶら下がり器など）を充実させる。"],
-[175,"健康","健康づくりの場の不足","IT","歩数・バトル","アプリを使って、行政区対抗で平均歩数を競うイベント。"],
-[176,"健康","健康づくりの場の不足","結合","買い物・ウォーキング","スーパーの中にウォーキングコースを設定し、買い物を運動にする。"],
-[177,"健康","健康づくりの場の不足","模倣","ラジオ体操・第3","誰もが知っているラジオ体操を、全地区同時刻に大音量で流す。"],
-[178,"健康","健康づくりの場の不足","教育","健康・マイスター","住民の中から健康指導者を育成し、身近な先生にする。"],
-[179,"健康","健康づくりの場の不足","遊び","スポーツ・吹き矢","高齢者でも楽しめる、肺機能を鍛える「スポーツ吹き矢」を普及。"],
-[180,"健康","健康づくりの場の不足","場所","廃校・プール活用","（もしあれば）学校のプールを夏休み以外も温水化等で開放検討。"],
-[181,"その他","将来への諦め・閉塞感","逆転","失敗・自慢大会","新しいことに挑戦して失敗した人を称える「ナイス・トライ大会」を開く。"],
-[182,"その他","将来への諦め・閉塞感","結合","妄想・会議","実現可能性を無視して、「こんな町になったら最高」を妄想する飲み会。"],
-[183,"その他","将来への諦め・閉塞感","物語","未来・新聞","10年後の大堰がどうなっているか、最高の未来を書いた新聞を作って配る。"],
-[184,"その他","将来への諦め・閉塞感","模倣","1％・改善運動","毎日1つだけ、小さな改善（ゴミ拾い1個など）をみんなでやる。"],
-[185,"その他","将来への諦め・閉塞感","人","よそ者・市長","1日限定で、町外のユニークな人を「一日町長（区長）」に招き、意見を聞く。"],
-[186,"その他","将来への諦め・閉塞感","可視化","「ありがとう」ボード","公民館に、住民同士の感謝の言葉を貼るボードを設置。"],
-[187,"その他","将来への諦め・閉塞感","遊び","大堰・ギネス挑戦","「世界一長い恵方巻」など、みんなでギネス記録に挑戦し、一体感を作る。"],
-[188,"その他","将来への諦め・閉塞感","教育","大人・背中見せ","大人が楽しんで活動している姿を、子供に見せる機会を増やす。"],
-[189,"その他","将来への諦め・閉塞感","制度","チャレンジ・補助金","「やってみたい」という小さな思いつきに、すぐ5万円出す制度。"],
-[190,"その他","将来への諦め・閉塞感","象徴","シンボル・アート","地域の廃材などで、みんなで巨大なシンボルアートを作る。"],
-[191,"その他","多様な活動の連携不足","結合","異業種・チャンプルー","農家×美容師×消防団など、普段話さない組み合わせで飲み会をする。"],
-[192,"その他","多様な活動の連携不足","場所","シェア・オフィス","交流センターの一部を、NPOや活動団体の共同オフィスにする。"],
-[193,"その他","多様な活動の連携不足","IT","活動・カレンダー統合","全団体のイベント予定を一つのカレンダーアプリにまとめ、重複を防ぐ。"],
-[194,"その他","多様な活動の連携不足","模倣","合同・文化祭","バラバラに行っていた行事を、年に一度「大堰博覧会」として合同開催。"],
-[195,"その他","多様な活動の連携不足","人","つなぎ役・コーディネーター","団体間の橋渡しをする専任の「コミュニティ・マネージャー」を置く。"],
-[196,"その他","多様な活動の連携不足","制度","コラボ・ボーナス","単独ではなく、2つ以上の団体が協力して行う事業に補助金を上乗せ。"],
-[197,"その他","多様な活動の連携不足","教育","リーダー・合宿","各団体のリーダーが集まり、酒を酌み交わしながらビジョンを共有する合宿。"],
-[198,"その他","多様な活動の連携不足","交換","リソース・バンク","「テント貸せます」「人手出せます」など、団体の持ち物を共有するリスト。"],
-[199,"その他","多様な活動の連携不足","逆転","役員・兼務推奨","あえて複数の団体に所属することを推奨し、パイプ役を増やす。"],
-[200,"その他","多様な活動の連携不足","物語","「チーム大堰」ブランディング","全団体共通のロゴやTシャツを作り、チーム感を出す。"],
-[201,"その他","生活マナー・トラブル","結合","ゴミステーション・アート","ゴミ捨て場をアート作品のように美しくし、汚しにくくする。"],
-[202,"その他","生活マナー・トラブル","逆転","野焼き・イベント","野焼きを禁止するだけでなく、芋煮会など「焚き火イベント」に昇華して管理。"],
-[203,"その他","生活マナー・トラブル","IT","マナー・アプリ","匿名でマナー違反を報告するのではなく、「良いマナー」を投稿して褒めるアプリ。"],
-[204,"その他","生活マナー・トラブル","模倣","犬のフン・チョーク作戦","放置されたフンの周りをチョークで囲み、心理的圧力をかける（イエローカード）。"],
-[205,"その他","生活マナー・トラブル","対話","ご近所・座談会","トラブルになる前に、お茶を飲みながら生活音などについて話す会。"],
-[206,"その他","生活マナー・トラブル","教育","子供・ポリス","子供たちが「マナー守ろう」ポスターを描き、町中に掲示する。"],
-[207,"その他","生活マナー・トラブル","制度","野焼き・予約制","野焼きをする日時を事前に登録・周知し、洗濯物への被害を防ぐ。"],
-[208,"その他","生活マナー・トラブル","結合","タバコ・トレード","吸い殻を拾って持ってきたら、地域通貨やお菓子と交換する。"],
-[209,"その他","生活マナー・トラブル","物語","マナー・戦隊ヒーロー","マナーを守るローカルヒーローを作り、イベントで寸劇をする。"],
-[210,"その他","生活マナー・トラブル","可視化","騒音・メーター","農機の音などを測定し、「この時間はOK」「ここはNG」を数値で共有。"],
-[211,"その他","デジタル・デバイド","結合","孫・先生","小中学生が祖父母にスマホを教える「スマホ教室」を開き、お小遣いをあげる。"],
-[212,"その他","デジタル・デバイド","場所","スマホ・サロン","公民館にWi-Fiとタブレットを置き、いつでも触って聞ける場所にする。"],
-[213,"その他","デジタル・デバイド","模倣","回覧板・ハイブリッド","デジタルと紙の回覧板を併用し、徐々にデジタルへ移行する移行期間を設ける。"],
-[214,"その他","デジタル・デバイド","逆転","アナログ・プレミアム","紙での情報を「有料」または「遅れて届く」とし、デジタルのメリットを強調。"],
-[215,"その他","デジタル・デバイド","人","デジタル・民生委員","デジタルの困りごとを相談できる「デジタル推進員」を各区に置く。"],
-[216,"その他","デジタル・デバイド","体験","VR・旅行","スマホやVRを使って、足の悪い高齢者に「仮想旅行」を体験させ、機器への興味を引く。"],
-[217,"その他","デジタル・デバイド","IT","音声入力・活用","キーボードが苦手な高齢者に、音声入力やSiri/Google活用の便利さを教える。"],
-[218,"その他","デジタル・デバイド","結合","防災×スマホ","「スマホがないと防災情報が遅れる」ことを強調し、防災訓練でスマホ講習をする。"],
-[219,"その他","デジタル・デバイド","貸出","らくらくスマホ・レンタル","操作が簡単なスマホを、1ヶ月無料でお試しレンタルする。"],
-[220,"その他","デジタル・デバイド","物語","デジタル・長寿","タブレットを使いこなす90歳のおじいちゃん等を「デジタル長老」として表彰。"],
-[221,"子育て・若者","中高生の地域参加","結合","部活×地域貢献","サッカー部が祭りの設営、美術部がポスター制作など、部活単位で依頼する。"],
-[222,"子育て・若者","中高生の地域参加","逆転","中高生・議会","中高生だけの「未来議会」を開き、実際の予算の一部を使わせる。"],
-[223,"子育て・若者","中高生の地域参加","場所","スタディ・カフェ","公民館をテスト期間中に「自習室」として開放し、おやつを提供する。"],
-[224,"子育て・若者","中高生の地域参加","仕事","地域・バイト","草刈りやイベント手伝いを、有償のアルバイトとして公募する。"],
-[225,"子育て・若者","中高生の地域参加","模倣","キッザニア・リアル","地域のお店や農家で、中高生が本気の職業体験をする。"],
-[226,"子育て・若者","中高生の地域参加","IT","SNS・広報部","中高生に町の公式インスタグラムやTikTokの運用を任せる。"],
-[227,"子育て・若者","中高生の地域参加","遊び","eスポーツ・大会","中高生が得意なゲーム大会を地域主催で開き、大人が観客になる。"],
-[228,"子育て・若者","中高生の地域参加","結合","祭り×ダンス","伝統的な夏祭りに、中高生のダンスステージやバンド演奏を組み込む。"],
-[229,"子育て・若者","中高生の地域参加","教育","地域・探究学習","学校の課題研究のテーマを、地域課題の解決にする。"],
-[230,"子育て・若者","中高生の地域参加","制度","若者・理事枠","自治会や協議会の役員に、必ず1名は10代・20代を入れる枠を作る。"],
-[231,"コミュニティ","女性の意思決定参画","制限","クオータ制・導入","役員や委員の「半数は女性にする」というルールを設ける。"],
-[232,"コミュニティ","女性の意思決定参画","時間","会議・時短化","長時間の会議をやめ、家事や育児の合間でも参加しやすい時間・形式にする。"],
-[233,"コミュニティ","女性の意思決定参画","場所","託児付き・会議","会議室の横に託児スペースを設け、子供連れでも参加可能にする。"],
-[234,"コミュニティ","女性の意思決定参画","逆転","女性だけの・議会","女性だけで町の課題を話し合う「女性議会」を開き、決定権を持たせる。"],
-[235,"コミュニティ","女性の意思決定参画","結合","PTA×自治会","女性の活動が活発なPTAと自治会を連携させ、女性リーダーを登用する。"],
-[236,"コミュニティ","女性の意思決定参画","模倣","防災・女性視点","避難所の運営マニュアルを、女性視点で全面的に見直すプロジェクト。"],
-[237,"コミュニティ","女性の意思決定参画","教育","リーダー・育成塾","女性向けのリーダーシップ研修や、自信をつけるための講座を開く。"],
-[238,"コミュニティ","女性の意思決定参画","IT","オンライン・投票","会議に出られなくても、スマホで意思決定に参加できる仕組み。"],
-[239,"コミュニティ","女性の意思決定参画","物語","ロールモデル・紹介","地域で活躍する女性リーダーを取材し、広報紙で特集する。"],
-[240,"コミュニティ","女性の意思決定参画","結合","おしゃべり・政策","カフェでの「おしゃべり会」で出た意見を、そのまま政策として吸い上げる。"],
-[241,"その他","外国人住民との交流","食","ワールド・キッチン","外国人が母国の料理を振る舞う、多国籍料理パーティ。"],
-[242,"その他","外国人住民との交流","結合","農業×語学","農業実習生から外国語を習い、逆に日本語を教える交換レッスン。"],
-[243,"その他","外国人住民との交流","防災","やさしい日本語・訓練","外国人と一緒に、簡単な日本語やイラストを使った避難訓練を行う。"],
-[244,"その他","外国人住民との交流","模倣","スポーツ・交流","言葉がわからなくても通じる、サッカーやクリケットなどのスポーツ大会。"],
-[245,"その他","外国人住民との交流","場所","多文化・サロン","交流センターに、外国の雑誌や飲み物を置いた交流スペースを作る。"],
-[246,"その他","外国人住民との交流","逆転","外国人・消防団","消防団員に外国人を積極的に勧誘し、地域の守り手になってもらう。"],
-[247,"その他","外国人住民との交流","物語","「私の国」・展示","外国人住民の母国の文化や写真を展示するコーナーを作る。"],
-[248,"その他","外国人住民との交流","制度","生活・メンター","日本での生活に慣れた外国人が、新しく来た外国人をサポートする制度。"],
-[249,"その他","外国人住民との交流","結合","祭り×パレード","夏祭りの行列に、各国の民族衣装を着て参加してもらう。"],
-[250,"その他","外国人住民との交流","IT","翻訳・サポート","ポケトーク等の翻訳機を公民館に常備し、コミュニケーションを円滑にする。"],
-[251,"産業・農業","空き店舗・事業所の活用","転用","チャレンジ・ショップ","空き店舗を、起業したい人が1ヶ月単位で安く借りられる店にする。"],
-[252,"産業・農業","空き店舗・事業所の活用","結合","空き店舗×倉庫","ネット通販の商品受け取りや、防災備蓄の倉庫として活用する。"],
-[253,"産業・農業","空き店舗・事業所の活用","模倣","シェア・キッチン","飲食店営業許可付きのキッチンにし、日替わりシェフのお店にする。"],
-[254,"産業・農業","空き店舗・事業所の活用","場所","大人の・部室","空き店舗を、バイクいじりや手芸など、趣味の集まり場として貸し出す。"],
-[255,"産業・農業","空き店舗・事業所の活用","逆転","お化け屋敷","夏限定で、空き家を本気のお化け屋敷にして観光客を呼ぶ。"],
-[256,"産業・農業","空き店舗・事業所の活用","IT","サテライト・オフィス","リモートワーク用のオフィスに改装し、都市部の企業に貸す。"],
-[257,"産業・農業","空き店舗・事業所の活用","結合","アート・ギャラリー","町内の子供たちの作品や、アーティストの作品を展示する美術館にする。"],
-[258,"産業・農業","空き店舗・事業所の活用","制度","0円・賃貸","改装費を借主が負担する代わりに、家賃を数年間0円にする。"],
-[259,"産業・農業","空き店舗・事業所の活用","物語","ビフォーアフター","空き店舗が蘇る過程を動画で配信し、ファンを作る。"],
-[260,"産業・農業","空き店舗・事業所の活用","体験","解体・ワークショップ","倒壊寸前の建物は、みんなでストレス発散を兼ねて解体ショーを行う。"],
-[261,"自然・環境","有害生物・鳥獣被害","食","ジビエ・BBQ","捕獲したイノシシやカモを、美味しく食べるジビエ料理会。"],
-[262,"自然・環境","有害生物・鳥獣被害","結合","狩猟×観光","狩猟免許を持つハンターの活動に同行する（見学する）エコツアー。"],
-[263,"自然・環境","有害生物・鳥獣被害","IT","罠・IoT","罠に掛かったらスマホに通知が来るシステムを導入し、見回りを楽にする。"],
-[264,"自然・環境","有害生物・鳥獣被害","模倣","オオカミ・ロボ","鳥獣を威嚇する、リアルなオオカミ型ロボット「モンスターウルフ」を導入。"],
-[265,"自然・環境","有害生物・鳥獣被害","逆転","害獣・動物園","どんな害獣がいるかを展示・解説し、生態を知る学習会。"],
-[266,"自然・環境","有害生物・鳥獣被害","素材","ジャンボタニシ・堆肥","駆除したジャンボタニシを、発酵させて強力な肥料にする。"],
-[267,"自然・環境","有害生物・鳥獣被害","結合","ドローン・追い払い","ドローンを使って、空から害鳥や害獣を追い払う実験。"],
-[268,"自然・環境","有害生物・鳥獣被害","遊び","かかし・コンテスト","鳥獣が怖がる（または笑える）ユニークなかかしを作って並べる。"],
-[269,"自然・環境","有害生物・鳥獣被害","制度","捕獲・バウンティ","害虫や害獣の捕獲数に応じて、地域通貨や商品券を出す。"],
-[270,"自然・環境","有害生物・鳥獣被害","結合","竹林・整備","鳥獣の隠れ家となる放置竹林を伐採し、竹炭や竹細工、メンマにする。"],
-[271,"その他","地域内経済循環の弱さ","通貨","大堰・コイン","地域内でのみ使える電子地域通貨（ポイント）を導入する。"],
-[272,"その他","地域内経済循環の弱さ","結合","給与・一部地域払い","町内の事業所の給与の一部を、地域商品券で支給する（希望者）。"],
-[273,"その他","地域内経済循環の弱さ","逆転","物々交換・市","お金を使わず、野菜と魚、労力と米などを交換する市を開く。"],
-[274,"その他","地域内経済循環の弱さ","模倣","ふるさと納税・町民版","町内の産品を町民が買うと、税金が少し安くなるような疑似的仕組み。"],
-[275,"その他","地域内経済循環の弱さ","IT","地元・Amazon","地域のお店の商品をまとめて注文・即日配送する仕組み。"],
-[276,"その他","地域内経済循環の弱さ","場所","アンテナショップ・逆輸入","東京ではなく、町内に「町内の名品」を集めたセレクトショップを作る。"],
-[277,"その他","地域内経済循環の弱さ","結合","イベント×出店","地域の行事では、必ず地元商店の出店ブースを設けるルールにする。"],
-[278,"その他","地域内経済循環の弱さ","教育","お仕事・体験","子供たちが地元のお店で働き、報酬としてその店の商品をもらう。"],
-[279,"その他","地域内経済循環の弱さ","制度","地産地消・還元","レシートを集めると、数％がキャッシュバックされるキャンペーン。"],
-[280,"その他","地域内経済循環の弱さ","物語","生産者・推し活","特定の農家や商店主を「推し」として応援し、買い支えるファンクラブ。"],
-[281,"歴史・文化","文化財の維持管理","結合","掃除×フィットネス","神社の石段や境内の掃除を、筋トレメニューとして行う。"],
-[282,"歴史・文化","文化財の維持管理","IT","デジタル・アーカイブ","文化財を3Dスキャンし、デジタル空間に永遠に残す。"],
-[283,"歴史・文化","文化財の維持管理","逆転","文化財・ホテル","古民家や歴史的建造物を、宿泊施設として活用し収益を生む。"],
-[284,"歴史・文化","文化財の維持管理","模倣","クラウド・ファンディング","修復費用をネットで集め、寄付者の名前を境内に刻む。"],
-[285,"歴史・文化","文化財の維持管理","体験","修復・体験会","専門家の指導のもと、漆喰塗りや掃除を一般参加イベントにする。"],
-[286,"歴史・文化","文化財の維持管理","結合","文化財×プロジェクションマッピング","夜の文化財に映像を投影し、アートイベントにする。"],
-[287,"歴史・文化","文化財の維持管理","教育","子供・学芸員","子供たちが文化財について調べ、観光客に解説する。"],
-[288,"歴史・文化","文化財の維持管理","制度","オーナー・制度","「石灯籠のオーナー」「鳥居のオーナー」になり、維持費を出す。"],
-[289,"歴史・文化","文化財の維持管理","物語","ミステリー・ツアー","文化財に隠された謎や伝説を解き明かすツアー。"],
-[290,"歴史・文化","文化財の維持管理","場所","境内・キャンプ","神社の境内でキャンプ（防災訓練含む）を行い、身近に感じる。"],
-[291,"その他","「よそ者」視点の不足","交換","他県・交換留学","他の自治体の住民と、1週間住む場所を交換して生活してみる。"],
-[292,"その他","「よそ者」視点の不足","結合","大学・ゼミ合宿","建築や社会学のゼミ合宿を誘致し、学生に町の改善提案をしてもらう。"],
-[293,"その他","「よそ者」視点の不足","逆転","ダメ出し・大会","町外の人に、大刀洗の「ここが変」「ここが惜しい」を愛を持って指摘してもらう。"],
-[294,"その他","「よそ者」視点の不足","模倣","アーティスト・イン・レジデンス","芸術家を招いて滞在制作してもらい、新しい視点で町を切り取る。"],
-[295,"その他","「よそ者」視点の不足","人","地域おこし協力隊・特命","「よそ者視点」で斬新な企画をするだけの特命隊員を採用する。"],
-[296,"その他","「よそ者」視点の不足","IT","SNS・フォトコン","「#大刀洗の知らない魅力」で、町外の人に写真を投稿してもらう。"],
-[297,"その他","「よそ者」視点の不足","場所","お試し・サテライトオフィス","都市部のベンチャー企業に、短期間オフィスを無料貸し出しする。"],
-[298,"その他","「よそ者」視点の不足","結合","旅人・宿","バックパッカー向けの安宿を作り、世界中の旅人と交流する。"],
-[299,"その他","「よそ者」視点の不足","教育","逆・修学旅行","都会の修学旅行生を受け入れ、彼らの反応から町の価値を知る。"],
-[300,"その他","「よそ者」視点の不足","制度","関係人口・パスポート","町外のファンに「デジタル町民証」を発行し、意見を求める。"]
-        ];
+    <h2 class="section-title reveal">買った瞬間がピークではなく、<br>十年後に<em>もっとも美しくなる</em>布。</h2>
 
-        const ideas = rawData.map(item => ({
-            id: item[0],
-            category: item[1],
-            task: item[2],
-            type: item[3],
-            title: item[4],
-            detail: item[5]
-        }));
-        
-        let stockedIdeas = JSON.parse(localStorage.getItem('stockedIdeas') || '[]');
+    <p class="lede reveal">服を消費して捨てる、一方通行の常識を終わらせます。ロォーリングの布は、あなたと共に擦れ、褪せ、深まる。色落ちは「劣化」ではなく「熟成」。── あなたの人生の節目に合わせて、布もまた、別の姿へと生まれ変わります。</p>
 
-        function toggleStock(id) {
-            const index = stockedIdeas.indexOf(id);
-            if (index === -1) {
-                stockedIdeas.push(id);
-            } else {
-                stockedIdeas.splice(index, 1);
-            }
-            localStorage.setItem('stockedIdeas', JSON.stringify(stockedIdeas));
-            updateStockUI();
-        }
-        
-        function updateStockUI() {
-            const count = stockedIdeas.length;
-            const badge = document.getElementById('stockCountBadge');
-            const drawerCount = document.getElementById('drawerCount');
-            
-            if (badge) {
-                if (count > 0) {
-                    badge.textContent = count;
-                    badge.classList.remove('hidden');
-                } else {
-                    badge.classList.add('hidden');
-                }
-            }
-            if (drawerCount) drawerCount.textContent = count;
-            
-            document.querySelectorAll('.stock-btn i').forEach(icon => {
-                const card = icon.closest('.card');
-                if (card && card.dataset.id) {
-                    const id = parseInt(card.dataset.id);
-                    if (stockedIdeas.includes(id)) {
-                        icon.className = 'fa-solid fa-heart text-pink-500 heart-active';
-                    } else {
-                        icon.className = 'fa-regular fa-heart text-slate-300';
-                    }
-                }
-            });
-            renderStockDrawer();
-        }
-        
-        function renderStockDrawer() {
-            const list = document.getElementById('stockList');
-            if (!list) return;
-            
-            if (stockedIdeas.length === 0) {
-                list.innerHTML = '<p class="text-slate-400 text-center w-full py-8 col-span-full text-sm">まだストックされたアイデアはありません。<br>ハートマークを押してアイデアを集めましょう！</p>';
-                return;
-            }
-            
-            list.innerHTML = '';
-            stockedIdeas.forEach(id => {
-                const idea = ideas.find(i => i.id === id);
-                if (!idea) return;
-                
-                const card = document.createElement('div');
-                card.className = 'bg-white p-3 rounded-lg border border-slate-100 shadow-sm flex justify-between items-center';
-                card.innerHTML = `
-                    <div class="overflow-hidden cursor-pointer flex-grow" onclick="openModalId(${idea.id})">
-                        <div class="text-[10px] text-teal-600 font-bold mb-0.5 line-clamp-1">${idea.category}</div>
-                        <div class="font-bold text-slate-800 text-xs line-clamp-1">${idea.title}</div>
-                    </div>
-                    <button onclick="toggleStock(${idea.id})" class="text-pink-400 hover:text-pink-600 p-2 -mr-2">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                `;
-                list.appendChild(card);
-            });
-        }
-        
-        function toggleStockDrawer() {
-            const drawer = document.getElementById('stockDrawer');
-            if (drawer) {
-                if (drawer.classList.contains('translate-y-full')) {
-                    drawer.classList.remove('translate-y-full');
-                    closeGachaModal();
-                } else {
-                    drawer.classList.add('translate-y-full');
-                }
-            }
-        }
-        
-        function clearStock() {
-            if(confirm('ストックを全て削除しますか？')) {
-                stockedIdeas = [];
-                localStorage.setItem('stockedIdeas', JSON.stringify(stockedIdeas));
-                updateStockUI();
-            }
-        }
+    <!-- 5段階の色 -->
+    <div class="aging-timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-grid">
+        <div class="timeline-item year-0 reveal">
+          <div class="swatch"></div>
+          <div class="timeline-year">YEAR 0</div>
+          <div class="timeline-name">HATSU-AI</div>
+          <div class="timeline-stage">初藍</div>
+          <p class="timeline-desc">買った瞬間の、最も濃く、最も硬い藍。出会いの色。</p>
+        </div>
+        <div class="timeline-item year-3 reveal">
+          <div class="swatch"></div>
+          <div class="timeline-year">YEAR 3</div>
+          <div class="timeline-name">NAJIMI-AI</div>
+          <div class="timeline-stage">馴染藍</div>
+          <p class="timeline-desc">肌に呼吸を覚え始めた、柔らかな青。</p>
+        </div>
+        <div class="timeline-item year-7 reveal">
+          <div class="swatch"></div>
+          <div class="timeline-year">YEAR 7</div>
+          <div class="timeline-name">MONOGATARI-AI</div>
+          <div class="timeline-stage">物語藍</div>
+          <p class="timeline-desc">擦れや褪せが、共に生きた人生の「景色」に変わる青。</p>
+        </div>
+        <div class="timeline-item year-10 reveal">
+          <div class="swatch"></div>
+          <div class="timeline-year">YEAR 10</div>
+          <div class="timeline-name">KANSEI-AI</div>
+          <div class="timeline-stage">完成藍</div>
+          <p class="timeline-desc">十年を経て、圧倒的に美しく仕上がった完成形。</p>
+        </div>
+        <div class="timeline-item year-return reveal">
+          <div class="swatch"></div>
+          <div class="timeline-year">RETURN</div>
+          <div class="timeline-name">KAERI-AI</div>
+          <div class="timeline-stage">還り藍</div>
+          <p class="timeline-desc">役目を終え、土へ還る直前の、最も深く静かな青。</p>
+        </div>
+      </div>
+    </div>
 
-        function toggleStockFromModal() {
-            const idElement = document.getElementById('modalId');
-            if (!idElement) return;
-            
-            const id = parseInt(idElement.textContent);
-            toggleStock(id);
-            
-            const btn = document.getElementById('modalStockBtn');
-            if (btn) {
-                if (stockedIdeas.includes(id)) {
-                    btn.innerHTML = '<i class="fa-solid fa-heart"></i> ストック済み';
-                    btn.className = "w-full sm:w-auto bg-pink-500 text-white font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 hover:bg-pink-600 shadow-md transform active:scale-95";
-                } else {
-                    btn.innerHTML = '<i class="fa-regular fa-heart"></i> ストックする';
-                    btn.className = "w-full sm:w-auto border-2 border-pink-400 text-pink-500 hover:bg-pink-50 font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 transform active:scale-95";
-                }
-            }
-        }
-        
-        function openModalId(id) {
-            const drawer = document.getElementById('stockDrawer');
-            if(drawer && !drawer.classList.contains('translate-y-full')) {
-                drawer.classList.add('translate-y-full');
-            }
-            
-            const idea = ideas.find(i => i.id === id);
-            if (idea) openModal(idea);
-        }
+    <!-- リフォーム -->
+    <div class="reform-section reveal">
+      <h3>布巡り ─ The Lifestages Reform ─</h3>
+      <div class="reform-sub">ほどいて、作り直す。布だからこそ叶う、変容の自由。</div>
 
-        function showGachaModal() {
-            const modal = document.getElementById('gachaModal');
-            if(modal) {
-                modal.classList.remove('hidden');
-                document.getElementById('gachaStart').classList.remove('hidden');
-                document.getElementById('gachaResult').classList.add('hidden');
-                const drawer = document.getElementById('stockDrawer');
-                if(drawer) drawer.classList.add('translate-y-full');
-            }
-        }
-        
-        function closeGachaModal() {
-            const modal = document.getElementById('gachaModal');
-            if(modal) modal.classList.add('hidden');
-        }
-        
-        function resetGacha() {
-            document.getElementById('gachaResult').classList.add('hidden');
-            document.getElementById('gachaStart').classList.remove('hidden');
-        }
-        
-        function playGacha(count) {
-            const results = [];
-            const tempIdeas = [...ideas]; 
-            
-            for (let i = 0; i < count; i++) {
-                const randomIndex = Math.floor(Math.random() * tempIdeas.length);
-                results.push(tempIdeas[randomIndex]);
-            }
-            
-            const container = document.getElementById('gachaItems');
-            container.innerHTML = '';
-            
-            results.forEach((idea, index) => {
-                const colorClass = getCategoryColor(idea.category);
-                const div = document.createElement('div');
-                div.className = `bg-white p-4 rounded-xl shadow-md border-l-4 ${colorClass.replace('bg-', 'border-').split(' ')[0]} gacha-item relative cursor-pointer hover:bg-slate-50 transition`;
-                div.style.animationDelay = `${index * 0.1}s`;
-                div.onclick = (e) => {
-                   if (!e.target.closest('button')) {
-                       closeGachaModal();
-                       openModalId(idea.id);
-                   }
-                };
-                
-                div.innerHTML = `
-                    <div class="flex justify-between items-start">
-                        <div class="pr-8">
-                            <span class="text-[10px] font-bold text-slate-400 mb-1 block">${idea.category} / ${idea.type}</span>
-                            <h3 class="font-bold text-base text-slate-800">${idea.title}</h3>
-                            <p class="text-xs text-slate-600 mt-1 line-clamp-2">${idea.detail}</p>
-                        </div>
-                        <button onclick="toggleStock(${idea.id}); this.innerHTML = stockedIdeas.includes(${idea.id}) ? '<i class=\'fa-solid fa-heart text-pink-500\'></i>' : '<i class=\'fa-regular fa-heart text-slate-300\'></i>'" class="p-2 absolute top-2 right-2 z-10">
-                             ${stockedIdeas.includes(idea.id) ? '<i class="fa-solid fa-heart text-pink-500"></i>' : '<i class="fa-regular fa-heart text-slate-300"></i>'}
-                        </button>
-                    </div>
-                    <div class="mt-2 text-right">
-                         <span class="text-xs text-teal-600 font-bold">詳細 <i class="fa-solid fa-chevron-right"></i></span>
-                    </div>
-                `;
-                container.appendChild(div);
-            });
-            
-            document.getElementById('gachaStart').classList.add('hidden');
-            document.getElementById('gachaResult').classList.remove('hidden');
-        }
+      <div class="reform-row head">
+        <div>Stage</div>
+        <div>From → To</div>
+        <div>Meaning</div>
+      </div>
+      <div class="reform-row">
+        <div class="reform-stage">青年期 → 壮年期</div>
+        <div class="reform-from-to">ジャケット<span class="arrow">→</span>ベスト</div>
+        <div class="reform-meaning">体型の変化、よりカジュアルな着回しへ。</div>
+      </div>
+      <div class="reform-row">
+        <div class="reform-stage">壮年期 → 親世代</div>
+        <div class="reform-from-to">ベスト<span class="arrow">→</span>子ども用ジャケット</div>
+        <div class="reform-meaning">親から子への、布巡りの最初の一歩。</div>
+      </div>
+      <div class="reform-row">
+        <div class="reform-stage">子育て期</div>
+        <div class="reform-from-to">親の服<span class="arrow">→</span>子の入園バッグ</div>
+        <div class="reform-meaning">成長のスピードに合わせて変身する布。</div>
+      </div>
+      <div class="reform-row">
+        <div class="reform-stage">熟年期</div>
+        <div class="reform-from-to">ベスト<span class="arrow">→</span>クッション・暖簾</div>
+        <div class="reform-meaning">身に纏うものから、住まいを包むものへ。</div>
+      </div>
+      <div class="reform-row">
+        <div class="reform-stage">家族の継承</div>
+        <div class="reform-from-to">祖父の服<span class="arrow">→</span>孫の七五三の帯飾り</div>
+        <div class="reform-meaning">世代を超える、縦の絆。布巡りの完成。</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function getCategoryIcon(category) {
-            const icons = {
-                "防災・安全": "fa-shield-halved",
-                "生活・交通": "fa-bus",
-                "コミュニティ": "fa-people-group",
-                "産業・農業": "fa-wheat-awn",
-                "子育て・若者": "fa-children",
-                "自然・環境": "fa-tree",
-                "健康": "fa-heart-pulse",
-                "歴史・文化": "fa-landmark",
-                "その他": "fa-lightbulb"
-            };
-            return icons[category] || "fa-star";
-        }
+<!-- ─────────── CHAPTER 3 / 還す ─────────── -->
+<section class="chapter-3" id="chapter-3">
+  <div class="chapter-3-content">
+    <div class="chapter-marker reveal">
+      <div class="num">III</div>
+      <div class="label">Chapter III ─ 還す ─ Return</div>
+    </div>
 
-        function getCategoryColor(category) {
-            const colors = {
-                "防災・安全": "bg-red-50 text-red-600 border-red-200",
-                "生活・交通": "bg-blue-50 text-blue-600 border-blue-200",
-                "コミュニティ": "bg-orange-50 text-orange-600 border-orange-200",
-                "産業・農業": "bg-green-50 text-green-600 border-green-200",
-                "子育て・若者": "bg-pink-50 text-pink-600 border-pink-200",
-                "自然・環境": "bg-emerald-50 text-emerald-600 border-emerald-200",
-                "健康": "bg-cyan-50 text-cyan-600 border-cyan-200",
-                "歴史・文化": "bg-purple-50 text-purple-600 border-purple-200",
-                "その他": "bg-slate-50 text-slate-600 border-slate-200"
-            };
-            return colors[category] || "bg-gray-50 text-gray-600 border-gray-200";
-        }
+    <h2 class="section-title reveal">役目を終えた服は、廃棄物ではない。<br>次の命への、<em>静かなバトンパス</em>。</h2>
 
-        function renderIdeas(data) {
-            const grid = document.getElementById('ideasGrid');
-            const resultCount = document.getElementById('resultCount');
-            const noResults = document.getElementById('noResults');
-            
-            if(grid) grid.innerHTML = '';
-            if(resultCount) resultCount.textContent = data.length;
+    <p class="lede reveal">大刀洗の土と水から生まれた布は、最後また土へと還ります。100%生分解性の素材だけを使い、無酸素炉でバイオ炭に変え、私たちの藍畑にすき込む。── あなたの服が、来年の藍と、再来年の野菜を育てるのです。すべてを土に還さず、その一部はあなたの手元に、形見として留めます。</p>
 
-            if (data.length === 0) {
-                if(noResults) noResults.classList.remove('hidden');
-            } else {
-                if(noResults) noResults.classList.add('hidden');
-                data.forEach((idea, index) => {
-                    const delay = index < 12 ? index * 30 : 0;
-                    const iconClass = getCategoryIcon(idea.category);
-                    const colorClass = getCategoryColor(idea.category);
-                    const isStocked = stockedIdeas.includes(idea.id);
-                    
-                    const card = document.createElement('div');
-                    card.className = 'card bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col h-full cursor-pointer opacity-0 animate-fade-in relative group select-none';
-                    card.style.animation = `fadeIn 0.5s ease forwards ${delay}ms`;
-                    card.dataset.id = idea.id;
-                    
-                    card.addEventListener('click', (e) => {
-                        if (!e.target.closest('.stock-btn')) {
-                            openModal(idea);
-                        }
-                    });
-                    
-                    card.innerHTML = `
-                        <button class="stock-btn absolute top-4 right-4 z-10 p-2 rounded-full hover:bg-slate-50 transition active:scale-90" onclick="toggleStock(${idea.id})">
-                            <i class="${isStocked ? 'fa-solid fa-heart text-pink-500' : 'fa-regular fa-heart text-slate-300'} text-xl transition-colors"></i>
-                        </button>
-                        <div class="flex justify-between items-start mb-3 pr-8">
-                            <span class="text-[10px] font-bold px-2 py-1 rounded-md border ${colorClass}">
-                                <i class="fa-solid ${iconClass} mr-1"></i>${idea.category}
-                            </span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2 leading-snug">${idea.title}</h3>
-                        <p class="text-slate-500 text-sm line-clamp-3 flex-grow leading-relaxed">${idea.detail}</p>
-                        <div class="mt-4 pt-3 border-t border-slate-50 flex justify-between items-center text-xs text-slate-400">
-                            <span class="flex items-center"><i class="fa-solid fa-wand-magic-sparkles mr-1 text-yellow-400"></i>${idea.type}</span>
-                            <span class="text-teal-500 font-medium flex items-center group-hover:translate-x-1 transition-transform">詳細 <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i></span>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            }
-            updateStockUI();
-        }
+    <!-- 4ステップ -->
+    <div class="kando-flow">
+      <div class="flow-step reveal">
+        <div class="flow-num">Step 01</div>
+        <div class="flow-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <path d="M18 4 L28 14 L28 26 L8 26 L8 14 Z" stroke="#b8945a" stroke-width="1" fill="none"/>
+            <path d="M18 4 L18 26" stroke="#b8945a" stroke-width="0.6"/>
+          </svg>
+        </div>
+        <h3>返送</h3>
+        <p>役目を終えた服を、ロォーリングの工房へ。専用の還土チケット同梱。</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">Step 02</div>
+        <div class="flow-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="11" stroke="#b8945a" stroke-width="1"/>
+            <path d="M11 18 L25 18 M18 11 L18 25" stroke="#b8945a" stroke-width="0.6"/>
+          </svg>
+        </div>
+        <h3>解体と対話</h3>
+        <p>職人が服を解体しながら、どの部分を手元に残すかご相談します。</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">Step 03</div>
+        <div class="flow-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <path d="M6 26 Q18 8 30 26" stroke="#b8945a" stroke-width="1" fill="none"/>
+            <circle cx="18" cy="26" r="2.5" fill="#b8945a"/>
+          </svg>
+        </div>
+        <h3>炭化と還土</h3>
+        <p>大部分は無酸素炉でバイオ炭となり、大刀洗の藍畑へ還ります。</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">Step 04</div>
+        <div class="flow-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <rect x="11" y="9" width="14" height="18" stroke="#b8945a" stroke-width="1" fill="none"/>
+            <path d="M15 16 L21 16 M15 21 L21 21" stroke="#b8945a" stroke-width="0.6"/>
+          </svg>
+        </div>
+        <h3>証明書と形見</h3>
+        <p>埋めた場所のGPS座標と、お手元に残るお守りをお届けします。</p>
+      </div>
+    </div>
 
-        let currentCategory = 'all';
-        let currentSearch = '';
+    <!-- アミュレット -->
+    <div class="amulet-section">
+      <div class="amulet-inner">
+        <div class="amulet-header reveal">
+          <div class="amulet-en">─ Four Amulets, Four Memories ─</div>
+          <div class="amulet-title">手元に残す、四つの形見</div>
+          <p class="amulet-lede">長年連れ添った服を手放す時、あるいは愛する家族が遺した服を還す時。すべてを土に還す必要はありません。一部を「香り袋」や「お守り」「ペンダント」に仕立て直し、いつまでも温かな記憶を、あなたの手元に紡ぎ続けます。</p>
+        </div>
 
-        function filterIdeas() {
-            const filtered = ideas.filter(idea => {
-                const matchCategory = currentCategory === 'all' || idea.category === currentCategory;
-                const searchLower = currentSearch.toLowerCase();
-                const matchSearch = idea.title.toLowerCase().includes(searchLower) || 
-                                    idea.detail.toLowerCase().includes(searchLower) || 
-                                    idea.category.toLowerCase().includes(searchLower) ||
-                                    idea.task.toLowerCase().includes(searchLower);
-                return matchCategory && matchSearch;
-            });
-            renderIdeas(filtered);
-        }
+        <div class="amulet-grid">
+          <div class="amulet-card reveal">
+            <div class="amulet-svg">
+              <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+                <rect x="16" y="10" width="22" height="32" rx="2" stroke="#b8945a" stroke-width="1"/>
+                <circle cx="27" cy="14" r="1.5" fill="#b8945a"/>
+                <path d="M20 23 L34 23 M20 30 L34 30 M20 37 L34 37" stroke="#b8945a" stroke-width="0.5"/>
+              </svg>
+            </div>
+            <h4>香り袋 ─ 藍守</h4>
+            <span class="amulet-en-name">Ai-mamori</span>
+            <p>ランドセル型のミニチュア。藍と防虫ハーブを封入し、タンスや玄関へ。</p>
+          </div>
+          <div class="amulet-card reveal">
+            <div class="amulet-svg">
+              <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+                <path d="M27 8 L36 15 L36 34 L27 42 L18 34 L18 15 Z" stroke="#b8945a" stroke-width="1" fill="none"/>
+                <circle cx="27" cy="25" r="3.5" stroke="#b8945a" stroke-width="0.6"/>
+              </svg>
+            </div>
+            <h4>お守り袋 ─ 布巡守</h4>
+            <span class="amulet-en-name">Nuno-mamori</span>
+            <p>故人の服の切れ端と藍の種を封入。財布や仏壇の脇、カバンの中に。</p>
+          </div>
+          <div class="amulet-card reveal">
+            <div class="amulet-svg">
+              <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+                <line x1="27" y1="6" x2="27" y2="21" stroke="#b8945a" stroke-width="0.6"/>
+                <circle cx="27" cy="32" r="11" stroke="#b8945a" stroke-width="1"/>
+                <circle cx="27" cy="32" r="5" fill="#b8945a" opacity="0.4"/>
+              </svg>
+            </div>
+            <h4>ペンダント ─ 形見染</h4>
+            <span class="amulet-en-name">Katami-zome</span>
+            <p>透明レジンや漆器の中に布の切れ端を封入。日常的に身につけて。</p>
+          </div>
+          <div class="amulet-card reveal">
+            <div class="amulet-svg">
+              <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+                <rect x="10" y="14" width="34" height="26" stroke="#b8945a" stroke-width="1" fill="none"/>
+                <line x1="27" y1="14" x2="27" y2="40" stroke="#b8945a" stroke-width="0.5"/>
+                <circle cx="18" cy="27" r="2.5" fill="#b8945a" opacity="0.6"/>
+                <circle cx="36" cy="27" r="2.5" fill="#b8945a" opacity="0.4"/>
+              </svg>
+            </div>
+            <h4>仏壇飾り ─ 土還鏡</h4>
+            <span class="amulet-en-name">Do-kan-kyo</span>
+            <p>小さな額装。布の切れ端と、還土した土の標本を、並べて飾る。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function resetSearch() {
-            currentCategory = 'all';
-            currentSearch = '';
-            document.getElementById('searchInput').value = '';
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.dataset.category === 'all') btn.classList.add('active');
-            });
-            filterIdeas();
-        }
+<!-- ─────────── THE THIRTEEN ─────────── -->
+<section class="chapter-thirteen" id="thirteen">
+  <div class="thirteen-content">
+    <div class="chapter-marker reveal">
+      <div class="num">IV</div>
+      <div class="label">Chapter IV ─ The Thirteen ─</div>
+    </div>
 
-        document.getElementById('categoryFilters').addEventListener('click', (e) => {
-            const btn = e.target.closest('.category-btn');
-            if (btn) {
-                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentCategory = btn.dataset.category;
-                filterIdeas();
-            }
-        });
+    <h2 class="section-title reveal">大刀洗の土地が記憶する、<br><em>十三人の武将たちの名</em>を、現代に紡ぎ直す。</h2>
 
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            currentSearch = e.target.value;
-            filterIdeas();
-        });
+    <div class="thirteen-intro">
+      <div class="reveal">
+        <div class="vertical-quote">ここはロマンの塊。武将は十三人、この地に関わっている。</div>
+      </div>
+      <div class="reveal">
+        <p>1359年、大刀洗の北側にあたる「大保原」で、川中島・関ヶ原と並ぶ日本三大合戦のひとつが繰り広げられました。両軍合わせて10万人、戦死者25,000人超──。南朝軍を率いて勝利を導いた菊池武光が、戦の後に血で染まった太刀をこの地の小川で洗ったことが、町名「大刀洗」の由来です。</p>
+        <p>戦に挑んだ南朝方の主な武将は十三人。── ロォーリングは、その一人ひとりの名を、プロダクトラインの名前として現代に紡ぎ直します。あなたが纏う一着には、660年前の物語が静かに織り込まれているのです。</p>
+      </div>
+    </div>
 
-        function openModal(idea) {
-            const modal = document.getElementById('detailModal');
-            const panel = document.getElementById('detailModalPanel');
-            const backdrop = document.getElementById('detailModalBackdrop');
+    <div class="samurai-grid">
+      <div class="samurai-card reveal"><div class="num">I</div><div class="name-en">TAKEMITSU</div><div class="name-jp">菊池 武光</div><div class="role">南朝の総大将格。町名の由来。負傷しながらも勝利を導いた名将。</div></div>
+      <div class="samurai-card reveal"><div class="num">II</div><div class="name-en">KANEYOSHI</div><div class="name-jp">懐良 親王</div><div class="role">後醍醐天皇の皇子。8歳で九州に派遣された征西将軍。</div></div>
+      <div class="samurai-card reveal"><div class="num">III</div><div class="name-en">AKABOSHI</div><div class="name-jp">赤星 武貫</div><div class="role">菊池一族の重臣。「赤い星」の名を持つ夜の英雄。</div></div>
+      <div class="samurai-card reveal"><div class="num">IV</div><div class="name-en">KOREZUMI</div><div class="name-jp">阿蘇 惟澄</div><div class="role">阿蘇神社大宮司家。神職と武将を兼ねた、祈りと刃の人。</div></div>
+      <div class="samurai-card reveal"><div class="num">V</div><div class="name-en">KORETOKI</div><div class="name-jp">阿蘇 惟時</div><div class="role">懐良親王を最初に迎えた九州の有力武将。</div></div>
+      <div class="samurai-card reveal"><div class="num">VI</div><div class="name-en">NAGAYUKI</div><div class="name-jp">草野 永幸</div><div class="role">筑後地頭。大刀洗近郊の生粋の地元勢力。「永い幸」の名。</div></div>
+      <div class="samurai-card reveal"><div class="num">VII</div><div class="name-en">SADAHISA</div><div class="name-jp">宇都宮 貞久</div><div class="role">関東名門・宇都宮氏の九州派。動乱を生き抜いた一族。</div></div>
+      <div class="samurai-card reveal"><div class="num">VIII</div><div class="name-en">MITSUTAKA</div><div class="name-jp">大野 光隆</div><div class="role">筑後の在地領主。「光が隆く」── 名前に光が宿る。</div></div>
+      <div class="samurai-card reveal"><div class="num">IX</div><div class="name-en">NISHIMUTA</div><div class="name-jp">西牟田 讃岐守</div><div class="role">地元筑後の武将。讃岐守の官位を帯びる存在感。</div></div>
+      <div class="samurai-card reveal"><div class="num">X</div><div class="name-en">TAKEYASU</div><div class="name-jp">菊池 武安</div><div class="role">武光の弟。有智山城を守った将。兄弟で南朝を支えた。</div></div>
+      <div class="samurai-card reveal"><div class="num">XI</div><div class="name-en">TAKEMASA</div><div class="name-jp">菊池 武政</div><div class="role">武光の嫡子。父に従い奮戦。家督継承の象徴。</div></div>
+      <div class="samurai-card reveal"><div class="num">XII</div><div class="name-en">NITTA</div><div class="name-jp">新田 一族</div><div class="role">関東名門・新田氏の九州派。後醍醐天皇への忠誠の系譜。</div></div>
+      <div class="samurai-card reveal"><div class="num">XIII</div><div class="name-en">NAWA</div><div class="name-jp">名和 一族</div><div class="role">船上山で後醍醐天皇を迎えた名和長年の系譜。船と海の一族。</div></div>
+    </div>
 
-            if(modal && panel && backdrop) {
-                document.getElementById('modalCategoryBadge').className = `inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-bold mb-2 ${getCategoryColor(idea.category)}`;
-                document.getElementById('modalCategoryBadge').innerHTML = `<i class="fa-solid ${getCategoryIcon(idea.category)} mr-1"></i>${idea.category}`;
-                document.getElementById('modalTitle').textContent = idea.title;
-                document.getElementById('modalId').textContent = String(idea.id).padStart(3, '0');
-                document.getElementById('modalType').textContent = idea.type;
-                document.getElementById('modalTask').textContent = idea.task;
-                document.getElementById('modalDetail').textContent = idea.detail;
+    <div class="thirteen-cta reveal">
+      <a href="#" class="more-link">Read The Full Saga ─ 十三人の物語を読む</a>
+    </div>
+  </div>
+</section>
 
-                const stockBtn = document.getElementById('modalStockBtn');
-                if (stockBtn) {
-                    if (stockedIdeas.includes(idea.id)) {
-                        stockBtn.innerHTML = '<i class="fa-solid fa-heart"></i> ストック済み';
-                        stockBtn.className = "w-full sm:w-auto bg-pink-500 text-white font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 hover:bg-pink-600 shadow-md transform active:scale-95";
-                    } else {
-                        stockBtn.innerHTML = '<i class="fa-regular fa-heart"></i> ストックする';
-                        stockBtn.className = "w-full sm:w-auto border-2 border-pink-400 text-pink-500 hover:bg-pink-50 font-bold py-3 sm:py-2 px-8 rounded-full transition flex items-center justify-center gap-2 transform active:scale-95";
-                    }
-                }
+<!-- ─────────── CHAPTER 5 / TERROIR・三つの時間 ─────────── -->
+<section class="terroir" id="terroir">
+  <div class="terroir-content">
+    <div class="chapter-marker reveal">
+      <div class="num">V</div>
+      <div class="label">Chapter V ─ Terroir ─ 三つの時間</div>
+    </div>
 
-                modal.classList.remove('hidden');
-                
-                // Animation for bottom sheet
-                requestAnimationFrame(() => {
-                    backdrop.classList.remove('opacity-0');
-                    panel.classList.remove('translate-y-full', 'scale-100'); // Reset states
-                    
-                    // Mobile: Slide up
-                    if (window.innerWidth < 640) {
-                        panel.classList.remove('translate-y-full');
-                    } else {
-                        // Desktop: Fade/Scale in (already centered via flex)
-                        panel.classList.add('scale-100'); 
-                    }
-                });
-                document.body.style.overflow = 'hidden';
-            }
-        }
+    <h2 class="section-title reveal">この土地には、<br><em>三つの時間</em>が折り重なっている。</h2>
 
-        function closeDetailModal() {
-            const modal = document.getElementById('detailModal');
-            const panel = document.getElementById('detailModalPanel');
-            const backdrop = document.getElementById('detailModalBackdrop');
+    <p class="lede reveal">大刀洗の土と水を語るには、660年前と、300年前と、100年前の物語を、同時に語る必要があります。ロォーリングの布は、そのどれもの上に立っています。</p>
 
-            if(modal && panel && backdrop) {
-                backdrop.classList.add('opacity-0');
-                
-                // Mobile: Slide down
-                if (window.innerWidth < 640) {
-                    panel.classList.add('translate-y-full');
-                } else {
-                    // Desktop: Scale out
-                    // panel.classList.remove('scale-100');
-                }
+    <div class="terroir-layers">
+      <div class="terroir-card reveal">
+        <div class="year">1359</div>
+        <div class="label">South Court Era</div>
+        <h4>菊池武光と<br>十三人の武将</h4>
+        <p>日本三大合戦の一つ、筑後川の戦い。戦の後に血の刀を洗った川が、町名の由来となりました。死者を弔った「七人塚」「五万騎塚」の伝承は、敵味方を超えて土に還す精神そのもの。── これがロォーリングの「還土」思想の最も古い源です。</p>
+      </div>
+      <div class="terroir-card reveal">
+        <div class="year">1712</div>
+        <div class="label">Edo Period</div>
+        <h4>草野又六と<br>五庄屋の床島堰</h4>
+        <p>水不足に苦しむ農民のため、草野又六と五人の庄屋が筑後川を堰き止めた難工事。完成した床島堰の水は、現在もロォーリングの工房がある三川地区の綿と藍を育てています。300年前の水が、今あなたの肌の上で息づいているのです。</p>
+      </div>
+      <div class="terroir-card reveal">
+        <div class="year">1995</div>
+        <div class="label">The Founding</div>
+        <h4>實藤俊彦と<br>ロォーリングの30年</h4>
+        <p>平成7年7月7日創業。久留米絣・久留米織の伝統技術を独自開発した「からくり織®」、15年かけて育てた完全無農薬の「三川藍®」。── 化学繊維を一切使わない、すべて土に還る布。世界が「サステナブル」と呼ぶ前から、私たちはこれを「あたりまえ」と呼んできました。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    document.body.style.overflow = 'auto';
-                }, 300);
-            }
-        }
-        
-        // For backward compatibility if needed
-        function closeModal() {
-            closeDetailModal();
-        }
-        
-        function showRandomIdea() {
-            const randomIndex = Math.floor(Math.random() * ideas.length);
-            openModal(ideas[randomIndex]);
-        }
+<!-- ─────────── MATRIX ─────────── -->
+<section class="matrix" id="matrix">
+  <div class="matrix-inner">
+    <div class="matrix-header reveal">
+      <div class="matrix-en">The Diagnostic Matrix</div>
+      <div class="matrix-title">あなたは、どちらの未来を選びますか？</div>
+    </div>
 
-        updateStockUI();
-        renderIdeas(ideas);
+    <div class="matrix-grid reveal">
+      <div class="matrix-cell head">消費されるブランド</div>
+      <div class="matrix-cell head gold">再生するブランド ─ ROoRING</div>
 
-    </script>
+      <div class="matrix-cell left">直線的（Linear）</div>
+      <div class="matrix-cell right">循環的（Circular）</div>
+
+      <div class="matrix-cell left">買って、使って、捨てる。</div>
+      <div class="matrix-cell right">纏い、育て、形を変え、還す。</div>
+
+      <div class="matrix-cell left">次のシーズンが来れば、新しいものを買う。</div>
+      <div class="matrix-cell right">洗うたびに熟成し、傷つけば繕う。</div>
+
+      <div class="matrix-cell left">クローゼットの奥に着ない服が積み重なる。</div>
+      <div class="matrix-cell right">手元に記憶を留め、残りは土に還り、命を育む。</div>
+
+      <div class="matrix-cell left">お客様 ＝ 消費者</div>
+      <div class="matrix-cell right">お客様 ＝ 大地の守護者・共犯者</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── JOIN ─────────── -->
+<section class="join" id="join">
+  <div class="join-inner">
+    <div class="join-label">Become an Accomplice ─ 共犯者になる ─</div>
+
+    <h2>消費者ではなく、<br>命の循環を回す<em>共犯者・パトロン</em>として。</h2>
+
+    <p class="cta-lede">ロォーリングは、一方的にモノを売る関係を終わらせます。共に服を育て、繕い、未来の土を守る同志として、あなたを迎え入れます。最初の一片は、コースター一枚から、はじめてください。</p>
+
+    <div class="cta-buttons">
+      <a class="cta-btn primary" href="https://rooring.stores.jp/" target="_blank" rel="noopener">三川藍® Online Store</a>
+      <a class="cta-btn" href="#">Eat the Blue ─ 体験を予約</a>
+      <a class="cta-btn" href="#">還土チケットについて</a>
+    </div>
+
+    <div class="community-block">
+      <div class="community-item">
+        <h5>For Locals</h5>
+        <h6>大刀洗の皆さまへ</h6>
+        <p>「お金をかけず、心を掛けて」── ダディクラブと共に、地元から世界へ届ける物語を紡ぎます。法被作り、収穫祭、語り部育成。</p>
+      </div>
+      <div class="community-item">
+        <h5>For Restaurateurs</h5>
+        <h6>シェフ・ホテリエの皆様へ</h6>
+        <p>世界の星付きレストランやウェルネス施設のテーブルに、「未来の土壌」を敷きます。専用ライン「Table Soil」をご相談ください。</p>
+      </div>
+      <div class="community-item">
+        <h5>For Patrons</h5>
+        <h6>パトロンになる</h6>
+        <p>還土オーナー権、KANDOエクスペリエンス・パッケージ、世代継承プログラム。ロォーリングの千年の循環の、最も内側へ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── COMPANY ─────────── -->
+<section class="company" id="company">
+  <div class="company-inner">
+    <div class="company-left reveal">
+      <h2>合資会社ロォーリング</h2>
+      <div class="en-label">─ About ROoRING® ─</div>
+      <p>福岡県大刀洗町、源氏蛍が今も自然生息する三川地区にて、平成7年7月7日創業。久留米絣と久留米織の伝統技術を融合・改良した独自テキスタイル「からくり織®」、自社栽培の「三川藍®」、そして循環型ものづくりを核に、世界へ「永遠の循環への祈り」を織り続けています。</p>
+      <p>菊池武光が血刀を洗った大刀洗川のほとり、床島堰が今も水を運ぶこの土地で、660年・300年・30年の時間の上に立ち、これからの千年を紡ぎます。</p>
+    </div>
+
+    <div class="company-right reveal">
+      <dl class="company-info">
+        <dt>Company Name</dt>
+        <dd>合資会社ロォーリング ROoRING®</dd>
+
+        <dt>Founded</dt>
+        <dd>平成7年7月7日（1995年）</dd>
+
+        <dt>Representative</dt>
+        <dd>實藤 俊彦（さねふじ としひこ）</dd>
+
+        <dt>Address</dt>
+        <dd>福岡県三井郡大刀洗町三川</dd>
+
+        <dt>Business</dt>
+        <dd>被服・雑貨の製造販売／オリジナルテキスタイル「からくり織®」開発／三川藍®栽培／還土プログラム</dd>
+
+        <dt>Awards</dt>
+        <dd>福岡産業デザイン賞 他</dd>
+
+        <dt>Trademarks</dt>
+        <dd>ROoRING®／KARAKURI®／HUEGIN®／三川藍®</dd>
+
+        <dt>Community</dt>
+        <dd>ダディクラブ（鳥飼・大堰の地域コミュニティ）</dd>
+      </dl>
+
+      <div class="philosophy-quote">
+        ─ お金をかけず、心を掛けて。 ─
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FOOTER ─────────── -->
+<footer>
+  <div class="footer-top">
+    <div class="tagline">纏うことは、生きること。<br>還すことは、生かすこと。</div>
+    <div class="tagline-en">To wear is to live. To return is to give life.</div>
+  </div>
+
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>ROoRING <em>The Book of KANDO</em></h3>
+      <div class="est">Est. 1995 ─ Tachiarai, Fukuoka</div>
+      <p>福岡・大刀洗の藍と水から生まれ、あなたの十年に寄り添い、土へと還る布。世界へ「永遠の循環への祈り」を織り続けています。</p>
+      <div class="address">〒830-1224<br>福岡県三井郡大刀洗町大字三川</div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Chapters</h4>
+      <ul>
+        <li><a href="#prologue">Prologue ─ 序章</a></li>
+        <li><a href="#aikioku">AI-NO-KIOKU ─ 藍の記憶</a></li>
+        <li><a href="#chapter-1">I. 纏う ─ Wear</a></li>
+        <li><a href="#chapter-2">II. 育てる ─ Grow</a></li>
+        <li><a href="#chapter-3">III. 還す ─ Return</a></li>
+        <li><a href="#thirteen">IV. The Thirteen</a></li>
+        <li><a href="#terroir">V. Terroir ─ 三つの時間</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="https://rooring.stores.jp/" target="_blank" rel="noopener">三川藍® STORES</a></li>
+        <li><a href="https://www.yokamon.jp/shop/Y307/" target="_blank" rel="noopener">福岡よかもん市場</a></li>
+        <li><a href="#">ふるさと納税（さとふる）</a></li>
+        <li><a href="#">ファクトリーショップ</a></li>
+        <li><a href="#">Table Soil（B2B）</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">Eat the Blue 予約</a></li>
+        <li><a href="https://www.facebook.com/kasuri.jp" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="#">特定商取引法に基づく表示</a></li>
+        <li><a href="#">プライバシーポリシー</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div>© 1995 — 2026 ROoRING / 合資会社ロォーリング</div>
+    <div>Woven in Tachiarai, Fukuoka, Japan</div>
+  </div>
+</footer>
+
+<script>
+// Nav state
+const nav = document.querySelector('nav.top');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), Math.min(i * 60, 400));
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+reveals.forEach(r => io.observe(r));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (href.length > 1) {
+      e.preventDefault();
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+// 追加のホタル（動的生成）
+const hero = document.querySelector('.hero');
+for (let i = 0; i < 6; i++) {
+  const f = document.createElement('div');
+  f.className = 'firefly';
+  f.style.left = (Math.random() * 90 + 5) + '%';
+  f.style.top = (Math.random() * 70 + 15) + '%';
+  f.style.animationDelay = (Math.random() * 6) + 's';
+  f.style.animationDuration = (7 + Math.random() * 4) + 's';
+  hero.appendChild(f);
+}
+</script>
+
 </body>
 </html>
