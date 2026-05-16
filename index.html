@@ -107,20 +107,21 @@ nav.top .logo .small {
 nav.top.scrolled .logo .small { color: var(--gold); }
 nav.top ul {
   display: flex;
-  gap: 36px;
+  gap: 22px;
   list-style: none;
   align-items: center;
 }
 nav.top ul a {
   color: var(--paper);
   text-decoration: none;
-  font-size: 0.74rem;
-  letter-spacing: 0.32em;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
   font-family: "Cormorant Garamond", serif;
   transition: all 0.4s;
   position: relative;
   padding-bottom: 4px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 nav.top.scrolled ul a { color: var(--ink); }
 nav.top ul a::after {
@@ -1386,6 +1387,647 @@ footer {
   color: var(--muted-dark);
 }
 
+/* ═══════════════════════════════════════════════════════════ */
+/* ───────── 6次産業 ─ 追加6章のCSS ───────── */
+/* ═══════════════════════════════════════════════════════════ */
+
+/* ───────── Chapter 0.5 / 育てる人（1次産業） ───────── */
+.cultivators {
+  background: linear-gradient(180deg, var(--paper-soft) 0%, var(--paper) 100%);
+}
+.cultivators-content { max-width: 1280px; margin: 0 auto; }
+.cultivator-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 80px;
+}
+.cultivator-card {
+  background: var(--paper-cream);
+  padding: 0;
+  border: 1px solid var(--hairline-light);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cultivator-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 30px 60px -20px rgba(10, 20, 41, 0.18);
+}
+.cultivator-portrait {
+  height: 280px;
+  background: linear-gradient(135deg, #2d4674 0%, #1a2b4f 50%, #0a1429 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cultivator-portrait.indigo-field {
+  background:
+    radial-gradient(circle at 30% 60%, #1a2b4f 0%, transparent 50%),
+    radial-gradient(circle at 70% 40%, #2d4674 0%, transparent 50%),
+    linear-gradient(180deg, #5a6b85 0%, #2d4674 60%, #0a1429 100%);
+}
+.cultivator-portrait.cotton-field {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(244, 237, 224, 0.4) 0%, transparent 30%),
+    radial-gradient(circle at 70% 50%, rgba(244, 237, 224, 0.3) 0%, transparent 30%),
+    radial-gradient(circle at 40% 70%, rgba(244, 237, 224, 0.35) 0%, transparent 30%),
+    linear-gradient(180deg, #3d5a8a 0%, #1a2b4f 100%);
+}
+.cultivator-portrait.water-field {
+  background:
+    linear-gradient(180deg, #1a2b4f 0%, #2d4674 50%, #5878a8 100%);
+}
+.cultivator-portrait svg { opacity: 0.8; }
+
+.cultivator-info {
+  padding: 36px 32px 40px;
+}
+.cultivator-role {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.28em;
+  font-size: 0.78rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.cultivator-name {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500;
+  font-size: 1.35rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+.cultivator-name .small {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted-light);
+  letter-spacing: 0.18em;
+  margin-top: 4px;
+  font-weight: 400;
+}
+.cultivator-monologue {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 2.1;
+  color: var(--muted-light);
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hairline-light);
+  font-style: italic;
+}
+
+/* ───────── Chapter I.5 / 食べる藍 ───────── */
+.eat-the-blue {
+  background: var(--ink-deep);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.eat-the-blue::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top right, rgba(184, 148, 90, 0.1), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(45, 70, 116, 0.4), transparent 60%);
+  pointer-events: none;
+}
+.eat-the-blue-content { max-width: 1280px; margin: 0 auto; position: relative; z-index: 2; }
+.eat-the-blue .chapter-marker .label { color: var(--muted-dark); }
+.eat-the-blue h2.section-title { color: var(--paper); }
+.eat-the-blue .lede { color: var(--text-on-dark); opacity: 0.88; }
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 80px;
+}
+.menu-card {
+  text-align: center;
+  padding: 40px 24px;
+  background: rgba(244, 237, 224, 0.04);
+  border: 1px solid var(--hairline-dark);
+  transition: all 0.5s;
+}
+.menu-card:hover {
+  border-color: var(--gold);
+  background: rgba(184, 148, 90, 0.08);
+  transform: translateY(-4px);
+}
+.menu-icon {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.menu-name {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 6px;
+  color: var(--paper);
+  font-weight: 500;
+}
+.menu-en {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+  display: block;
+}
+.menu-desc {
+  font-size: 0.82rem;
+  line-height: 1.9;
+  color: var(--muted-dark);
+}
+
+.experience-pkg {
+  margin-top: 100px;
+  background: rgba(184, 148, 90, 0.06);
+  border: 1px solid var(--hairline-gold);
+  padding: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px;
+  align-items: center;
+}
+.pkg-left .pkg-label {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.32em;
+  font-size: 0.82rem;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+}
+.pkg-left h3 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  color: var(--paper);
+}
+.pkg-left .pkg-price {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+.pkg-right p {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 300;
+  line-height: 2.1;
+  color: var(--text-on-dark);
+  opacity: 0.9;
+  margin-bottom: 18px;
+  font-size: 0.94rem;
+}
+.pkg-itinerary {
+  list-style: none;
+  margin-top: 20px;
+}
+.pkg-itinerary li {
+  padding: 10px 0 10px 32px;
+  position: relative;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--text-on-dark);
+  border-bottom: 1px solid var(--hairline-dark);
+}
+.pkg-itinerary li::before {
+  content: "─";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+.pkg-itinerary li:last-child { border-bottom: none; }
+
+/* ───────── Chapter III.5 / 守る人になる（観光） ───────── */
+.guardian {
+  background: var(--paper-warm);
+}
+.guardian-content { max-width: 1280px; margin: 0 auto; }
+.guardian-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 60px;
+}
+.guardian-hero-visual {
+  aspect-ratio: 4/3;
+  background:
+    radial-gradient(circle at 30% 70%, rgba(255, 248, 196, 0.3) 0%, transparent 20%),
+    radial-gradient(circle at 65% 40%, rgba(255, 248, 196, 0.25) 0%, transparent 15%),
+    radial-gradient(circle at 80% 75%, rgba(255, 248, 196, 0.2) 0%, transparent 15%),
+    radial-gradient(circle at 20% 30%, rgba(255, 248, 196, 0.15) 0%, transparent 12%),
+    linear-gradient(180deg, var(--ink) 0%, var(--indigo-night) 60%, var(--indigo) 100%);
+  border: 1px solid var(--hairline-light);
+  position: relative;
+  overflow: hidden;
+}
+.guardian-hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 90%, rgba(184, 148, 90, 0.15), transparent 50%);
+}
+.guardian-hero-text h3 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.guardian-hero-text p {
+  font-family: "Noto Serif JP", serif;
+  line-height: 2.2;
+  font-size: 0.96rem;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.guardian-programs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 100px;
+}
+.program-card {
+  background: var(--paper-soft);
+  padding: 44px 32px;
+  border-top: 3px solid var(--gold);
+  position: relative;
+  transition: all 0.4s;
+}
+.program-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 25px 50px -15px rgba(10, 20, 41, 0.15);
+}
+.program-num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.program-card h4 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.program-card .en-sub {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: block;
+}
+.program-card p {
+  font-size: 0.9rem;
+  line-height: 2;
+  color: var(--muted-light);
+  margin-bottom: 16px;
+}
+.program-card .price {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline-light);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0.84rem;
+  letter-spacing: 0.16em;
+  color: var(--rust);
+}
+
+/* ───────── Chapter IV.5 / 学び、伝える（教育） ───────── */
+.education {
+  background: var(--paper-soft);
+}
+.education-content { max-width: 1280px; margin: 0 auto; }
+
+.edu-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 80px;
+}
+.edu-card {
+  padding: 56px 44px;
+  background: var(--paper-cream);
+  border: 1px solid var(--hairline-light);
+  position: relative;
+  transition: all 0.4s;
+}
+.edu-card:hover {
+  border-color: var(--gold);
+}
+.edu-card .icon-block {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 32px;
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(184, 148, 90, 0.05);
+}
+.edu-card h4 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.edu-card .edu-en {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.26em;
+  color: var(--gold);
+  margin-bottom: 24px;
+  display: block;
+}
+.edu-card p {
+  font-family: "Noto Serif JP", serif;
+  line-height: 2.1;
+  font-size: 0.94rem;
+  color: var(--muted-light);
+  margin-bottom: 16px;
+}
+.edu-card .edu-list {
+  margin-top: 20px;
+  list-style: none;
+}
+.edu-card .edu-list li {
+  padding: 8px 0 8px 24px;
+  position: relative;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--ink);
+}
+.edu-card .edu-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 1.2em;
+}
+
+.edu-quote {
+  margin-top: 80px;
+  text-align: center;
+  padding: 60px 40px;
+  border-top: 1px solid var(--hairline-gold);
+  border-bottom: 1px solid var(--hairline-gold);
+}
+.edu-quote .quote-text {
+  font-family: "Shippori Mincho", serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  letter-spacing: 0.16em;
+  line-height: 2.2;
+  color: var(--ink);
+  max-width: 800px;
+  margin: 0 auto;
+}
+.edu-quote .quote-cite {
+  margin-top: 24px;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.22em;
+  font-size: 0.85rem;
+  color: var(--gold);
+}
+
+/* ───────── Chapter V.5 / 久留米藩文化圏 ───────── */
+.cultural-zone {
+  background: var(--ink);
+  color: var(--paper);
+}
+.cultural-zone-content { max-width: 1280px; margin: 0 auto; }
+.cultural-zone .chapter-marker .label { color: var(--muted-dark); }
+.cultural-zone h2.section-title { color: var(--paper); }
+.cultural-zone .lede { color: var(--text-on-dark); opacity: 0.85; }
+
+.zone-map {
+  margin-top: 100px;
+  background: rgba(244, 237, 224, 0.03);
+  border: 1px solid var(--hairline-dark);
+  padding: 60px;
+  position: relative;
+}
+.zone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.zone-card {
+  text-align: center;
+  padding: 20px;
+}
+.zone-card .zone-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 24px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--gold-light);
+}
+.zone-card h5 {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 8px;
+  color: var(--paper);
+  font-weight: 500;
+}
+.zone-card .zone-towns {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+}
+.zone-card p {
+  font-size: 0.86rem;
+  line-height: 1.9;
+  color: var(--muted-dark);
+}
+.zone-statement {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--hairline-gold);
+  text-align: center;
+  font-family: "Shippori Mincho", serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.14em;
+  line-height: 2;
+  color: var(--gold-pale);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ───────── Chapter VI / ダディクラブ ───────── */
+.daddy-club {
+  background: var(--paper-cream);
+  position: relative;
+}
+.daddy-club-content { max-width: 1280px; margin: 0 auto; }
+
+.daddy-hero {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+  margin-bottom: 80px;
+}
+.daddy-quote-block {
+  padding: 40px 0;
+  border-left: 2px solid var(--gold);
+  padding-left: 36px;
+}
+.daddy-quote-block .big-quote {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 0.16em;
+  line-height: 2;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.daddy-quote-block .cite {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  letter-spacing: 0.22em;
+  font-size: 0.85rem;
+  color: var(--rust);
+}
+.daddy-hero-text p {
+  font-family: "Noto Serif JP", serif;
+  line-height: 2.3;
+  font-size: 0.98rem;
+  margin-bottom: 24px;
+  color: var(--ink);
+}
+
+.daddy-numbers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin: 80px 0;
+}
+.daddy-number {
+  text-align: center;
+  padding: 36px 24px;
+  background: var(--paper-soft);
+  border-top: 2px solid var(--gold);
+}
+.daddy-number .big-num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.daddy-number .unit {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  color: var(--muted-light);
+  text-transform: uppercase;
+}
+.daddy-number .desc {
+  font-family: "Shippori Mincho", serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  margin-top: 14px;
+  color: var(--ink);
+}
+
+.daddy-activities {
+  background: var(--paper-soft);
+  padding: 60px;
+  border: 1px solid var(--hairline-light);
+  margin-top: 60px;
+}
+.daddy-activities h4 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.daddy-activities .sub {
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.22em;
+  font-size: 0.85rem;
+  margin-bottom: 40px;
+}
+.activity-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 40px;
+  list-style: none;
+}
+.activity-list li {
+  padding: 16px 0 16px 28px;
+  border-bottom: 1px solid var(--hairline-light);
+  position: relative;
+  font-family: "Shippori Mincho", serif;
+  font-size: 0.96rem;
+  line-height: 1.8;
+}
+.activity-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: bold;
+}
+.activity-list .label {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  color: var(--rust);
+  display: block;
+  margin-bottom: 2px;
+}
+
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 900px) {
   nav.top { padding: 16px 20px; }
@@ -1428,6 +2070,29 @@ footer {
   .chapter-marker .num { font-size: 3.5rem; }
   .chapter-marker .label { padding-right: 0; font-size: 0.7rem; letter-spacing: 0.32em; }
   h2.section-title { font-size: 1.6rem; }
+
+  /* 追加章のモバイル対応 */
+  .cultivator-grid { grid-template-columns: 1fr; gap: 24px; }
+  .cultivator-portrait { height: 200px; }
+  .menu-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .menu-card { padding: 28px 16px; }
+  .experience-pkg { grid-template-columns: 1fr; gap: 36px; padding: 36px 24px; }
+  .guardian-hero { grid-template-columns: 1fr; gap: 40px; }
+  .guardian-programs { grid-template-columns: 1fr; gap: 20px; }
+  .edu-pillars { grid-template-columns: 1fr; gap: 28px; }
+  .edu-card { padding: 36px 28px; }
+  .edu-quote { padding: 40px 20px; }
+  .edu-quote .quote-text { font-size: 1rem; }
+  .zone-map { padding: 36px 20px; }
+  .zone-grid { grid-template-columns: 1fr; gap: 32px; }
+  .daddy-hero { grid-template-columns: 1fr; gap: 40px; }
+  .daddy-quote-block { padding-left: 24px; }
+  .daddy-quote-block .big-quote { font-size: 1.15rem; }
+  .daddy-numbers { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .daddy-number { padding: 24px 16px; }
+  .daddy-number .big-num { font-size: 2.5rem; }
+  .daddy-activities { padding: 32px 24px; }
+  .activity-list { grid-template-columns: 1fr; gap: 12px; }
 }
 
 /* Reveal */
@@ -1445,11 +2110,17 @@ footer {
   </div>
   <ul>
     <li><a href="#prologue">Prologue</a></li>
+    <li><a href="#cultivators">育てる人</a></li>
     <li><a href="#aikioku">Ai-no-Kioku</a></li>
     <li><a href="#chapter-1">I. 纏う</a></li>
+    <li><a href="#eat-the-blue">食べる藍</a></li>
     <li><a href="#chapter-2">II. 育てる</a></li>
     <li><a href="#chapter-3">III. 還す</a></li>
+    <li><a href="#guardian">守る人</a></li>
     <li><a href="#thirteen">The Thirteen</a></li>
+    <li><a href="#education">学ぶ</a></li>
+    <li><a href="#cultural-zone">文化圏</a></li>
+    <li><a href="#daddy-club">Daddy Club</a></li>
     <li><a href="#join">Join</a></li>
     <li><a href="https://rooring.stores.jp/" target="_blank" rel="noopener" class="shop-btn">Shop</a></li>
   </ul>
@@ -1527,6 +2198,76 @@ footer {
       <p>「纏うことは、生きること。還すことは、生かすこと。」<br>この十二文字は、ロォーリングが歩んできた30年の道のりであり、これからの千年に向けた誓約でもあります。どうぞ、ゆっくり頁を繰ってください。</p>
 
       <p class="author">─ 合資会社ロォーリング 代表 實藤 俊彦</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── CHAPTER 0.5 / 育てる人 ─ Cultivators ─────────── -->
+<section class="cultivators" id="cultivators">
+  <div class="cultivators-content">
+    <div class="chapter-marker reveal">
+      <div class="num">0.5</div>
+      <div class="label">Cultivators ─ 育てる人</div>
+    </div>
+
+    <h2 class="section-title reveal">この布は、<br><em>誰の手と土から</em>始まっているのか。</h2>
+
+    <p class="lede reveal">ロォーリングのすべては、一枚の葉、一本の綿、一杯の水から始まります。1995年の創業以来、私たちは「藍は農業だけで終わらない。文化になり、仕事になり、誇りになる」という信念のもと、栽培から織り、染め、そして還土までを大刀洗の土地の中で一貫して行ってきました。── ここに、その源流を支える人たちがいます。</p>
+
+    <div class="cultivator-grid">
+      <!-- 和綿農家 -->
+      <div class="cultivator-card reveal">
+        <div class="cultivator-portrait cotton-field">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" opacity="0.7">
+            <circle cx="40" cy="32" r="14" fill="#f4ede0" opacity="0.85"/>
+            <circle cx="28" cy="44" r="10" fill="#f4ede0" opacity="0.75"/>
+            <circle cx="52" cy="44" r="10" fill="#f4ede0" opacity="0.75"/>
+            <line x1="40" y1="46" x2="40" y2="72" stroke="#f4ede0" stroke-width="1.2" opacity="0.6"/>
+            <path d="M35 60 L40 56 L45 60" stroke="#f4ede0" stroke-width="1" fill="none" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="cultivator-info">
+          <div class="cultivator-role">Cotton Farmer ─ 和綿</div>
+          <h3 class="cultivator-name">源流の守り手<span class="small">── 和綿農家</span></h3>
+          <p class="cultivator-monologue">「昔はここら一面、綿の花が揺れとった。腰は痛いし儲けは少ない。でも、工房から機織りの音が聞こえてくると、自分の育てた綿があの音の中で『命』になっていく気がすると。この景色を、孫の代まで残したい。それだけたい」</p>
+        </div>
+      </div>
+
+      <!-- 藍農家 -->
+      <div class="cultivator-card reveal">
+        <div class="cultivator-portrait indigo-field">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" opacity="0.85">
+            <path d="M40 16 C32 16 24 22 24 36 C24 50 32 64 40 64 C48 64 56 50 56 36 C56 22 48 16 40 16 Z" stroke="#b8945a" stroke-width="1.2" fill="rgba(184,148,90,0.1)"/>
+            <line x1="40" y1="16" x2="40" y2="64" stroke="#b8945a" stroke-width="0.8" opacity="0.6"/>
+            <line x1="30" y1="34" x2="50" y2="34" stroke="#b8945a" stroke-width="0.6" opacity="0.5"/>
+            <line x1="28" y1="44" x2="52" y2="44" stroke="#b8945a" stroke-width="0.6" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="cultivator-info">
+          <div class="cultivator-role">Indigo Farmer ─ 三川藍</div>
+          <h3 class="cultivator-name">15年の藍<span class="small">── 三川藍®栽培</span></h3>
+          <p class="cultivator-monologue">「藍は実に正直です。肥沃な土地でなければ育たない。定期的に水をかぶるくらいがちょうどいい。水耕栽培は自然との距離感を失ってしまう。完全無農薬。原種の藍を15年かけてここで育ててきました」</p>
+        </div>
+      </div>
+
+      <!-- 水と土 -->
+      <div class="cultivator-card reveal">
+        <div class="cultivator-portrait water-field">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" opacity="0.8">
+            <path d="M14 28 Q28 22 40 28 T68 28" stroke="#e8dec9" stroke-width="1.2" fill="none"/>
+            <path d="M14 40 Q28 34 40 40 T68 40" stroke="#e8dec9" stroke-width="1.2" fill="none" opacity="0.8"/>
+            <path d="M14 52 Q28 46 40 52 T68 52" stroke="#e8dec9" stroke-width="1.2" fill="none" opacity="0.6"/>
+            <circle cx="22" cy="64" r="2" fill="#b8945a"/>
+            <circle cx="40" cy="68" r="2" fill="#b8945a"/>
+            <circle cx="58" cy="64" r="2" fill="#b8945a"/>
+          </svg>
+        </div>
+        <div class="cultivator-info">
+          <div class="cultivator-role">Water & Soil ─ 筑後川と土</div>
+          <h3 class="cultivator-name">300年の水<span class="small">── 床島堰と微生物</span></h3>
+          <p class="cultivator-monologue">「1712年、草野又六と五庄屋が筑後川を堰き止め、この地に水を引いた。300年前の水が今もこの土を潤し、土中の微生物が綿と藍を育て、役目を終えた布を分解し、次の命に変える。── 私たちの本当の製造装置は、微生物です」</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1611,6 +2352,98 @@ footer {
         <span class="card-en">The Wearable Shelter</span>
         <p>都市の喧騒から身を守る「ウェアラブルな避難所」。空気の層が、あなたの自律神経を整えます。10年後の風合いを完成形と定める、未完成の一着。</p>
         <div class="card-price">From ¥168,000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── CHAPTER I.5 / 食べる藍 ─ Eat the Blue ─────────── -->
+<section class="eat-the-blue" id="eat-the-blue">
+  <div class="eat-the-blue-content">
+    <div class="chapter-marker reveal">
+      <div class="num">I.5</div>
+      <div class="label">Chapter I.5 ─ 食べる藍 ─ Eat the Blue</div>
+    </div>
+
+    <h2 class="section-title reveal">藍は、纏うだけではない。<br><em>口にする藍</em>もまた、土の記憶を運ぶ。</h2>
+
+    <p class="lede reveal">原種の藍葉には、ポリフェノール、抗酸化作用、抗炎症作用が宿ります。私たちは藍を「衣」だけで終わらせません。藍茶、藍菓子、地酒、藍で育った野菜、地元食材を組み合わせた晩餐 ── 大刀洗の土と水の恵みを、五感すべてで体内に取り込む体験を、ここに用意します。「身体の内と外から、大刀洗に染まる」── これが、ロォーリングの6次産業化の核です。</p>
+
+    <!-- メニュー -->
+    <div class="menu-grid">
+      <div class="menu-card reveal">
+        <div class="menu-icon">
+          <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+            <path d="M25 8 C20 8 16 14 16 22 C16 30 20 38 25 38 C30 38 34 30 34 22 C34 14 30 8 25 8 Z" stroke="#b8945a" stroke-width="1" fill="rgba(184,148,90,0.1)"/>
+            <path d="M25 8 L25 38" stroke="#b8945a" stroke-width="0.6"/>
+            <path d="M18 22 L32 22 M19 28 L31 28" stroke="#b8945a" stroke-width="0.5" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="menu-name">藍茶</div>
+        <span class="menu-en">AI-CHA / Indigo Tea</span>
+        <p class="menu-desc">原種の藍葉を丁寧に乾燥させたお茶。ポリフェノールと抗酸化成分が、日々の身体を内側から整える。</p>
+      </div>
+
+      <div class="menu-card reveal">
+        <div class="menu-icon">
+          <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+            <rect x="14" y="20" width="22" height="18" rx="2" stroke="#b8945a" stroke-width="1" fill="rgba(184,148,90,0.08)"/>
+            <path d="M14 24 L36 24 M14 30 L36 30" stroke="#b8945a" stroke-width="0.5" opacity="0.6"/>
+            <circle cx="20" cy="16" r="2" fill="#b8945a" opacity="0.6"/>
+            <circle cx="30" cy="16" r="2" fill="#b8945a" opacity="0.6"/>
+            <circle cx="25" cy="14" r="2" fill="#b8945a" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="menu-name">藍菓子</div>
+        <span class="menu-en">AI-GASHI / Indigo Sweets</span>
+        <p class="menu-desc">藍粉末を練り込んだ和菓子。地元の和三盆と組み合わせた、季節限定の小さな贈り物。</p>
+      </div>
+
+      <div class="menu-card reveal">
+        <div class="menu-icon">
+          <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+            <path d="M22 8 L28 8 L30 14 L20 14 Z" stroke="#b8945a" stroke-width="1" fill="rgba(184,148,90,0.1)"/>
+            <path d="M20 14 L18 30 Q18 38 25 40 Q32 38 32 30 L30 14" stroke="#b8945a" stroke-width="1" fill="rgba(184,148,90,0.05)"/>
+            <line x1="18" y1="24" x2="32" y2="24" stroke="#b8945a" stroke-width="0.5" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="menu-name">三川藍 地酒</div>
+        <span class="menu-en">MIKAWA-AI Sake</span>
+        <p class="menu-desc">藍と同じ水系で仕込まれた地元の銘酒。「綺麗な水がないと、良い藍も美味しい酒もできない」</p>
+      </div>
+
+      <div class="menu-card reveal">
+        <div class="menu-icon">
+          <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+            <ellipse cx="25" cy="35" rx="14" ry="4" stroke="#b8945a" stroke-width="1" fill="none"/>
+            <path d="M14 35 Q14 22 25 18 Q36 22 36 35" stroke="#b8945a" stroke-width="1" fill="rgba(184,148,90,0.06)"/>
+            <circle cx="22" cy="26" r="2" fill="#b8945a" opacity="0.6"/>
+            <circle cx="30" cy="28" r="2.5" fill="#b8945a" opacity="0.5"/>
+            <circle cx="25" cy="22" r="1.8" fill="#b8945a" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="menu-name">布巡り野菜</div>
+        <span class="menu-en">FUMEGURI Vegetables</span>
+        <p class="menu-desc">役目を終えた服が炭となり、その炭で育てた藍と野菜。「服は土になり、食となる」の証明。</p>
+      </div>
+    </div>
+
+    <!-- 体験パッケージ -->
+    <div class="experience-pkg reveal">
+      <div class="pkg-left">
+        <div class="pkg-label">─ Signature Experience ─</div>
+        <h3>青を食む<br>Eat the Blue ─ 半日コース</h3>
+        <div class="pkg-price">¥28,000 / 1名（環境保全費込み）</div>
+      </div>
+      <div class="pkg-right">
+        <p>身体の内と外から、大刀洗に染まる半日。藍畑に触れ、自分の手で布を染め、染め上がったばかりのランチョンマットを敷いて、地元の水・酒・野菜と一皿を味わう──。</p>
+        <ul class="pkg-itinerary">
+          <li><strong>13:00 ─ </strong>藍畑の散策。三川藍と土に触れる。</li>
+          <li><strong>14:30 ─ </strong>藍染め体験。自分のテーブルウェアを一枚染める。</li>
+          <li><strong>16:30 ─ </strong>青の晩餐 ─ 染め上がりのマットを敷いて。</li>
+          <li><strong>18:00 ─ </strong>地元の酒蔵の日本酒、藍茶、大刀洗野菜のだご汁、古賀漬けおにぎり。</li>
+          <li><strong>20:00 ─ </strong>ホタル観賞優先エリアへご案内（6月限定）。</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -1833,6 +2666,55 @@ footer {
   </div>
 </section>
 
+<!-- ─────────── CHAPTER III.5 / 守る人になる ─────────── -->
+<section class="guardian" id="guardian">
+  <div class="guardian-content">
+    <div class="chapter-marker reveal">
+      <div class="num">III.5</div>
+      <div class="label">Chapter III.5 ─ Become a Guardian ─ 守る人</div>
+    </div>
+
+    <h2 class="section-title reveal">タダ乗り観光客から、<br><em>大地の守護者</em>へ。</h2>
+
+    <p class="lede reveal">ホタルの里・大刀洗には、毎年10万人が訪れます。けれど、その美しさを支える土と水と人の労力には、誰も気づきません。── 私たちは、「来てくれてありがとう」から一歩進んで、「あなたが、この景色を守る一人になる」体験を用意します。</p>
+
+    <div class="guardian-hero">
+      <div class="guardian-hero-visual reveal"></div>
+      <div class="guardian-hero-text reveal">
+        <h3>ホタル守護証 ─ The Firefly Guardian Pass</h3>
+        <p>ホタル観賞期間中、特別な「守護区」に入る方には、藍染めのリストバンドと、大刀洗の水で淹れた藍茶を一杯。そして、あなたの環境協力金が来年の藍と田畑を育てます。── あなたは観光客ではなく、この景色の共犯者・パトロンになります。</p>
+        <p>払った人にはロォーリングの<strong>「藍染めリストバンド」</strong>と、その後一年間有効な<strong>「ファクトリーショップ優待」</strong>。10万人の足が、地域を守る投資へと変わります。</p>
+      </div>
+    </div>
+
+    <div class="guardian-programs">
+      <div class="program-card reveal">
+        <div class="program-num">Program 01</div>
+        <h4>ホタル守護証</h4>
+        <span class="en-sub">Firefly Guardian Pass</span>
+        <p>6月限定。藍染めリストバンドと藍茶、優先観賞エリアへのアクセス。協力金は来年の藍畑の保全に充てられます。</p>
+        <div class="price">¥3,000 / 1名（6月限定）</div>
+      </div>
+
+      <div class="program-card reveal">
+        <div class="program-num">Program 02</div>
+        <h4>藍染めリトリート</h4>
+        <span class="en-sub">Indigo Retreat ─ 2日間</span>
+        <p>都市の喧騒から離れ、藍の畑で土に触れる2日間。瞑想、染め、布の手仕事、地元食材の食事、温泉。心と体を整える滞在型プログラム。</p>
+        <div class="price">¥88,000 / 1名（1泊2日）</div>
+      </div>
+
+      <div class="program-card reveal">
+        <div class="program-num">Program 03</div>
+        <h4>参勤交代ワーケーション</h4>
+        <span class="en-sub">Sankin Kotai Workation</span>
+        <p>都市で疲れた働く人へ、月のうち数日を大刀洗で過ごす長期プラン。古民家での仕事、ダディクラブの活動への参加、藍の手伝い。── お客様ではなく、「もう一人の地元の人」として迎えます。</p>
+        <div class="price">¥48,000 / 1週間〜</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─────────── THE THIRTEEN ─────────── -->
 <section class="chapter-thirteen" id="thirteen">
   <div class="thirteen-content">
@@ -1875,6 +2757,109 @@ footer {
   </div>
 </section>
 
+<!-- ─────────── CHAPTER IV.5 / 学び、伝える ─────────── -->
+<section class="education" id="education">
+  <div class="education-content">
+    <div class="chapter-marker reveal">
+      <div class="num">IV.5</div>
+      <div class="label">Chapter IV.5 ─ Learn & Transmit ─ 学ぶ、伝える</div>
+    </div>
+
+    <h2 class="section-title reveal">藍は、農業だけで終わらない。<br><em>文化になり、誇りになる。</em></h2>
+
+    <p class="lede reveal">ロォーリングは、製品を作る工房であると同時に、「土に還る技術」を未来に伝える学校でもあります。子どもから大人まで、地元の小学生から世界中のクリエイターまで、誰もが藍の循環を学び、参加できる場を用意します。</p>
+
+    <div class="edu-pillars">
+      <!-- 大堰学 -->
+      <div class="edu-card reveal">
+        <div class="icon-block">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <path d="M21 6 L6 14 L21 22 L36 14 Z" stroke="#b8945a" stroke-width="1" fill="rgba(184,148,90,0.08)"/>
+            <path d="M12 17 L12 28 L21 32 L30 28 L30 17" stroke="#b8945a" stroke-width="1" fill="none"/>
+            <line x1="36" y1="14" x2="36" y2="24" stroke="#b8945a" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <h4>大堰学プログラム</h4>
+        <span class="edu-en">OOZEKI-GAKU ─ Field School</span>
+        <p>大堰小学校との連携。子どもたちが工房を訪れ、藍を埋め、布を埋め、その布が消えていく過程を観察する。「土は嘘をつかない」を、肌で覚える世代をつくります。</p>
+        <ul class="edu-list">
+          <li>布を土に埋める実証実験</li>
+          <li>藍の種まきから収穫まで</li>
+          <li>「織物の魔法使い」實藤代表の話</li>
+          <li>100年法被プロジェクト（卒業時、次の学年へ受け継ぐ）</li>
+        </ul>
+      </div>
+
+      <!-- 語り部 -->
+      <div class="edu-card reveal">
+        <div class="icon-block">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <rect x="8" y="10" width="26" height="22" rx="1" stroke="#b8945a" stroke-width="1" fill="none"/>
+            <line x1="8" y1="16" x2="34" y2="16" stroke="#b8945a" stroke-width="0.6"/>
+            <line x1="13" y1="22" x2="29" y2="22" stroke="#b8945a" stroke-width="0.5" opacity="0.7"/>
+            <line x1="13" y1="26" x2="29" y2="26" stroke="#b8945a" stroke-width="0.5" opacity="0.7"/>
+          </svg>
+        </div>
+        <h4>語り部育成 ─ 13人の物語</h4>
+        <span class="edu-en">The Storytellers ─ Living Archive</span>
+        <p>菊池武光から十三人の武将、井上伝、草野又六と五庄屋まで、大刀洗の660年・300年の物語を、地元の若い世代が語れるようになる養成プログラム。ロォーリングが冊子と暗記カードを用意します。</p>
+        <ul class="edu-list">
+          <li>月1回の青空講談（鳥飼城跡）</li>
+          <li>からくり織の座布団で参加</li>
+          <li>外国人観光客への英語ガイド研修</li>
+          <li>子どもが「小さな語り部」に認定される制度</li>
+        </ul>
+      </div>
+
+      <!-- 工房留学 -->
+      <div class="edu-card reveal">
+        <div class="icon-block">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <rect x="6" y="14" width="30" height="20" stroke="#b8945a" stroke-width="1" fill="rgba(184,148,90,0.05)"/>
+            <line x1="6" y1="20" x2="36" y2="20" stroke="#b8945a" stroke-width="0.5"/>
+            <line x1="6" y1="26" x2="36" y2="26" stroke="#b8945a" stroke-width="0.5" opacity="0.7"/>
+            <path d="M14 14 L14 8 L28 8 L28 14" stroke="#b8945a" stroke-width="0.8" fill="none"/>
+          </svg>
+        </div>
+        <h4>工房留学・職人研修</h4>
+        <span class="edu-en">Apprenticeship ─ Open Atelier</span>
+        <p>世界中の若いクリエイター、デザイナー、ファッション学生に開かれた短期・長期研修プログラム。失われつつあるシャトル織機の技術を、次世代の手に渡します。</p>
+        <ul class="edu-list">
+          <li>1週間〜1年の長期研修</li>
+          <li>シャトル織機の操作・メンテナンス</li>
+          <li>三川藍の栽培から染色まで</li>
+          <li>修了時に「ロォーリング認定アンバサダー」</li>
+        </ul>
+      </div>
+
+      <!-- プランター藍 -->
+      <div class="edu-card reveal">
+        <div class="icon-block">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <path d="M10 30 L32 30 L30 38 L12 38 Z" stroke="#b8945a" stroke-width="1" fill="rgba(184,148,90,0.1)"/>
+            <path d="M21 30 L21 18 M16 22 L21 18 L26 22" stroke="#b8945a" stroke-width="1" fill="none"/>
+            <path d="M14 24 L18 22 M28 24 L24 22" stroke="#b8945a" stroke-width="0.6" opacity="0.7"/>
+          </svg>
+        </div>
+        <h4>プランター藍 ─ 里親制度</h4>
+        <span class="edu-en">Desktop Indigo Farm</span>
+        <p>都会の人も、ベランダで藍を育てる体験を。大刀洗の土と藍の種を入れたキットを送り、夏に育った葉を「里帰り」させると、ロォーリングがその葉で染めたハンカチをお返しします。</p>
+        <ul class="edu-list">
+          <li>春に栽培キットをお届け</li>
+          <li>SNS『バーチャル鳥飼村』で育成記録を共有</li>
+          <li>夏に葉を返送、ロォーリングで染める</li>
+          <li>秋に染め上がりのハンカチをお返し</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="edu-quote reveal">
+      <div class="quote-text">「藍染なら、農業だけで終わらない。<br>文化になる、仕事になる、そして誇りになる」</div>
+      <div class="quote-cite">─ 實藤 俊彦 ─</div>
+    </div>
+  </div>
+</section>
+
 <!-- ─────────── CHAPTER 5 / TERROIR・三つの時間 ─────────── -->
 <section class="terroir" id="terroir">
   <div class="terroir-content">
@@ -1910,6 +2895,49 @@ footer {
   </div>
 </section>
 
+<!-- ─────────── CHAPTER V.5 / 久留米藩文化圏 ─────────── -->
+<section class="cultural-zone" id="cultural-zone">
+  <div class="cultural-zone-content">
+    <div class="chapter-marker reveal">
+      <div class="num">V.5</div>
+      <div class="label">Chapter V.5 ─ Kurume Cultural Zone ─ 文化圏</div>
+    </div>
+
+    <h2 class="section-title reveal">大刀洗は、ひとつの町ではない。<br><em>かつての久留米藩</em>、6市町の文化圏として再生する。</h2>
+
+    <p class="lede reveal">實藤代表は商工会の仕事で6市町を回ります。そのほとんどが、かつての久留米藩の範囲。「筑前とは、文化圏が違う。この違いをとても大事にしている」── 私たちは、大刀洗を起点に、久留米藩文化圏を一つの「物語の生態系」として再構築します。</p>
+
+    <div class="zone-map">
+      <div class="zone-grid">
+        <div class="zone-card reveal">
+          <div class="zone-icon">水</div>
+          <h5>水と土の文化</h5>
+          <div class="zone-towns">Kurume · Tachiarai · Asakura</div>
+          <p>筑後川とその支流、床島堰の恵み。久留米市・大刀洗町・朝倉市が共有する、水と土の物語。</p>
+        </div>
+        <div class="zone-card reveal">
+          <div class="zone-icon">織</div>
+          <h5>絣と織りの文化</h5>
+          <div class="zone-towns">Kurume Kasuri · Yame</div>
+          <p>1800年、井上伝が12歳で創始した久留米絣。八女の手すき和紙。先人の知恵が現代に活きる工芸圏。</p>
+        </div>
+        <div class="zone-card reveal">
+          <div class="zone-icon">食</div>
+          <h5>発酵と食の文化</h5>
+          <div class="zone-towns">Kurume Sake · Yame Tea · Chikugo</div>
+          <p>久留米の地酒、八女茶、筑後の発酵食。水の良い土地が育む、食の豊かさ。藍と並ぶ「もう一つの土の文化」。</p>
+        </div>
+      </div>
+
+      <div class="zone-statement">
+        「縦の継承」が世代を超える布巡りなら、<br>
+        「横の連携」がこの久留米藩文化圏。<br>
+        ロォーリングは、その結節点としての役目を担います。
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─────────── MATRIX ─────────── -->
 <section class="matrix" id="matrix">
   <div class="matrix-inner">
@@ -1936,6 +2964,94 @@ footer {
 
       <div class="matrix-cell left">お客様 ＝ 消費者</div>
       <div class="matrix-cell right">お客様 ＝ 大地の守護者・共犯者</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── CHAPTER VI / ダディクラブ ─────────── -->
+<section class="daddy-club" id="daddy-club">
+  <div class="daddy-club-content">
+    <div class="chapter-marker reveal">
+      <div class="num">VI</div>
+      <div class="label">Chapter VI ─ The Daddy Club ─ 鳥飼の青年団</div>
+    </div>
+
+    <h2 class="section-title reveal">「お金をかけず、心を掛けて」── <br>布巡りを<em>地元から支える</em>、現代の青年団。</h2>
+
+    <div class="daddy-hero">
+      <div class="daddy-quote-block reveal">
+        <div class="big-quote">「気づけば青年団はなくなり、祭りも消え、人が集い何かを“一緒にやる場”がいつの間にかなくなっていた。だから、私はダディクラブをつくった。」</div>
+        <div class="cite">─ 實藤 俊彦 ─</div>
+      </div>
+      <div class="daddy-hero-text reveal">
+        <p>大堰地区・鳥飼地区は、福岡県下でも消滅可能性が指摘される地域です。實藤代表が立ち上げた「ダディクラブ」は、かつての青年団のような、地域の人と人を「一緒にやる場」でつなぐコミュニティ。</p>
+        <p>そして今、ロォーリングはこのダディクラブを、世界に向けて「布巡り」を発信していくための、最も内側の生態系として位置づけます。── お客様、シェフ、観光客、外から来た移住者、子どもたち、農家、職人。全員が、このコミュニティの仲間です。</p>
+      </div>
+    </div>
+
+    <!-- 数字 -->
+    <div class="daddy-numbers">
+      <div class="daddy-number reveal">
+        <div class="big-num">1/3</div>
+        <div class="unit">From Outside</div>
+        <div class="desc">移住者・<br>関係人口の比率</div>
+      </div>
+      <div class="daddy-number reveal">
+        <div class="big-num">30</div>
+        <div class="unit">Years</div>
+        <div class="desc">ロォーリング<br>創業からの年月</div>
+      </div>
+      <div class="daddy-number reveal">
+        <div class="big-num">660</div>
+        <div class="unit">Years of History</div>
+        <div class="desc">筑後川の戦いから<br>受け継がれる土地の記憶</div>
+      </div>
+      <div class="daddy-number reveal">
+        <div class="big-num">¥0</div>
+        <div class="unit">Cost</div>
+        <div class="desc">「お金をかけず、<br>心を掛けて」</div>
+      </div>
+    </div>
+
+    <!-- 活動内容 -->
+    <div class="daddy-activities reveal">
+      <h4>ダディクラブの活動と、参加の門戸</h4>
+      <div class="sub">─ Open to All Who Care ─</div>
+
+      <ul class="activity-list">
+        <li>
+          <span class="label">For Locals</span>
+          地域の祭り（枝豆収穫祭・大堰神社祭事）への参加
+        </li>
+        <li>
+          <span class="label">For Locals</span>
+          藍畑・和綿畑の共同作業
+        </li>
+        <li>
+          <span class="label">For Locals</span>
+          子どもへの「大堰学」語り部活動
+        </li>
+        <li>
+          <span class="label">For Locals</span>
+          崩れかけた石積みの修復・景観保全
+        </li>
+        <li>
+          <span class="label">For Visitors</span>
+          短期留学・参勤交代ワーケーション
+        </li>
+        <li>
+          <span class="label">For Visitors</span>
+          「お客様」ではなく「仲間」として迎える滞在
+        </li>
+        <li>
+          <span class="label">For Patrons</span>
+          ロォーリングの「共犯者」「パトロン」コミュニティ
+        </li>
+        <li>
+          <span class="label">For All</span>
+          月1回の青空講談・酒盛りと火を囲む夜
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -2038,12 +3154,18 @@ footer {
       <h4>Chapters</h4>
       <ul>
         <li><a href="#prologue">Prologue ─ 序章</a></li>
+        <li><a href="#cultivators">0.5 育てる人 ─ Cultivators</a></li>
         <li><a href="#aikioku">AI-NO-KIOKU ─ 藍の記憶</a></li>
         <li><a href="#chapter-1">I. 纏う ─ Wear</a></li>
+        <li><a href="#eat-the-blue">I.5 食べる藍 ─ Eat the Blue</a></li>
         <li><a href="#chapter-2">II. 育てる ─ Grow</a></li>
         <li><a href="#chapter-3">III. 還す ─ Return</a></li>
+        <li><a href="#guardian">III.5 守る人 ─ Guardian</a></li>
         <li><a href="#thirteen">IV. The Thirteen</a></li>
+        <li><a href="#education">IV.5 学ぶ ─ Learn</a></li>
         <li><a href="#terroir">V. Terroir ─ 三つの時間</a></li>
+        <li><a href="#cultural-zone">V.5 文化圏 ─ Cultural Zone</a></li>
+        <li><a href="#daddy-club">VI. Daddy Club</a></li>
       </ul>
     </div>
 
